@@ -5,10 +5,18 @@ Dead simple Swift JSON Parsing
 
 - [x] Leaves your models clean
 - [x] Implicitely casts json values to the right types in your model
-- [x] Does not crash if json key is not there, nor returns nil, it simple doesn't do anything
+- [x] Does not crash if json key is not there, nor returns nil, it simply doesn't do anything
 - [x] Simple
 - [x] Extensible
 - [x] Easy to use
+
+### Spoiler Alert <3
+---
+```swift
+identifier <-- json["id"]
+name <-- json["name"]
+stats <== json["stats"]
+```
 
 ## Why Another Swift JSON Parsing Library?
 
@@ -24,14 +32,6 @@ Or at at least none of them meet our requirements for what makes a truely good J
 
 
 ## Ok I'm sold, Now show me the code
-
-### Spoiler Alert <3
----
-```swift
-identifier <-- json["id"]
-name <-- json["name"]
-stats <== json["stats"]
-```
 
 ### Swift Model
 -
