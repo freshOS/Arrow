@@ -19,8 +19,21 @@ struct Profile {
 }
 ```
 
+JSON File
+--
+```json
+{
+    "id": 15678,
+    "name": "John Doe",
+    "stats": {
+        "numberOfFriends": 163,
+        "numberOfFans": 10987
+    }
+}
+```
 
-Before (The Chaos)
+
+Usual Swift JSON Parsing (Chaos)
 -
 ```swift
 var profile = Profile()
@@ -41,7 +54,7 @@ var profile = Profile()
 ```
 
 
-WithArow Sanity preserved
+With Arrow --> Sanity preserved
 -
 
 ```swift
