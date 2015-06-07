@@ -157,4 +157,6 @@ Sure, just set your date format once and you're done.
     // Configure NSDate Parsing
     Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 ```
-
+## Acknoledgments
+This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
+<3
