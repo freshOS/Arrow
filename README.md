@@ -1,6 +1,41 @@
 # Arrow <--
 Dead simple Swift JSON Parsing
 
+## Features
+
+- [x] Leaves your models clean
+- [x] Struct friendly
+- [x] Simple
+- [x] Extensible
+- [x] Easy to use
+
+Why Another Swift JSON Parsing Library
+--
+
+Well the answer is prettry simple. All the others are simply not good enough.
+Here is our requirements for a good Json Library :
+
+- It should not force us to subclass our models. The fact that we get data as JSON is a DETAIL and should not leak in our app architecture (right uncle bob?! :p)
+So there is no reason that using a particular library to parse Json would force us to come back to our pretty models
+and subclass them with some obscure class. And what if your model aldready subclasses something, say NSManagedObject? well you're pretty much screwed :p
+
+- Use Structs over Classes
+As good swift citizens we want to use structs over classes for our models.
+
+- easily extensible
+- Be simple
+- Be easy, not throwing obsucre syntax chain obscure functional operator all over the place
+
+
+Characteristics  | Usual JSON Library | Arrow
+------------- | ------------- | ----
+Clean Model  | Content Cell | test
+Simple  | Content Cell |  tsts
+
+
+Ok Now show me the code
+-
+
 Spoiler Alert <3
 ---
 ```swift
@@ -68,24 +103,6 @@ extension Profile:ArrowParsable {
 ```
 
 
-Why Another Swift JSON Parsing Library
---
-
-Well the answer is prettry simple. All the others are simply not good enough.
-Here is our requirements for a good Json Library :
-
-- Not Force us to subclass our models.
-The fact that we get data as JSON is a DETAIL and should not leak in our app architecture (right uncle bob?! :p)
-So there is no reason that using a particular library to parse Json would force us to come back to our pretty models
-and subclass them with some osbscure class.
-- And what if your model aldready subclasses something, say NSManagedObject? well you're screwed :p
-
-- Use Structs over Classes
-As good swift citizens we want to use structs over classes for our models.
-
-- easily extensible
-- Be simple
-- Be easy, not throwing obsucre syntax chain obscure functional operator all over the place
 
 
 
