@@ -4,7 +4,8 @@ Dead simple Swift JSON Parsing
 ## Features
 
 - [x] Leaves your models clean
-- [x] Struct friendly
+- [x] Implicitely casts json values to the right types in your model
+- [x] Does not crash if json key is not there, nor returns nil, it simple doesn't do anything
 - [x] Simple
 - [x] Extensible
 - [x] Easy to use
@@ -15,16 +16,12 @@ Dead simple Swift JSON Parsing
 Well the answer is prettry simple. All the others are simply not good enough.
 Or at at least none of them meet our requirements for what makes a truely good Json Library :
 
-- It should not force us to subclass our models. The fact that we get data as JSON is a DETAIL and should not leak in our app architecture (right uncle bob?! :p)
-So there is no reason that using a particular library to parse Json would force us to come back to our pretty models
-and subclass them with some obscure class. And what if your model aldready subclasses something, say NSManagedObject? well you're pretty much screwed :p
+- Most of them force us to subclass our models. The fact that we get data as JSON representation is a DETAIL and should not leak in our app architecture (right uncle bob?! :p) So there is no reason that using a particular library to parse Json would force us to come back to our pretty models and subclass them with some obscure class. And what if your models aldready subclass something, say NSManagedObject? well you're pretty much screwed :p
 
-- Use Structs over Classes
-As good swift citizens we want to use structs over classes for our models.
+- Some use overly complex obscure functional chaining operator overloading voodoo magic
 
-- easily extensible
-- Be simple
-- Be easy, not throwing obsucre syntax chain obscure functional operator all over the place
+- Most need us to explicitely cast the Json value to the correposnding type on our model. We think this is crazy! the type is already there in our model class, can't we just implicitly cast it?
+
 
 ## Ok I'm sold, Now show me the code
 
@@ -107,3 +104,10 @@ extension Profile:ArrowParsable {
 let profile = Profile(json: json)
 ```
 - Step 4 - Ther is no step 4
+
+ 
+## How Does that work
+
+<-- Operator is for all
+
+
