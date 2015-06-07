@@ -9,11 +9,11 @@ Dead simple Swift JSON Parsing
 - [x] Extensible
 - [x] Easy to use
 
-Why Another Swift JSON Parsing Library
---
+## Why Another Swift JSON Parsing Library?
+
 
 Well the answer is prettry simple. All the others are simply not good enough.
-Here is our requirements for a good Json Library :
+Or at at least none of them meet our requirements for what makes a truely good Json Library :
 
 - It should not force us to subclass our models. The fact that we get data as JSON is a DETAIL and should not leak in our app architecture (right uncle bob?! :p)
 So there is no reason that using a particular library to parse Json would force us to come back to our pretty models
@@ -26,17 +26,9 @@ As good swift citizens we want to use structs over classes for our models.
 - Be simple
 - Be easy, not throwing obsucre syntax chain obscure functional operator all over the place
 
+## Ok I'm sold, Now show me the code
 
-Characteristics  | Usual JSON Library | Arrow
-------------- | ------------- | ----
-Clean Model  | Content Cell | test
-Simple  | Content Cell |  tsts
-
-
-Ok Now show me the code
--
-
-Spoiler Alert <3
+### Spoiler Alert <3
 ---
 ```swift
 identifier <-- json["id"]
@@ -44,7 +36,7 @@ name <-- json["name"]
 stats <== json["stats"]
 ```
 
-Swift Model
+### Swift Model
 -
 ```swift
 struct Profile {
@@ -54,7 +46,7 @@ struct Profile {
 }
 ```
 
-JSON File
+### JSON File
 --
 ```json
 {
@@ -66,9 +58,7 @@ JSON File
     }
 }
 ```
-
-
-Usual Swift JSON Parsing (Chaos)
+### Usual Swift JSON Parsing (Chaos)
 -
 ```swift
 var profile = Profile()
@@ -87,11 +77,7 @@ if let statsJson = json["stats"] as? AnyObject {
     }
 }
 ```
-
-
-With Arrow --> Sanity preserved
--
-
+### With Arrow --> Sanity preserved
 ```swift
 extension Profile:ArrowParsable {
     init(json: JSON) {
