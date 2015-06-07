@@ -18,6 +18,12 @@ identifier <-- json["id"]
 name <-- json["name"]
 stats <== json["stats"]
 ```
+## Installation
+Using Carthage
+```
+github "s4cha/Arrow"
+```
+Or Simply Copy and Paste Arrow.swift :)
 
 ## Why Another Swift JSON Parsing Library?
 
