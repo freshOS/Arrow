@@ -6,6 +6,7 @@ Dead simple Swift JSON Parsing
 - [x] Leaves your models clean
 - [x] Implicitely casts JSON values to the right types in your model
 - [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
+- [x] NSDate Parsing
 - [x] Simple
 - [x] Extensible
 - [x] Easy to use
@@ -144,4 +145,13 @@ stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
 stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
 ```
 
+- Hey I don't want to parse NSDates in evry files, do you have something for me?
+
+
+Sure, just set your date format once and you're done.
+
+```swift
+    // Configure NSDate Parsing
+    Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+```
 
