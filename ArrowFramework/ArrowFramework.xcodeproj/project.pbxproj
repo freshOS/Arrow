@@ -11,6 +11,7 @@
 		991E4F161B24A0F8004E7FAC /* ArrowFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991E4F0A1B24A0F8004E7FAC /* ArrowFramework.framework */; };
 		991E4F1D1B24A0F8004E7FAC /* ArrowFrameworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E4F1C1B24A0F8004E7FAC /* ArrowFrameworkTests.swift */; };
 		991E4F271B24A10D004E7FAC /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E4F261B24A10D004E7FAC /* Arrow.swift */; };
+		991E4F281B24A27E004E7FAC /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E4F261B24A10D004E7FAC /* Arrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				991E4F1D1B24A0F8004E7FAC /* ArrowFrameworkTests.swift in Sources */,
+				991E4F281B24A27E004E7FAC /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,4 @@ FOUNDATION_EXPORT double ArrowFrameworkVersionNumber;
 //! Project version string for ArrowFramework.
 FOUNDATION_EXPORT const unsigned char ArrowFrameworkVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <ArrowFramework/PublicHeader.h>
-
 
