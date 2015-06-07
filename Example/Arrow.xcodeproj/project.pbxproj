@@ -13,8 +13,9 @@
 		9920AAF41B2475E30065B12C /* Usage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AAEF1B2475E30065B12C /* Usage.swift */; };
 		9920AAF91B2476880065B12C /* Profile+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AAF71B2476880065B12C /* Profile+Arrow.swift */; };
 		9920AAFA1B2476880065B12C /* Stats+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AAF81B2476880065B12C /* Stats+Arrow.swift */; };
-		9920AAFE1B2476D60065B12C /* Pet.json in Resources */ = {isa = PBXBuildFile; fileRef = 9920AAFD1B2476D60065B12C /* Pet.json */; };
-		9920AB001B2477170065B12C /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AAFF1B2477170065B12C /* Arrow.swift */; };
+		9920AAFE1B2476D60065B12C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 9920AAFD1B2476D60065B12C /* Profile.json */; };
+		9920AB021B248E380065B12C /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AB011B248E380065B12C /* Arrow.swift */; };
+		9920AB041B248F6A0065B12C /* NSDate+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +39,9 @@
 		9920AAEF1B2475E30065B12C /* Usage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Usage.swift; path = Source/Usage.swift; sourceTree = SOURCE_ROOT; };
 		9920AAF71B2476880065B12C /* Profile+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Arrow.swift"; sourceTree = "<group>"; };
 		9920AAF81B2476880065B12C /* Stats+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stats+Arrow.swift"; sourceTree = "<group>"; };
-		9920AAFD1B2476D60065B12C /* Pet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Pet.json; sourceTree = SOURCE_ROOT; };
-		9920AAFF1B2477170065B12C /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		9920AAFD1B2476D60065B12C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = SOURCE_ROOT; };
+		9920AB011B248E380065B12C /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Arrow.swift; path = ../Arrow.swift; sourceTree = "<group>"; };
+		9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Arrow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +65,8 @@
 		9920AAA61B2474330065B12C = {
 			isa = PBXGroup;
 			children = (
-				9920AAFF1B2477170065B12C /* Arrow.swift */,
+				9920AAED1B2475E30065B12C /* AppDelegate.swift */,
+				9920AB011B248E380065B12C /* Arrow.swift */,
 				9920AAB11B2474330065B12C /* Arrow */,
 				9920AAC71B2474330065B12C /* ArrowTests */,
 				9920AAB01B2474330065B12C /* Products */,
@@ -83,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				9920AAEC1B2475E30065B12C /* Models.swift */,
-				9920AAED1B2475E30065B12C /* AppDelegate.swift */,
 				9920AAEF1B2475E30065B12C /* Usage.swift */,
 				9920AAF61B2476880065B12C /* Mapping */,
 				9920AAB21B2474330065B12C /* Supporting Files */,
@@ -95,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				9920AAB31B2474330065B12C /* Info.plist */,
-				9920AAFD1B2476D60065B12C /* Pet.json */,
+				9920AAFD1B2476D60065B12C /* Profile.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -122,6 +124,7 @@
 			children = (
 				9920AAF71B2476880065B12C /* Profile+Arrow.swift */,
 				9920AAF81B2476880065B12C /* Stats+Arrow.swift */,
+				9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */,
 			);
 			name = Mapping;
 			path = Source/Mapping;
@@ -207,7 +210,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9920AAFE1B2476D60065B12C /* Pet.json in Resources */,
+				9920AAFE1B2476D60065B12C /* Profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,7 +233,8 @@
 				9920AAF91B2476880065B12C /* Profile+Arrow.swift in Sources */,
 				9920AAF11B2475E30065B12C /* Models.swift in Sources */,
 				9920AAF41B2475E30065B12C /* Usage.swift in Sources */,
-				9920AB001B2477170065B12C /* Arrow.swift in Sources */,
+				9920AB041B248F6A0065B12C /* NSDate+Arrow.swift in Sources */,
+				9920AB021B248E380065B12C /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

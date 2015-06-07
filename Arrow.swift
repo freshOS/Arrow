@@ -8,27 +8,6 @@
 //
 import Foundation
 
-//
-//// Pb with json parsing  :
-////WE dont want our parrse immplementation details to "leak into" our models
-////(ex dont hahve tu subclass a specifi class ets)
-//
-////Uses struct good swift citizen
-//
-//// Arrow json parsing
-//
-//// Arrow is DEAD Simple.
-//// it just transforms "this :
-//
-////    if let id = json["id"] as? Int {
-////        identifier = id
-////    }
-//// into this
-////    identifier <-- id
-//
-//// The power of it is tht you can easily use other mappings with <== -> show
-//
-//
 //// extensibile
 //
 //// Arrow really shine when used in conjucction with custon parsing
@@ -36,20 +15,16 @@ import Foundation
 //
 //
 
-typealias JSON = AnyObject//[String:AnyObject]
+typealias JSON = AnyObject
+
 
 // Next
-
 // share parsing logic between structs
 // STAY SIMPLE - >explain simply how it works
 //
 
-
-//Arrow json helper json from textFile
-
 //shwo  easy to extend (without modifying) -> typicla example is NSDate
 
-// Use Constructor instead of resourceFormJSON
 
 class Arrow {
     class func jsonForName(name: String) -> JSON {
@@ -64,6 +39,13 @@ class Arrow {
 // Parse Default swift Types
 infix operator <-- {}
 func <-- <T>(inout left: T, right: AnyObject?) {
+    if let v: T = right as? T {
+        left = v
+    }
+}
+
+// Support otional Data
+func <-- <T>(inout left: T?, right: AnyObject?) {
     if let v: T = right as? T {
         left = v
     }

@@ -31,6 +31,7 @@ struct Stats {
 
 struct Profile {
     var identifier = 0
+    var createdAt = NSDate()
     var name = ""
     var stats = Stats()
 }
