@@ -15,7 +15,6 @@
 		9920AAFA1B2476880065B12C /* Stats+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AAF81B2476880065B12C /* Stats+Arrow.swift */; };
 		9920AAFE1B2476D60065B12C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 9920AAFD1B2476D60065B12C /* Profile.json */; };
 		9920AB021B248E380065B12C /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AB011B248E380065B12C /* Arrow.swift */; };
-		9920AB041B248F6A0065B12C /* NSDate+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +40,6 @@
 		9920AAF81B2476880065B12C /* Stats+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stats+Arrow.swift"; sourceTree = "<group>"; };
 		9920AAFD1B2476D60065B12C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = SOURCE_ROOT; };
 		9920AB011B248E380065B12C /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Arrow.swift; path = ../Arrow.swift; sourceTree = "<group>"; };
-		9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Arrow.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +122,6 @@
 			children = (
 				9920AAF71B2476880065B12C /* Profile+Arrow.swift */,
 				9920AAF81B2476880065B12C /* Stats+Arrow.swift */,
-				9920AB031B248F6A0065B12C /* NSDate+Arrow.swift */,
 			);
 			name = Mapping;
 			path = Source/Mapping;
@@ -233,7 +230,6 @@
 				9920AAF91B2476880065B12C /* Profile+Arrow.swift in Sources */,
 				9920AAF11B2475E30065B12C /* Models.swift in Sources */,
 				9920AAF41B2475E30065B12C /* Usage.swift in Sources */,
-				9920AB041B248F6A0065B12C /* NSDate+Arrow.swift in Sources */,
 				9920AB021B248E380065B12C /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

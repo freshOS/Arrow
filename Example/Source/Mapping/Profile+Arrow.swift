@@ -14,11 +14,6 @@ extension Profile:ArrowParsable {
         identifier <-- json["id"]
         createdAt <-- json["created_at"]
         name <-- json["name"]
-        
-        // Can use . syntax
-//        stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
-//        stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
-        // But even better to refacto in sub objects \o/
         stats <== json["stats"]
     }
 }

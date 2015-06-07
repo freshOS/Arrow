@@ -8,22 +8,6 @@
 
 import Foundation
 
-//: Playground - noun: a place where people can play
-
-
-// Goals
-
-//Single "sandalone" Models files with no exterior logic or no networking or no json parsing logic
-// Models only depend on intrefaces, use composition over inheritance.
-
-// Refactor parsing bits into parts say resource part/ author part etc.
-
-//  Untouches models ,not leaking , can cahnge our architecture whenevr (like girl frineds)
-// Struct models
-// Simple
-// Easy to use
-
-
 struct Stats {
     var numberOfFriends = 0
     var numberOfFans = 0

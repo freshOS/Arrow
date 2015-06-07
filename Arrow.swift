@@ -5,28 +5,21 @@
 ////  Created by Sacha Durand Saint Omer on 6/7/15.
 ////  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
 ////
-//
-import Foundation
 
-//// extensibile
-//
-//// Arrow really shine when used in conjucction with custon parsing
-//
-//
-//
+import Foundation
 
 typealias JSON = AnyObject
 
-
-// Next
-// share parsing logic between structs
-// STAY SIMPLE - >explain simply how it works
-//
-
-//shwo  easy to extend (without modifying) -> typicla example is NSDate
-
-
 class Arrow {
+    
+    class func dateFormat(format:String) {
+        ArrowDateFormatter.sharedInstance.dateFormat = format
+    }
+    
+    class func locale(locale:NSLocale) {
+        ArrowDateFormatter.sharedInstance.locale = locale
+    }
+    
     class func jsonForName(name: String) -> JSON {
         let bundle = NSBundle.mainBundle()
         let path = bundle.pathForResource(name, ofType: "json")
@@ -36,7 +29,8 @@ class Arrow {
     }
 }
 
-// Parse Default swift Types
+// MARK : -  Parse Default swift Types
+
 infix operator <-- {}
 func <-- <T>(inout left: T, right: AnyObject?) {
     if let v: T = right as? T {
@@ -51,7 +45,13 @@ func <-- <T>(inout left: T?, right: AnyObject?) {
     }
 }
 
-// Parse Custom Types
+
+// MARK : - Parse Custom Types
+
+protocol ArrowParsable {
+    init(json: JSON)
+}
+
 infix operator <== {}
 func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
     if let r: AnyObject = right {
@@ -59,8 +59,26 @@ func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
     }
 }
 
-protocol ArrowParsable {
-    init(json: JSON)
+
+// MARK : - NSDate Parsing 
+
+// Override Arrow Operator to catch NSDate Mapping and apply our transformation
+func <-- (inout left: NSDate, right: AnyObject?) {
+    if let s = right as? String, let date = ArrowDateFormatter.sharedInstance.dateFromString(s)  {
+        left = date
+    }
 }
+func <-- (inout left: NSDate?, right: AnyObject?) {
+    if let s = right as? String, let date = ArrowDateFormatter.sharedInstance.dateFromString(s)  {
+        left = date
+    }
+}
+
+// Here we use a singleton for performance purposes as
+// Creating a brand new DateFormatter everytime is time costly
+class ArrowDateFormatter {
+    static let sharedInstance = NSDateFormatter()
+}
+
 
 

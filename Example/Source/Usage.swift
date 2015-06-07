@@ -10,6 +10,10 @@ import Foundation
 
 class Usage {
     class func run() {
+        
+        // Configure NSDate Parsing
+        Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+
         let json:JSON = Arrow.jsonForName("Profile")
         let profile = Profile(json: json)
         println("id : \(profile.identifier)")
@@ -19,41 +23,3 @@ class Usage {
         println("fans : \(profile.stats.numberOfFans)")
     }
 }
-
-///
-
-//
-//extension Profile:ArrowParsable {
-//    init(json: JSON) {
-//        identifier <-- json["id"]
-//        name <-- json["name"]
-//        // Can use . syntax
-//        //        stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
-//        //        stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
-//        //
-//        // But even better to refacto in sub objects \o/
-//        stats <== json["stats"]
-//    }
-//}
-
-
-//TLDR:
-//copy paste Arow.swift (no need for podSpec/carthage its only one file
-
-//create a file MyModel + ArrowParsable {
-//    //extension Profile:ArrowParsable {
-//    init(json: JSON) {
-//        identifier <-- json["id"]
-//        name <-- json["name"]
-//        // Can use . syntax
-//        //        stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
-//        //        stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
-//        //
-//        // But even better to refacto in sub objects \o/
-//        stats <== json["stats"]
-//    }
-//}
-//}
-
-//3. let myModel = MyModel(json: json)
-//$. there is no step 4
