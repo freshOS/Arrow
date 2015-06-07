@@ -8,19 +8,15 @@
 
 import Foundation
 
-typealias JSON = AnyObject
+public typealias JSON = AnyObject
 
-class Arrow {
+public class Arrow {
     
-    class func dateFormat(format:String) {
+    public class func dateFormat(format:String) {
         ArrowDateFormatter.sharedInstance.dateFormat = format
     }
     
-    class func locale(locale:NSLocale) {
-        ArrowDateFormatter.sharedInstance.locale = locale
-    }
-    
-    class func jsonForName(name: String) -> JSON {
+    public class func jsonForName(name: String) -> JSON {
         let bundle = NSBundle.mainBundle()
         let path = bundle.pathForResource(name, ofType: "json")
         let jsonData = NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe, error: nil)!
@@ -32,14 +28,14 @@ class Arrow {
 // MARK : -  Parse Default swift Types
 
 infix operator <-- {}
-func <-- <T>(inout left: T, right: AnyObject?) {
+public func <-- <T>(inout left: T, right: AnyObject?) {
     if let v: T = right as? T {
         left = v
     }
 }
 
 // Support otional Data
-func <-- <T>(inout left: T?, right: AnyObject?) {
+public func <-- <T>(inout left: T?, right: AnyObject?) {
     if let v: T = right as? T {
         left = v
     }
@@ -48,12 +44,12 @@ func <-- <T>(inout left: T?, right: AnyObject?) {
 
 // MARK : - Parse Custom Types
 
-protocol ArrowParsable {
+public protocol ArrowParsable {
     init(json: JSON)
 }
 
 infix operator <== {}
-func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
+public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
     if let r: AnyObject = right {
         left = T.self(json:r)
     }
@@ -63,12 +59,13 @@ func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
 // MARK : - NSDate Parsing 
 
 // Override Arrow Operator to catch NSDate Mapping and apply our transformation
-func <-- (inout left: NSDate, right: AnyObject?) {
+public func <-- (inout left: NSDate, right: AnyObject?) {
     if let s = right as? String, let date = ArrowDateFormatter.sharedInstance.dateFromString(s)  {
         left = date
     }
 }
-func <-- (inout left: NSDate?, right: AnyObject?) {
+
+public func <-- (inout left: NSDate?, right: AnyObject?) {
     if let s = right as? String, let date = ArrowDateFormatter.sharedInstance.dateFromString(s)  {
         left = date
     }
@@ -76,7 +73,7 @@ func <-- (inout left: NSDate?, right: AnyObject?) {
 
 // Here we use a singleton for performance purposes as
 // Creating a brand new DateFormatter everytime is time costly
-class ArrowDateFormatter {
+private class ArrowDateFormatter {
     static let sharedInstance = NSDateFormatter()
 }
 

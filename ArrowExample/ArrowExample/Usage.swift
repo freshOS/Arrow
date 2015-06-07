@@ -8,8 +8,11 @@
 
 import Foundation
 
+import Arrow
+
 class Usage {
-    class func run() {
+
+    class func show() {
         
         // Configure NSDate Parsing
         Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Arrow
 
 extension Profile:ArrowParsable {
     
