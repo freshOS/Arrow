@@ -4,13 +4,13 @@ Dead simple Swift JSON Parsing
 ## Features
 
 - [x] Leaves your models clean
-- [x] Implicitely casts json values to the right types in your model
-- [x] Does not crash if json key is not there, nor returns nil, it simply doesn't do anything
+- [x] Implicitely casts JSON values to the right types in your model
+- [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
 - [x] Simple
 - [x] Extensible
 - [x] Easy to use
 
-### Spoiler Alert <3
+## Spoiler Alert <3
 ---
 ```swift
 identifier <-- json["id"]
@@ -22,13 +22,13 @@ stats <== json["stats"]
 
 
 Well the answer is prettry simple. All the others are simply not good enough.
-Or at at least none of them meet our requirements for what makes a truely good Json Library :
+Or at at least none of them meet our requirements for what we beleive makes a truely good JSON Library :
 
-- Most of them force us to subclass our models. The fact that we get data as JSON representation is a DETAIL and should not leak in our app architecture (right uncle bob?! :p) So there is no reason that using a particular library to parse Json would force us to come back to our pretty models and subclass them with some obscure class. And what if your models aldready subclass something, say NSManagedObject? well you're pretty much screwed :p
+- Most of them force us to subclass our models. The fact that we get data as a JSON representation is a DETAIL and should not leak in our app architecture (right uncle bob?! :p) So there is no reason that using a particular library to parse Json would force us to come back to our pretty models and subclass them with some obscure class. And what if your models aldready subclass something anyway, say NSManagedObject? well you're pretty much screwed :p
 
-- Some use overly complex obscure functional chaining operator overloading voodoo magic
+- Some use overly complex obscure functional chaining operator overloading voodoo magic. We want something that's readable by a regular human being.
 
-- Most need us to explicitely cast the Json value to the correposnding type on our model. We think this is crazy! the type is already there in our model class, can't we just implicitly cast it?
+- Most need us to explicitely cast the Json value to the correposnding type on our model. We think this is crazy! The type is already there in our model class, can't we just implicitly cast it then?
 
 
 ## Ok I'm sold, Now show me the code
@@ -87,7 +87,7 @@ extension Profile:ArrowParsable {
 
 
 ## Integration
-- Step 1 - copy paste Arrow.swift in your Xcode Project
+- Step 1 - Copy paste Arrow.swift in your Xcode Project
 - Step 2 - Create you model parsing extension like so : "Profile+Arrow.swift"
 ```swift
 // Profile+Arrow.swift
@@ -108,6 +108,33 @@ let profile = Profile(json: json)
  
 ## How Does that work
 
-<-- Operator is for all
+- <-- Arrow Operator is for all Swift Types : Int.. Double .. String .. NSDate etc
+- <== Thick Arrow Operator is for your own custom models
+Notice earlier we typed :
+
+```swift
+stats <== json["stats"]
+```
+That's because we created and extension "Stats+Arrow.swift" enabling us to use the thick Arrow Operator
+
+```swift
+//
+//  Stats+Arrow.swift
+//  Swift Structs Test
+//
+//  Created by Sacha Durand Saint Omer on 6/7/15.
+//  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
+//
+
+import Foundation
+
+extension Stats:ArrowParsable {
+    
+    init(json: JSON) {
+        numberOfFriends <-- json["numberOfFriends"]
+        numberOfFans <-- json["numberOfFans"]
+    }
+}
+```
 
 
