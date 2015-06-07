@@ -134,4 +134,14 @@ extension Stats:ArrowParsable {
 ## Extend - Typical Example NSDate
 //todo
 
+## Flexible you said
+
+- DO I have to use the <== for my sub models
+- Nope, you could write it like so if you wanted :
+
+```swift 
+stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
+stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
+```
+
 
