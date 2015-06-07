@@ -110,6 +110,7 @@ let profile = Profile(json: json)
 
 - <-- Arrow Operator is for all Swift Types : Int.. Double .. String .. NSDate etc
 - <== Thick Arrow Operator is for your own custom models
+
 Notice earlier we typed :
 
 ```swift
