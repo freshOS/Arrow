@@ -7,8 +7,7 @@ name <-- json["name"]
 stats <== json["stats"]
 ```
 
-## Features
-
+## Core Principles
 - [x] Leaves your models clean
 - [x] Implicitely casts JSON values to the right types in your model
 - [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
@@ -16,6 +15,7 @@ stats <== json["stats"]
 - [x] Simple
 - [x] Extensible
 - [x] Easy to use
+- [x] Lightweght (80 lines of code)
 
 ## Installation
 #### Using Carthage
@@ -29,7 +29,6 @@ Simply Copy and Paste Arrow.swift in your Xcode Project :)
 Grab this repository and build the Framework target on the example project. Then Link against this framework.
 
 ## Why Another Swift JSON Parsing Library?
-
 
 Well the answer is prettry simple. All the others are simply not good enough.
 Or at at least none of them meet our requirements for what we beleive makes a truely good JSON Library :
