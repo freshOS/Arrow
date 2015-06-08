@@ -43,8 +43,7 @@ Or at at least none of them meet our requirements for what we beleive makes a tr
 
 ## Ok I'm sold, Now show me the code
 
-### Swift Model
--
+#### Swift Model
 ```swift
 struct Profile {
     var identifier = 0
@@ -52,9 +51,7 @@ struct Profile {
     var stats = Stats()
 }
 ```
-
-### JSON File
---
+#### JSON File
 ```json
 {
     "id": 15678,
@@ -65,8 +62,7 @@ struct Profile {
     }
 }
 ```
-### Usual Swift JSON Parsing (Chaos)
--
+#### Usual Swift JSON Parsing (Chaos)
 ```swift
 var profile = Profile()
 if let id = json["id"] as? Int {
@@ -84,7 +80,7 @@ if let statsJson = json["stats"] as? AnyObject {
     }
 }
 ```
-### With Arrow --> Sanity preserved
+#### With Arrow --> Sanity preserved
 ```swift
 extension Profile:ArrowParsable {
     init(json: JSON) {
@@ -94,8 +90,6 @@ extension Profile:ArrowParsable {
     }
 }
 ```
-
-
 ## Integration
 - Step 1 - Copy paste Arrow.swift in your Xcode Project
 - Step 2 - Create you model parsing extension like so : "Profile+Arrow.swift"
