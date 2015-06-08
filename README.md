@@ -1,5 +1,11 @@
 # Arrow <--
-Dead simple Swift JSON Parsing
+Arrow is a Dead simple Swift JSON Parsing
+
+```swift
+identifier <-- json["id"]
+name <-- json["name"]
+stats <== json["stats"]
+```
 
 ## Features
 
@@ -11,19 +17,16 @@ Dead simple Swift JSON Parsing
 - [x] Extensible
 - [x] Easy to use
 
-## Spoiler Alert <3
----
-```swift
-identifier <-- json["id"]
-name <-- json["name"]
-stats <== json["stats"]
-```
 ## Installation
-Using Carthage
+#### Using Carthage
 ```
 github "s4cha/Arrow"
 ```
-Or Simply Copy and Paste Arrow.swift :)
+#### Manually
+Simply Copy and Paste Arrow.swift in your Xcode Project :)
+
+#### As A Framework
+Grab this repository and build the Framework target on the example project. Then Link against this framework.
 
 ## Why Another Swift JSON Parsing Library?
 
