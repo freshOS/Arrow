@@ -1,5 +1,7 @@
 # Arrow <--
-Arrow is a Dead simple Swift JSON Parsing
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+Arrow is a Dead simple Swift JSON Parsing library
 
 ```swift
 identifier <-- json["id"]
