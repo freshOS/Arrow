@@ -1,2 +1,3 @@
 language: objective-c
 osx_image: xcode6.4
+script: xcodebuild -project ArrowExample/ArrowExample.xcodeproj/
