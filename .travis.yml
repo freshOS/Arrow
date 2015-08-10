@@ -1,3 +1,7 @@
 language: objective-c
-osx_image: xcode6.4
-script: xcodebuild -project ArrowExample/ArrowExample.xcodeproj/
+# osx_image: xcode6.4
+# script: xcodebuild -project ArrowExample/ArrowExample.xcodeproj/ -scheme {Arrow} -sdk iphonesimulator
+
+language: objective-c
+xcode_project: ArrowExample/ArrowExample.xcodeproj # path to your xcodeproj folder
+xcode_scheme: Arrow
