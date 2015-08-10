@@ -11,12 +11,10 @@ before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/XC_Ad_Hoc_.mobileprovision.enc -d -a -out scripts/profile/XC_Ad_Hoc_.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a -out scripts/certs/dist.p12
-
-before_script:
 - ./scripts/add-key.sh
 - ./scripts/update-bundle.sh
 script:
-- xctool -workspace TravisExample.xcworkspace -scheme TravisExample -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+- xctool -project ArrowExample/ArrowExample.xcodeproj -scheme Arrow -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
