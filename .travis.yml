@@ -6,7 +6,7 @@ before_script:
 - ./scripts/add-key.sh
 - ./scripts/update-bundle.sh
 script:
-- xctool -project ArrowExample/ArrowExample.xcodeproj -scheme Arrow -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO
+- xctool -project ArrowExample/ArrowExample.xcodeproj -scheme Arrow -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO ONLY_ACTIVE_ARCH=NO CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 after_script:
 - ./scripts/remove-key.sh
 after_success:
