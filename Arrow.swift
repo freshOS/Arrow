@@ -1,10 +1,10 @@
-////
-////  Arrow.swift
-////  Swift Structs Test
-////
-////  Created by Sacha Durand Saint Omer on 6/7/15.
-////  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
-////
+//
+//  Arrow.swift
+//  Swift Structs Test
+//
+//  Created by Sacha Durand Saint Omer on 6/7/15.
+//  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
+//
 
 import Foundation
 
@@ -19,8 +19,8 @@ public class Arrow {
     public class func jsonForName(name: String) -> JSON {
         let bundle = NSBundle.mainBundle()
         let path = bundle.pathForResource(name, ofType: "json")
-        let jsonData = NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe, error: nil)!
-        var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil) as! NSDictionary
+        let jsonData = try! NSData(contentsOfFile: path!, options: .DataReadingMappedIfSafe)
+        let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
         return json
     }
 }
