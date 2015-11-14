@@ -1,5 +1,8 @@
 # Arrow <--
+
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+[![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 
 Arrow is a Dead simple Swift JSON Parsing library
 
@@ -110,7 +113,7 @@ let profile = Profile(json: json)
 ```
 - Step 4 - Ther is no step 4
 
- 
+
 ## How Does that work
 
 - <-- Arrow Operator is for all Swift Types : Int.. Double .. String .. NSDate etc
@@ -141,7 +144,7 @@ extension Stats:ArrowParsable {
 - DO I have to use the <== for my sub models
 - Nope, you could write it like so if you wanted :
 
-```swift 
+```swift
 stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
 stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
 ```
