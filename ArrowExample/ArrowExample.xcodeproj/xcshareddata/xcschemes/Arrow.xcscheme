@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "99C292F01B24AD5F0008C32B"
+               BuildableName = "ArrowTests.xctest"
+               BlueprintName = "ArrowTests"
+               ReferencedContainer = "container:ArrowExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "99C292E61B24AD5E0008C32B"
+            BuildableName = "Arrow.framework"
+            BlueprintName = "Arrow"
+            ReferencedContainer = "container:ArrowExample.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
