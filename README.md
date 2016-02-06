@@ -160,3 +160,10 @@ Sure, just set your date format once and you're done.
 ## Acknoledgments
 This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
 <3
+
+## Other repos ❤️
+
+Arrow is part of a series of lightweight libraries aiming to make developing iOs Apps a breeze :
+
+- Layout : https://github.com/s4cha/Stevia
+- Async code : https://github.com/s4cha/then
