@@ -33,7 +33,7 @@ stats <== json["stats"]
 ## 🎉🎉🎉
 
 ### Why
-Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**
+Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**  
 *There must be a better way*
 
 ## How
