@@ -1,4 +1,4 @@
-# Arrow <-- [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
+# Arrow 🏹 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 
 
 Elegant JSON Parsing in Swift
