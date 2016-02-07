@@ -1,25 +1,55 @@
-# Arrow <--
+# Arrow <-- [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 
-Arrow is a Dead simple Swift JSON Parsing library
-
+Elegant JSON Parsing in Swift
 ```swift
 identifier <-- json["id"]
 name <-- json["name"]
 stats <== json["stats"]
 ```
 
-## Core Principles
+
+## Before
+```swift
+
+if let id = json["id"] as? Int {
+  identifier = id
+}
+if let n = json["name"] as? String {
+  name = n
+}
+if let s = Stats(json:json) {
+  stats = s
+}
+```
+----
+## After
+
+```swift
+identifier <-- json["id"]
+name <-- json["name"]
+stats <== json["stats"]
+```
+## 🎉🎉🎉
+
+### Why
+Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**
+*There must be a better way*
+
+## How
+By using a simple arrow operator that takes care of the boilerplate code for us.  
+Json mapping code becomes **concise** and **maintainable** ❤️
+
+
+## What
+- [x] Simple & Lightweight (~50lines)
+- [x] Pure Swift
 - [x] Leaves your models clean
-- [x] Implicitely casts JSON values to the right types in your model
+- [x] Implicitly casts JSON values to the right types in your model
 - [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
 - [x] NSDate Parsing
-- [x] Simple
-- [x] Extensible
-- [x] Easy to use
-- [x] Lightweght (80 lines of code)
+- [x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:>>><> 😅
+
 
 ## Installation
 #### Using Carthage
@@ -28,23 +58,12 @@ github "s4cha/Arrow"
 ```
 #### Manually
 Simply Copy and Paste Arrow.swift in your Xcode Project :)
+https://github.com/s4cha/Arrow/blob/master/Arrow.swift
 
 #### As A Framework
 Grab this repository and build the Framework target on the example project. Then Link against this framework.
 
-## Why Another Swift JSON Parsing Library?
-
-Well the answer is prettry simple. All the others are simply not good enough.
-Or at at least none of them meet our requirements for what we beleive makes a truely good JSON Library :
-
-- Most of them force us to subclass our models. The fact that we get data as a JSON representation is a DETAIL and should not leak in our app architecture (right uncle bob?! :p) So there is no reason that using a particular library to parse Json would force us to come back to our pretty models and subclass them with some obscure class. And what if your models aldready subclass something anyway, say NSManagedObject? well you're pretty much screwed :p
-
-- Some use overly complex obscure functional chaining operator overloading voodoo magic. We want something that's readable by a regular human being.
-
-- Most need us to explicitely cast the Json value to the correposnding type on our model. We think this is crazy! The type is already there in our model class, can't we just implicitly cast it then?
-
-
-## Ok I'm sold, Now show me the code
+## Show me the code
 
 #### Swift Model
 ```swift
@@ -154,16 +173,16 @@ stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
 Sure, just set your date format once and you're done.
 
 ```swift
-    // Configure NSDate Parsing
-    Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+// Configure NSDate Parsing
+Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 ```
 ## Acknoledgments
 This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
 <3
 
+
 ## Other repos ❤️
-
-Arrow is part of a series of lightweight libraries aiming to make developing iOs Apps a breeze :
-
-- Layout : https://github.com/s4cha/Stevia
-- Async code : https://github.com/s4cha/then
+Arrow is part of a series of lightweight libraries aiming to make developing iOS Apps a *breeze* :
+- Layout : [Stevia](https://github.com/s4cha/Stevia)
+- Async code : [then](https://github.com/s4cha/then)
+- JSON WebServices : [ws](https://github.com/s4cha/ws)
