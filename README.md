@@ -174,7 +174,7 @@ stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
 stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
 ```
 
-- Hey I don't want to parse NSDates in evry files, do you have something for me?
+- Hey I don't want to parse NSDates in every files, do you have something for me?
 
 
 Sure, just set your date format once and you're done.
