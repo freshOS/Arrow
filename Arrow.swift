@@ -27,7 +27,7 @@ public func <-- <T>(inout left: T, right: AnyObject?) {
     }
 }
 
-// Support otional Data
+// Support optional Data
 public func <-- <T>(inout left: T?, right: AnyObject?) {
     if let v: T = right as? T {
         left = v
@@ -43,6 +43,13 @@ public protocol ArrowParsable {
 
 infix operator <== {}
 public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
+    if let r: AnyObject = right {
+        left = T.self(json:r)
+    }
+}
+
+// Support optional Data
+public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
     if let r: AnyObject = right {
         left = T.self(json:r)
     }
