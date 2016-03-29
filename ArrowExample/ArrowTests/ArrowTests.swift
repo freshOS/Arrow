@@ -8,29 +8,69 @@
 
 import UIKit
 import XCTest
+import Arrow
 
 class ArrowTests: XCTestCase {
     
+    
+    var profile:Profile?
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+        let json:JSON = jsonForName("Profile")!
+        profile = Profile(json: json)
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        profile = nil
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testParsingInt() {
+        XCTAssertEqual(profile!.identifier, 15678)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
+    func testParsingDate() {
+        let df = NSDateFormatter()
+        df.stringFromDate(profile!.createdAt)
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        XCTAssertEqual(df.stringFromDate(profile!.createdAt), "2013-06-07T16:38:40+02:00")
+    }
+    
+    func testParsingString() {
+        XCTAssertEqual(profile!.name, "Francky")
+    }
+    func testParsingOptionalString() {
+        XCTAssertEqual(profile!.optionalName!, "Francky")
+    }
+    
+    func testParsingCustomModel() {
+        XCTAssertEqual(profile!.stats.numberOfFriends, 163)
+        XCTAssertEqual(profile!.stats.numberOfFans, 10987)
+    }
+    
+    func testParsingOptionalCustomModel() {
+        XCTAssertEqual(profile!.optionalStats!.numberOfFriends, 163)
+        XCTAssertEqual(profile!.optionalStats!.numberOfFans, 10987)
+    }
+}
+
+
+// Helper
+
+func jsonForName(name: String) -> JSON? {
+    let bundle = NSBundle.mainBundle()
+    if let path:String = bundle.pathForResource(name, ofType: "json") {
+        do {
+            let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
+            if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary {
+                return json
+            }
+        } catch {
+            // json not found
         }
     }
-    
+    return nil
 }
+
