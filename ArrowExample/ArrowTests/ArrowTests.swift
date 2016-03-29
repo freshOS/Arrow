@@ -33,9 +33,9 @@ class ArrowTests: XCTestCase {
     
     func testParsingDate() {
         let df = NSDateFormatter()
-        df.stringFromDate(profile!.createdAt)
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        XCTAssertEqual(df.stringFromDate(profile!.createdAt), "2013-06-07T16:38:40+02:00")
+        let date = df.dateFromString("2013-06-07T16:38:40+02:00")!
+        XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, profile!.createdAt.timeIntervalSinceReferenceDate, accuracy: 0.1)
     }
     
     func testParsingString() {
@@ -64,7 +64,7 @@ func jsonForName(name: String) -> JSON? {
     if let path:String = bundle.pathForResource(name, ofType: "json") {
         do {
             let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
-            if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary {
+            if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 return json
             }
         } catch {
