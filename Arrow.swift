@@ -26,16 +26,31 @@ public class Arrow {
 // MARK: - Parse Default swift Types
 
 infix operator <-- {}
+
 public func <-- <T>(inout left: T, right: AnyObject?) {
-    if let v: T = right as? T {
-        left = v
-    }
+    var temp:T? = left
+    parseType(&temp, right:right)
+    left = temp!
 }
 
 // Support optional Data
 public func <-- <T>(inout left: T?, right: AnyObject?) {
+    parseType(&left, right: right)
+}
+
+func parseType<T>(inout left:T?,right:AnyObject?) {
     if let v: T = right as? T {
         left = v
+    } else if let s = right as? String {
+        switch T.self {
+        case is Int.Type: if let v = Int(s) { left = v as? T }
+        case is UInt.Type: if let v = UInt(s) { left = v as? T }
+        case is Double.Type: if let v = Double(s) { left = v as? T }
+        case is Float.Type: if let v = Float(s) { left = v as? T }
+        case is CGFloat.Type: if let v = CGFloat.NativeType(s) { left = v as? T }
+        case is Bool.Type: if let v = Int(s) { left = Bool(v) as? T}
+        default:()
+        }
     }
 }
 
@@ -59,120 +74,20 @@ public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
     }
 }
 
-// MARK: - Parse Numeric Types
-
-public func <--(inout left: Int, right: AnyObject?) {
-    if let v = right as? Int {
-        left = v
-    } else if let s = right as? String, let v = Int(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: Int?, right: AnyObject?) {
-    if let v = right as? Int {
-        left = v
-    } else if let s = right as? String, let v = Int(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: UInt, right: AnyObject?) {
-    if let v = right as? UInt {
-        left = v
-    } else if let s = right as? String, let v = UInt(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: UInt?, right: AnyObject?) {
-    if let v = right as? UInt {
-        left = v
-    } else if let s = right as? String, let v = UInt(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: Bool, right: AnyObject?) {
-    if let v = right as? Bool {
-        left = v
-    } else if let s = right as? String, let v = Int(s) {
-        left = Bool(v)
-    }
-}
-
-public func <--(inout left: Bool?, right: AnyObject?) {
-    if let v = right as? Bool {
-        left = v
-    } else if let s = right as? String, let v = Int(s) {
-        left = Bool(v)
-    }
-}
-
-public func <--(inout left: Double, right: AnyObject?) {
-    if let v = right as? Double {
-        left = v
-    } else if let s = right as? String, let v = Double(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: Double?, right: AnyObject?) {
-    if let v = right as? Double {
-        left = v
-    } else if let s = right as? String, let v = Double(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: Float, right: AnyObject?) {
-    if let v = right as? Float {
-        left = v
-    } else if let s = right as? String, let v = Float(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: Float?, right: AnyObject?) {
-    if let v = right as? Float {
-        left = v
-    } else if let s = right as? String, let v = Float(s) {
-        left = v
-    }
-}
-
-public func <--(inout left: CGFloat, right: AnyObject?) {
-    if let v = right as? CGFloat {
-        left = v
-    } else if let s = right as? String, let v = CGFloat.NativeType(s) {
-        left = CGFloat(v)
-    }
-}
-
-public func <--(inout left: CGFloat?, right: AnyObject?) {
-    if let v = right as? CGFloat {
-        left = v
-    } else if let s = right as? String, let v = CGFloat.NativeType(s) {
-        left = CGFloat(v)
-    }
-}
-
 // MARK: - NSDate Parsing
 
 // Override Arrow Operator to catch NSDate Mapping and apply our transformation
 public func <-- (inout left: NSDate, right: AnyObject?) {
-    if let s = right as? String {
-        if let date = dateFormatter.dateFromString(s)  {
-            left = date
-        } else if let t = NSTimeInterval(s) {
-            left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
-        }
-    } else if let t = right as? NSTimeInterval {
-        left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
-    }
+    var temp:NSDate? = left
+    parseDate(&temp, right:right)
+    left = temp!
 }
 
 public func <-- (inout left: NSDate?, right: AnyObject?) {
+    parseDate(&left, right:right)
+}
+
+func parseDate(inout left:NSDate?,right:AnyObject?) {
     if let s = right as? String {
         if let date = dateFormatter.dateFromString(s)  {
             left = date
@@ -183,4 +98,3 @@ public func <-- (inout left: NSDate?, right: AnyObject?) {
         left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
     }
 }
-
