@@ -18,6 +18,7 @@ class ArrowTests: XCTestCase {
     override func setUp() {
         super.setUp()
         Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+        Arrow.setUseTimeIntervalSinceReferenceDate(true)
         let json:JSON = jsonForName("Profile")!
         profile = Profile(json: json)
     }
@@ -35,7 +36,9 @@ class ArrowTests: XCTestCase {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         let date = df.dateFromString("2013-06-07T16:38:40+02:00")!
+        let timestamp: NSTimeInterval = 392308720
         XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, profile!.createdAt.timeIntervalSinceReferenceDate, accuracy: 0.1)
+        XCTAssertEqualWithAccuracy(timestamp, profile!.optionalDate!.timeIntervalSinceReferenceDate, accuracy: 0.1)
     }
     
     func testParsingString() {

@@ -49,10 +49,11 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 
 
 ## What
-- [x] Simple & Lightweight (~50lines)
+- [x] Simple & Lightweight (<200lines)
 - [x] Pure Swift
 - [x] Leaves your models clean
 - [x] Implicitly casts JSON values to the right types in your model
+- [x] Converts string values to numeric types in your model
 - [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
 - [x] NSDate Parsing
 - [x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:>>><> 😅
@@ -181,7 +182,13 @@ Sure, just set your date format once and you're done.
 
 ```swift
 // Configure NSDate Parsing
-Arrow.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+Arrow.setUseTimeIntervalSinceReferenceDate(true)
+
+// Dates can be parsed form custom date format or timestamp
+let json = ["date": "2013-06-07T16:38:40+02:00", "timestamp": 392308720]
+date1 <-- json["date"]
+date2 <-- json["timestamp"]
 ```
 ## Acknoledgments
 This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
