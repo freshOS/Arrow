@@ -63,7 +63,7 @@ class ArrowTests: XCTestCase {
 // Helper
 
 func jsonForName(name: String) -> JSON? {
-    let bundle = NSBundle.mainBundle()
+    let bundle = NSBundle(forClass: ArrowTests.self)
     if let path:String = bundle.pathForResource(name, ofType: "json") {
         do {
             let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
