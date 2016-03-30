@@ -12,3 +12,14 @@ struct Stats {
     var numberOfFriends = 0
     var numberOfFans = 0
 }
+
+
+import Arrow
+
+extension Stats:ArrowParsable {
+    
+    init(json: JSON) {
+        numberOfFriends <-- json["numberOfFriends"]
+        numberOfFans <-- json["numberOfFans"]
+    }
+}
