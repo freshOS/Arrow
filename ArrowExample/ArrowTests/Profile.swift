@@ -15,4 +15,5 @@ struct Profile {
     var optionalName:String?
     var stats = Stats()
     var optionalStats:Stats?
+    var optionalDate:NSDate?
 }

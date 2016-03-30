@@ -15,10 +15,12 @@ extension Profile:ArrowParsable {
         identifier <-- json["id"]
         createdAt <-- json["created_at"]
         name <-- json["name"]
-        optionalName = ""
+        optionalName = nil
         optionalName <-- json["name"]
         stats <== json["stats"]
-        optionalStats = Stats()
+        optionalStats = nil
         optionalStats <== json["stats"]
+        optionalDate = nil
+        optionalDate <-- json["created_at_timestamp"]
     }
 }
