@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AC1CAA4F3E00B5DB6C /* Profile.swift */; };
+		994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AE1CAA4F4D00B5DB6C /* Stats.swift */; };
+		994243B11CAA502A00B5DB6C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 994243B01CAA502A00B5DB6C /* Profile.json */; };
+		994243B31CAA505800B5DB6C /* Profile+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243B21CAA505800B5DB6C /* Profile+Arrow.swift */; };
+		994243B51CAA51B600B5DB6C /* Stats+Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243B41CAA51B600B5DB6C /* Stats+Arrow.swift */; };
 		99C292C31B24AD4A0008C32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292C21B24AD4A0008C32B /* AppDelegate.swift */; };
 		99C292D91B24AD4A0008C32B /* ArrowExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292D81B24AD4A0008C32B /* ArrowExampleTests.swift */; };
 		99C292EC1B24AD5E0008C32B /* Arrow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C292EB1B24AD5E0008C32B /* Arrow.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,6 +73,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		994243AC1CAA4F3E00B5DB6C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		994243AE1CAA4F4D00B5DB6C /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
+		994243B01CAA502A00B5DB6C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		994243B21CAA505800B5DB6C /* Profile+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+Arrow.swift"; sourceTree = "<group>"; };
+		994243B41CAA51B600B5DB6C /* Stats+Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stats+Arrow.swift"; sourceTree = "<group>"; };
 		99C292BD1B24AD4A0008C32B /* ArrowExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArrowExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C292C11B24AD4A0008C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99C292C21B24AD4A0008C32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +214,11 @@
 			isa = PBXGroup;
 			children = (
 				99C292FA1B24AD5F0008C32B /* ArrowTests.swift */,
+				994243AC1CAA4F3E00B5DB6C /* Profile.swift */,
+				994243AE1CAA4F4D00B5DB6C /* Stats.swift */,
+				994243B21CAA505800B5DB6C /* Profile+Arrow.swift */,
+				994243B41CAA51B600B5DB6C /* Stats+Arrow.swift */,
+				994243B01CAA502A00B5DB6C /* Profile.json */,
 				99C292F81B24AD5F0008C32B /* Supporting Files */,
 			);
 			path = ArrowTests;
@@ -389,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994243B11CAA502A00B5DB6C /* Profile.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +444,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				99C292FB1B24AD5F0008C32B /* ArrowTests.swift in Sources */,
+				994243B51CAA51B600B5DB6C /* Stats+Arrow.swift in Sources */,
+				994243B31CAA505800B5DB6C /* Profile+Arrow.swift in Sources */,
+				994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */,
+				994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
