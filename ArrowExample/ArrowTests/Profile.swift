@@ -16,4 +16,27 @@ struct Profile {
     var stats = Stats()
     var optionalStats:Stats?
     var optionalDate:NSDate?
+    var phoneNumbers = [PhoneNumber]()
+    var optionalPhoneNumbers:[PhoneNumber]? = nil
+}
+
+
+import Arrow
+
+extension Profile:ArrowParsable {
+    
+    init(json: JSON) {
+        identifier <-- json["id"]
+        createdAt <-- json["created_at"]
+        name <-- json["name"]
+        optionalName = nil
+        optionalName <-- json["name"]
+        stats <== json["stats"]
+        optionalStats = nil
+        optionalStats <== json["stats"]
+        optionalDate = nil
+        optionalDate <-- json["created_at_timestamp"]
+        phoneNumbers <== json["phoneNumbers"]
+        optionalPhoneNumbers <== json["phoneNumbers"]
+    }
 }

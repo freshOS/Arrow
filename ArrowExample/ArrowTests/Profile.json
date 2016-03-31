@@ -6,5 +6,15 @@
     "stats": {
         "numberOfFriends": 163,
         "numberOfFans": 10987
-    }
+    },
+    "phoneNumbers": [{
+                     "label": "house",
+                     "number": "9809876545"
+                     }, {
+                     "label": "cell",
+                     "number": "0908070656"
+                     }, {
+                     "label": "work",
+                     "number": "0916570656"
+                     }]
 }

@@ -49,7 +49,7 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 
 
 ## What
-- [x] Simple & Lightweight (<200lines)
+- [x] Simple & Lightweight (~100lines)
 - [x] Pure Swift
 - [x] Leaves your models clean
 - [x] Implicitly casts JSON values to the right types in your model

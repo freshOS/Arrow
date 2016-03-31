@@ -57,6 +57,30 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.optionalStats!.numberOfFriends, 163)
         XCTAssertEqual(profile!.optionalStats!.numberOfFans, 10987)
     }
+    
+    func testParsingArrayOfCustomModels() {
+        XCTAssertEqual(profile!.phoneNumbers.count, 3)
+        
+        XCTAssertEqual(profile!.phoneNumbers[0].label, "house")
+        XCTAssertEqual(profile!.phoneNumbers[1].label, "cell")
+        XCTAssertEqual(profile!.phoneNumbers[2].label, "work")
+        
+        XCTAssertEqual(profile!.phoneNumbers[0].number, "9809876545")
+        XCTAssertEqual(profile!.phoneNumbers[1].number, "0908070656")
+        XCTAssertEqual(profile!.phoneNumbers[2].number, "0916570656")
+    }
+    
+    func testParsingOptionalArrayOfCustomModels() {
+        XCTAssertEqual(profile!.optionalPhoneNumbers!.count, 3)
+        
+        XCTAssertEqual(profile!.optionalPhoneNumbers![0].label, "house")
+        XCTAssertEqual(profile!.optionalPhoneNumbers![1].label, "cell")
+        XCTAssertEqual(profile!.optionalPhoneNumbers![2].label, "work")
+        
+        XCTAssertEqual(profile!.optionalPhoneNumbers![0].number, "9809876545")
+        XCTAssertEqual(profile!.optionalPhoneNumbers![1].number, "0908070656")
+        XCTAssertEqual(profile!.optionalPhoneNumbers![2].number, "0916570656")
+    }
 }
 
 
