@@ -85,6 +85,15 @@ public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
     }
 }
 
+public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
+    left = [T]()
+    if let pns = right as? [AnyObject] {
+        for pn in pns {
+            left?.append(T(json:pn))
+        }
+    }
+}
+
 // MARK: - NSDate Parsing
 
 // Override Arrow Operator to catch NSDate Mapping and apply our transformation

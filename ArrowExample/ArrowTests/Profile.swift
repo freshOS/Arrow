@@ -16,7 +16,8 @@ struct Profile {
     var stats = Stats()
     var optionalStats:Stats?
     var optionalDate:NSDate?
-    var phoneNumbers:[PhoneNumber] = [PhoneNumber]()
+    var phoneNumbers = [PhoneNumber]()
+    var optionalPhoneNumbers:[PhoneNumber]? = nil
 }
 
 
@@ -36,5 +37,6 @@ extension Profile:ArrowParsable {
         optionalDate = nil
         optionalDate <-- json["created_at_timestamp"]
         phoneNumbers <== json["phoneNumbers"]
+        optionalPhoneNumbers <== json["phoneNumbers"]
     }
 }
