@@ -1,4 +1,4 @@
-# Arrow 🏹
+# Arrow 🏹 - *Elegant JSON Parsing in Swift*
 
 [![Language: Swift 2](https://img.shields.io/badge/language-swift2-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
@@ -12,7 +12,6 @@
 [Reason](#reason) - [Example](#example) - [Installation](#installation)
 
 
-Elegant JSON Parsing in Swift
 ```swift
 identifier <-- json["id"]
 name <-- json["name"]
@@ -178,8 +177,7 @@ date1 <-- json["date"]
 date2 <-- json["timestamp"]
 ```
 ## Acknoledgments
-This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
-<3
+This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
 
 
 ## Other repos ❤️
