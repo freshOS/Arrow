@@ -30,7 +30,9 @@ infix operator <-- {}
 public func <-- <T>(inout left: T, right: AnyObject?) {
     var temp:T? = left
     parseType(&temp, right:right)
-    left = temp!
+    if let t = temp {
+        left = t
+    }
 }
 
 // Support optional Data
@@ -100,7 +102,9 @@ public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
 public func <-- (inout left: NSDate, right: AnyObject?) {
     var temp:NSDate? = left
     parseDate(&temp, right:right)
-    left = temp!
+    if let t = temp {
+        left = t
+    }
 }
 
 public func <-- (inout left: NSDate?, right: AnyObject?) {
