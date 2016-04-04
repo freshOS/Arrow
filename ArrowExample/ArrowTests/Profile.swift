@@ -21,6 +21,12 @@ struct Profile {
     var strings = [String]()
     var ints = [Int]()
     var bools = [Bool]()
+    var double:Double = 0.0
+    var float:CGFloat = 0.0
+    var cgfloat:CGFloat = 0.0
+    var doubleString:Double = 0.0
+    var floatString:CGFloat = 0.0
+    var cgfloatString:CGFloat = 0.0
 }
 
 
@@ -44,5 +50,11 @@ extension Profile:ArrowParsable {
         strings <-- json["strings"]
         ints <-- json["ints"]
         bools <-- json["bools"]
+        cgfloat <-- json["float"]
+        float <-- json["float"]
+        double <-- json["double"]
+        cgfloatString <-- json["floatString"]
+        floatString <-- json["floatString"]
+        doubleString <-- json["doubleString"]
     }
 }
