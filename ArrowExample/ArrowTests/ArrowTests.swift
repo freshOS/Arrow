@@ -81,6 +81,30 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.optionalPhoneNumbers![1].number, "0908070656")
         XCTAssertEqual(profile!.optionalPhoneNumbers![2].number, "0916570656")
     }
+    
+    func testParsingArrayOfStrings() {
+        XCTAssertEqual(profile!.strings.count, 3)
+        
+        XCTAssertEqual(profile!.strings[0], "one")
+        XCTAssertEqual(profile!.strings[1], "two")
+        XCTAssertEqual(profile!.strings[2], "three")
+    }
+    
+    func testParsingArrayOfInts() {
+        XCTAssertEqual(profile!.ints.count, 3)
+        
+        XCTAssertEqual(profile!.ints[0], 1)
+        XCTAssertEqual(profile!.ints[1], 2)
+        XCTAssertEqual(profile!.ints[2], 3)
+    }
+    
+    func testParsingArrayOfBools() {
+        XCTAssertEqual(profile!.bools.count, 3)
+        
+        XCTAssertEqual(profile!.bools[0], true)
+        XCTAssertEqual(profile!.bools[1], false)
+        XCTAssertEqual(profile!.bools[2], true)
+    }
 }
 
 

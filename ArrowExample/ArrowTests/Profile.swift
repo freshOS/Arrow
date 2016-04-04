@@ -18,6 +18,9 @@ struct Profile {
     var optionalDate:NSDate?
     var phoneNumbers = [PhoneNumber]()
     var optionalPhoneNumbers:[PhoneNumber]? = nil
+    var strings = [String]()
+    var ints = [Int]()
+    var bools = [Bool]()
 }
 
 
@@ -38,5 +41,8 @@ extension Profile:ArrowParsable {
         optionalDate <-- json["created_at_timestamp"]
         phoneNumbers <== json["phoneNumbers"]
         optionalPhoneNumbers <== json["phoneNumbers"]
+        strings <-- json["strings"]
+        ints <-- json["ints"]
+        bools <-- json["bools"]
     }
 }

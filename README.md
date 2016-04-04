@@ -1,4 +1,4 @@
-# Arrow 🏹
+# Arrow 🏹 - *Elegant JSON Parsing in Swift*
 
 [![Language: Swift 2](https://img.shields.io/badge/language-swift2-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
@@ -8,37 +8,17 @@
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/s4cha/Arrow/blob/master/LICENSE)
 [![Release version](https://img.shields.io/badge/release-0.7-blue.svg)]()
 
-Elegant JSON Parsing in Swift
+
+[Reason](#reason) - [Example](#example) - [Installation](#installation)
+
+
 ```swift
 identifier <-- json["id"]
 name <-- json["name"]
 stats <== json["stats"]
 ```
 
-
-## Before
-```swift
-
-if let id = json["id"] as? Int {
-  identifier = id
-}
-if let n = json["name"] as? String {
-  name = n
-}
-if let s = Stats(json:json) {
-  stats = s
-}
-```
-----
-## After
-
-```swift
-identifier <-- json["id"]
-name <-- json["name"]
-stats <== json["stats"]
-```
-## 🎉🎉🎉
-
+## Reason
 ### Why
 Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**  
 *There must be a better way*
@@ -59,29 +39,18 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 - [x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:>>><> 😅
 
 
-## Installation
-#### Using Carthage
-```
-github "s4cha/Arrow"
-```
-#### Manually
-Simply Copy and Paste Arrow.swift in your Xcode Project :)
-https://github.com/s4cha/Arrow/blob/master/Arrow.swift
+## Example
 
-#### As A Framework
-Grab this repository and build the Framework target on the example project. Then Link against this framework.
-
-## Show me the code
-
-#### Swift Model
+### Swift Model
 ```swift
 struct Profile {
     var identifier = 0
     var name = ""
     var stats = Stats()
+    var phoneNumbers = [PhoneNumber]()
 }
 ```
-#### JSON File
+### JSON File
 ```json
 {
     "id": 15678,
@@ -89,10 +58,21 @@ struct Profile {
     "stats": {
         "numberOfFriends": 163,
         "numberOfFans": 10987
-    }
+    },
+    "phoneNumbers": [{
+                     "label": "house",
+                     "number": "9809876545"
+                     }, {
+                     "label": "cell",
+                     "number": "0908070656"
+                     }, {
+                     "label": "work",
+                     "number": "0916570656"
+    }]
 }
 ```
-#### Usual Swift JSON Parsing (Chaos)
+
+### Before (Chaos)
 ```swift
 var profile = Profile()
 if let id = json["id"] as? Int {
@@ -109,38 +89,44 @@ if let statsJson = json["stats"] as? AnyObject {
         profile.stats.numberOfFriends = numberOfFriends
     }
 }
+if let pns = json["phoneNumbers"] as? [AnyObject] {
+    for pn in pns {
+        phoneNumbers.append(PhoneNumber(json: pn))
+    }
+}
 ```
-#### With Arrow --> Sanity preserved
+
+### After  🎉🎉🎉
 ```swift
 extension Profile:ArrowParsable {
     init(json: JSON) {
         identifier <-- json["id"]
         name <-- json["name"]
         stats <== json["stats"]
+        phoneNumbers <== json["phoneNumbers"]
     }
 }
 ```
-## Integration
-- Step 1 - Copy paste Arrow.swift in your Xcode Project
-- Step 2 - Create you model parsing extension like so : "Profile+Arrow.swift"
-```swift
-// Profile+Arrow.swift
-extension Profile:ArrowParsable {
-    init(json: JSON) {
-        identifier <-- json["id"]
-        name <-- json["name"]
-        stats <== json["stats"]
-    }
-}
-```
-- Step 3 - Use it:
+
+### Usage
 ```swift
 let profile = Profile(json: json)
 ```
-- Step 4 - Ther is no step 4
+
+## Installation
+#### Using Carthage
+```
+github "s4cha/Arrow"
+```
+#### Manually
+Simply Copy and Paste Arrow.swift in your Xcode Project :)
+https://github.com/s4cha/Arrow/blob/master/Arrow.swift
+
+#### As A Framework
+Grab this repository and build the Framework target on the example project. Then Link against this framework.
 
 
-## How Does that work
+## How Does That Work
 
 - <-- Arrow Operator is for all Swift Types : Int.. Double .. String .. NSDate etc
 - <== Thick Arrow Operator is for your own custom models
@@ -191,8 +177,7 @@ date1 <-- json["date"]
 date2 <-- json["timestamp"]
 ```
 ## Acknoledgments
-This wouldn't exist without YannickDot (https://github.com/YannickDot) and Damien-nd (https://github.com/damien-nd)
-<3
+This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
 
 
 ## Other repos ❤️

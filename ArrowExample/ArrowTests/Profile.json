@@ -16,5 +16,8 @@
                      }, {
                      "label": "work",
                      "number": "0916570656"
-                     }]
+    }],
+    "strings": ["one", "two", "three"],
+    "ints": [1, 2, 3],
+    "bools": [true, false, true]
 }
