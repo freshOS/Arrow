@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public typealias JSON = AnyObject
 
@@ -49,7 +50,7 @@ func parseType<T>(inout left:T?,right:AnyObject?) {
         case is UInt.Type: if let v = UInt(s) { left = v as? T }
         case is Double.Type: if let v = Double(s) { left = v as? T }
         case is Float.Type: if let v = Float(s) { left = v as? T }
-        case is CGFloat.Type: if let v = CGFloat.NativeType(s) { left = v as? T }
+        case is CGFloat.Type: if let v = CGFloat.NativeType(s) { left = CGFloat(v) as? T }
         case is Bool.Type: if let v = Int(s) { left = Bool(v) as? T}
         default:()
         }

@@ -105,6 +105,30 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.bools[1], false)
         XCTAssertEqual(profile!.bools[2], true)
     }
+    
+    func testParsingFloat() {
+        XCTAssertEqual(profile!.float, 0.12)
+    }
+    
+    func testParsingCGFloat() {
+        XCTAssertEqual(profile!.cgfloat, 0.12)
+    }
+    
+    func testParsingDouble() {
+        XCTAssertEqual(profile!.double, 0.123456789)
+    }
+    
+    func testParsingFloatString() {
+        XCTAssertEqual(profile!.floatString, 0.12)
+    }
+    
+    func testParsingCGFloatString() {
+        XCTAssertEqual(profile!.cgfloatString, 0.12)
+    }
+    
+    func testParsingDoubleString() {
+        XCTAssertEqual(profile!.doubleString, 0.123456789)
+    }
 }
 
 
