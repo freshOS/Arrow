@@ -29,7 +29,7 @@ public class Arrow {
 infix operator <-- {}
 
 public func <-- <T>(inout left: T, right: AnyObject?) {
-    var temp:T? = left
+    var temp:T? = nil
     parseType(&temp, right:right)
     if let t = temp {
         left = t
@@ -57,6 +57,29 @@ func parseType<T>(inout left:T?,right:AnyObject?) {
     }
 }
 
+// Support Array of plain Types
+
+func parseArray<T>(inout left: [T]?, right: AnyObject?) {
+    if let a = right as? [AnyObject] {
+        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
+        if tmp.count == a.count {
+            left = tmp
+        }
+    }
+}
+
+public func <-- <T>(inout left: [T], right: AnyObject?) {
+    var temp:[T]? = nil
+    parseArray(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T>(inout left: [T]?, right: AnyObject?) {
+    parseArray(&left, right: right)
+}
+
 // MARK: - Parse Custom Types
 
 public protocol ArrowParsable {
@@ -80,20 +103,14 @@ public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
 // Suppport Array of custom Types
 
 public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
-    left = [T]()
-    if let pns = right as? [AnyObject] {
-        for pn in pns {
-            left.append(T(json:pn))
-        }
+    if let a = right as? [AnyObject] {
+        left = a.map { T(json: $0) }
     }
 }
 
 public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
-    left = [T]()
-    if let pns = right as? [AnyObject] {
-        for pn in pns {
-            left?.append(T(json:pn))
-        }
+    if let a = right as? [AnyObject] {
+        left = a.map { T(json: $0) }
     }
 }
 
