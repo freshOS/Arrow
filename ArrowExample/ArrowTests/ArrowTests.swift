@@ -20,7 +20,8 @@ class ArrowTests: XCTestCase {
         Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         let json:JSON = jsonForName("Profile")!
-        profile = Profile(json: json)
+        profile = Profile()
+        profile?.deserialize(json)
     }
     
     override func tearDown() {

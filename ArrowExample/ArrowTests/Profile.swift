@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 struct Profile {
     var identifier = 0
@@ -27,34 +28,4 @@ struct Profile {
     var doubleString:Double = 0.0
     var floatString:CGFloat = 0.0
     var cgfloatString:CGFloat = 0.0
-}
-
-
-import Arrow
-
-extension Profile:ArrowParsable {
-    
-    init(json: JSON) {
-        identifier <-- json["id"]
-        createdAt <-- json["created_at"]
-        name <-- json["name"]
-        optionalName = nil
-        optionalName <-- json["name"]
-        stats <== json["stats"]
-        optionalStats = nil
-        optionalStats <== json["stats"]
-        optionalDate = nil
-        optionalDate <-- json["created_at_timestamp"]
-        phoneNumbers <== json["phoneNumbers"]
-        optionalPhoneNumbers <== json["phoneNumbers"]
-        strings <-- json["strings"]
-        ints <-- json["ints"]
-        bools <-- json["bools"]
-        cgfloat <-- json["float"]
-        float <-- json["float"]
-        double <-- json["double"]
-        cgfloatString <-- json["floatString"]
-        floatString <-- json["floatString"]
-        doubleString <-- json["doubleString"]
-    }
 }

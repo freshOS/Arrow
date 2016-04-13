@@ -11,6 +11,11 @@
 		994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AC1CAA4F3E00B5DB6C /* Profile.swift */; };
 		994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AE1CAA4F4D00B5DB6C /* Stats.swift */; };
 		994243B11CAA502A00B5DB6C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 994243B01CAA502A00B5DB6C /* Profile.json */; };
+		999B90681CBE4C2100C4B46A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B90671CBE4C2100C4B46A /* User.swift */; };
+		999B906A1CBE4C3D00C4B46A /* User+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999B90691CBE4C3D00C4B46A /* User+JSON.swift */; };
+		99BD0D8D1CBE511A00995392 /* Profile+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BD0D8C1CBE511A00995392 /* Profile+JSON.swift */; };
+		99BD0D8F1CBE514A00995392 /* Stats+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BD0D8E1CBE514A00995392 /* Stats+JSON.swift */; };
+		99BD0D921CBE518D00995392 /* PhoneNumber+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BD0D911CBE518D00995392 /* PhoneNumber+JSON.swift */; };
 		99C292C31B24AD4A0008C32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292C21B24AD4A0008C32B /* AppDelegate.swift */; };
 		99C292D91B24AD4A0008C32B /* ArrowExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292D81B24AD4A0008C32B /* ArrowExampleTests.swift */; };
 		99C292EC1B24AD5E0008C32B /* Arrow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99C292EB1B24AD5E0008C32B /* Arrow.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -76,6 +81,11 @@
 		994243AC1CAA4F3E00B5DB6C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		994243AE1CAA4F4D00B5DB6C /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		994243B01CAA502A00B5DB6C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		999B90671CBE4C2100C4B46A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		999B90691CBE4C3D00C4B46A /* User+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+JSON.swift"; sourceTree = "<group>"; };
+		99BD0D8C1CBE511A00995392 /* Profile+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Profile+JSON.swift"; sourceTree = "<group>"; };
+		99BD0D8E1CBE514A00995392 /* Stats+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Stats+JSON.swift"; sourceTree = "<group>"; };
+		99BD0D911CBE518D00995392 /* PhoneNumber+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+JSON.swift"; sourceTree = "<group>"; };
 		99C292BD1B24AD4A0008C32B /* ArrowExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArrowExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C292C11B24AD4A0008C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99C292C21B24AD4A0008C32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +140,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99BD0D891CBE50EB00995392 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				99BD0D8C1CBE511A00995392 /* Profile+JSON.swift */,
+				99BD0D8E1CBE514A00995392 /* Stats+JSON.swift */,
+				99BD0D911CBE518D00995392 /* PhoneNumber+JSON.swift */,
+			);
+			name = Mapping;
+			sourceTree = "<group>";
+		};
 		99C292B41B24AD4A0008C32B = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +178,8 @@
 				99C292C21B24AD4A0008C32B /* AppDelegate.swift */,
 				99C293091B24AE320008C32B /* Usage.swift */,
 				99C2930D1B24AE320008C32B /* Models.swift */,
+				999B90671CBE4C2100C4B46A /* User.swift */,
+				999B90691CBE4C3D00C4B46A /* User+JSON.swift */,
 				99C293121B24AF6A0008C32B /* Profile.json */,
 				99C2930A1B24AE320008C32B /* Mapping */,
 				99C292C01B24AD4A0008C32B /* Supporting Files */,
@@ -215,6 +237,7 @@
 				994243AC1CAA4F3E00B5DB6C /* Profile.swift */,
 				994243AE1CAA4F4D00B5DB6C /* Stats.swift */,
 				993D14D01CAC7D83003CAEE3 /* PhoneNumber.swift */,
+				99BD0D891CBE50EB00995392 /* Mapping */,
 				994243B01CAA502A00B5DB6C /* Profile.json */,
 				99C292F81B24AD5F0008C32B /* Supporting Files */,
 			);
@@ -414,8 +437,10 @@
 			files = (
 				99C292C31B24AD4A0008C32B /* AppDelegate.swift in Sources */,
 				99C293101B24AE320008C32B /* Stats+Arrow.swift in Sources */,
+				999B90681CBE4C2100C4B46A /* User.swift in Sources */,
 				99C2930F1B24AE320008C32B /* Profile+Arrow.swift in Sources */,
 				99C2930E1B24AE320008C32B /* Usage.swift in Sources */,
+				999B906A1CBE4C3D00C4B46A /* User+JSON.swift in Sources */,
 				99C293111B24AE320008C32B /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,8 +465,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99BD0D8D1CBE511A00995392 /* Profile+JSON.swift in Sources */,
+				99BD0D921CBE518D00995392 /* PhoneNumber+JSON.swift in Sources */,
 				99C292FB1B24AD5F0008C32B /* ArrowTests.swift in Sources */,
 				994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */,
+				99BD0D8F1CBE514A00995392 /* Stats+JSON.swift in Sources */,
 				994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */,
 				993D14D11CAC7D83003CAEE3 /* PhoneNumber.swift in Sources */,
 			);

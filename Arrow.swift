@@ -83,20 +83,25 @@ public func <-- <T>(inout left: [T]?, right: AnyObject?) {
 // MARK: - Parse Custom Types
 
 public protocol ArrowParsable {
-    init(json: JSON)
+    init()
+    mutating func deserialize(json:JSON)
 }
 
 infix operator <== {}
 public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
     if let r: AnyObject = right {
-        left = T.self(json:r)
+        var t = T.self()
+        t.deserialize(r)
+        left = t
     }
 }
 
 // Support optional Data
 public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
     if let r: AnyObject = right {
-        left = T.self(json:r)
+        var t = T.self()
+        t.deserialize(r)
+        left = t
     }
 }
 
@@ -104,13 +109,21 @@ public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
 
 public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
     if let a = right as? [AnyObject] {
-        left = a.map { T(json: $0) }
+        left = a.map {
+            var t = T.self()
+            t.deserialize($0)
+            return t
+        }
     }
 }
 
 public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
     if let a = right as? [AnyObject] {
-        left = a.map { T(json: $0) }
+        left = a.map {
+            var t = T.self()
+            t.deserialize($0)
+            return t
+        }
     }
 }
 

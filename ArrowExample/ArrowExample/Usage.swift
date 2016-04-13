@@ -18,7 +18,8 @@ class Usage {
         Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 
         let json:JSON = jsonForName("Profile")!
-        let profile = Profile(json: json)
+        var profile = Profile()
+        profile.deserialize(json)
         print("id : \(profile.identifier)")
         print("created at : \(profile.createdAt)")
         print("name : \(profile.name)")

@@ -14,12 +14,3 @@ struct Stats {
 }
 
 
-import Arrow
-
-extension Stats:ArrowParsable {
-    
-    init(json: JSON) {
-        numberOfFriends <-- json["numberOfFriends"]
-        numberOfFans <-- json["numberOfFans"]
-    }
-}
