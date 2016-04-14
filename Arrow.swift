@@ -137,7 +137,7 @@ public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
 
 // Override Arrow Operator to catch NSDate Mapping and apply our transformation
 public func <-- (inout left: NSDate, right: AnyObject?) {
-    var temp:NSDate? = left
+    var temp: NSDate? = nil
     parseDate(&temp, right:right)
     if let t = temp {
         left = t
@@ -163,7 +163,7 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
 // MARK: - NSURL Parsing
 
 public func <-- (inout left: NSURL, right: AnyObject?) {
-    var temp:NSURL? = left
+    var temp: NSURL? = nil
     parseURL(&temp, right:right)
     if let t = temp {
         left = t
