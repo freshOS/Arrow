@@ -9,6 +9,22 @@
 import Foundation
 import CoreGraphics
 
+enum WeekDay:Int {
+    case Monday = 1
+    case Tuesday
+    case Wednesday
+    case Thursday
+    case Friday
+    case Saturday
+    case Sunday
+}
+
+enum Difficulty:String {
+    case Low
+    case Medium
+    case High
+}
+
 struct Profile {
     var identifier = 0
     var link = NSURL()
@@ -30,4 +46,8 @@ struct Profile {
     var doubleString:Double = 0.0
     var floatString:CGFloat = 0.0
     var cgfloatString:CGFloat = 0.0
+    var weekday:WeekDay = .Monday
+    var optionalWeekday:WeekDay?
+    var difficulty = Difficulty.Low
+    var optionalDifficulty:Difficulty?
 }

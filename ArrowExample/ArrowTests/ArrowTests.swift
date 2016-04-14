@@ -138,6 +138,22 @@ class ArrowTests: XCTestCase {
     func testParsingDoubleString() {
         XCTAssertEqual(profile!.doubleString, 0.123456789)
     }
+    
+    func testParsingEnumInt() {
+        XCTAssertEqual(profile!.weekday, WeekDay.Wednesday)
+    }
+    
+    func testParsingOptionalEnumInt() {
+        XCTAssertEqual(profile!.optionalWeekday, WeekDay.Wednesday)
+    }
+    
+    func testParsingEnumString() {
+        XCTAssertEqual(profile!.difficulty, Difficulty.High)
+    }
+    
+    func testParsingOptionalEnumString() {
+        XCTAssertEqual(profile!.optionalDifficulty, Difficulty.High)
+    }
 }
 
 

@@ -34,5 +34,9 @@ extension Profile:ArrowParsable {
         cgfloatString <-- json["floatString"]
         floatString <-- json["floatString"]
         doubleString <-- json["doubleString"]
+        weekday <-- json["weekdayInt"]
+        optionalWeekday <-- json["weekdayInt"]
+        difficulty <-- json["difficulty"]
+        optionalDifficulty <-- json["difficulty"]
     }
 }
