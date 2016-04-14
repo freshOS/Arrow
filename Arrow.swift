@@ -141,7 +141,27 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
     }
 }
 
+// MARK: - NSURL Parsing
 
+public func <-- (inout left: NSURL, right: AnyObject?) {
+    var temp:NSURL? = left
+    parseURL(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- (inout left: NSURL?, right: AnyObject?) {
+    parseURL(&left, right: right)
+}
+
+func parseURL(inout left:NSURL?, right:AnyObject?) {
+    var str = ""
+    str <-- right
+    if let url = NSURL(string:str) {
+        left = url
+    }
+}
 
 // MARK: - Enums Parsing (Int)
 

@@ -32,6 +32,14 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.identifier, 15678)
     }
     
+    func testParsingURL() {
+        XCTAssertEqual(profile!.link.absoluteString, "https://apple.com/steve")
+    }
+    
+    func testParsingOptionalURL() {
+        XCTAssertEqual(profile!.optionalLink!.absoluteString, "https://apple.com/steve")
+    }
+    
     func testParsingDate() {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
