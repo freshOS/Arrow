@@ -76,6 +76,25 @@ public func <-- <T>(inout left: [T], right: AnyObject?) {
     }
 }
 
+// Support Enum
+
+public func <-- <T: RawRepresentable>(inout left: T, right: AnyObject?) {
+    var temp: T.RawValue? = nil
+    parseType(&temp, right:right)
+    if let t = temp, let e = T.init(rawValue: t) {
+        left = e
+    }
+}
+
+public func <-- <T: RawRepresentable>(inout left: T?, right: AnyObject?) {
+    var temp: T.RawValue? = nil
+    parseType(&temp, right:right)
+    if let t = temp, let e = T.init(rawValue: t) {
+        left = e
+    }
+}
+
+
 public func <-- <T>(inout left: [T]?, right: AnyObject?) {
     parseArray(&left, right: right)
 }
@@ -118,7 +137,7 @@ public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
 
 // Override Arrow Operator to catch NSDate Mapping and apply our transformation
 public func <-- (inout left: NSDate, right: AnyObject?) {
-    var temp:NSDate? = left
+    var temp: NSDate? = nil
     parseDate(&temp, right:right)
     if let t = temp {
         left = t
@@ -144,7 +163,7 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
 // MARK: - NSURL Parsing
 
 public func <-- (inout left: NSURL, right: AnyObject?) {
-    var temp:NSURL? = left
+    var temp: NSURL? = nil
     parseURL(&temp, right:right)
     if let t = temp {
         left = t
@@ -160,49 +179,5 @@ func parseURL(inout left:NSURL?, right:AnyObject?) {
     str <-- right
     if let url = NSURL(string:str) {
         left = url
-    }
-}
-
-// MARK: - Enums Parsing (Int)
-
-public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T , right: AnyObject?) {
-    var temp:T? = left
-    parseEnumInt(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
-}
-
-public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T? , right: AnyObject?) {
-    parseEnumInt(&left, right:right)
-}
-
-func parseEnumInt<T:RawRepresentable where T.RawValue == Int>(inout left:T?,right:AnyObject?) {
-    var id: Int = 0
-    id <-- right
-    if let t = T(rawValue: id) {
-        left = t
-    }
-}
-
-// MARK: - Enums Parsing (String)
-
-public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T , right: AnyObject?) {
-    var temp:T? = left
-    parseEnumString(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
-}
-
-public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T? , right: AnyObject?) {
-    parseEnumString(&left, right:right)
-}
-
-func parseEnumString<T:RawRepresentable where T.RawValue == String>(inout left:T?,right:AnyObject?) {
-    var str: String = ""
-    str <-- right
-    if let t = T(rawValue: str) {
-        left = t
     }
 }
