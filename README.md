@@ -99,7 +99,7 @@ if let pns = json["phoneNumbers"] as? [AnyObject] {
 ### After  🎉🎉🎉
 ```swift
 extension Profile:ArrowParsable {
-    init(json: JSON) {
+    mutating func deserialize(json: JSON) {
         identifier <-- json["id"]
         name <-- json["name"]
         stats <== json["stats"]
@@ -144,7 +144,7 @@ That's because we created and extension "Stats+Arrow.swift" enabling us to use t
 import Foundation
 
 extension Stats:ArrowParsable {
-    init(json: JSON) {
+    mutating func deserialize(json: JSON) {
         numberOfFriends <-- json["numberOfFriends"]
         numberOfFans <-- json["numberOfFans"]
     }
