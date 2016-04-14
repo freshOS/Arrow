@@ -140,3 +140,49 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
         left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
     }
 }
+
+
+
+// MARK: - Enums Parsing (Int)
+
+public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T , right: AnyObject?) {
+    var temp:T? = left
+    parseEnumInt(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T? , right: AnyObject?) {
+    parseEnumInt(&left, right:right)
+}
+
+func parseEnumInt<T:RawRepresentable where T.RawValue == Int>(inout left:T?,right:AnyObject?) {
+    var id: Int = 0
+    id <-- right
+    if let t = T(rawValue: id) {
+        left = t
+    }
+}
+
+// MARK: - Enums Parsing (String)
+
+public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T , right: AnyObject?) {
+    var temp:T? = left
+    parseEnumString(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T? , right: AnyObject?) {
+    parseEnumString(&left, right:right)
+}
+
+func parseEnumString<T:RawRepresentable where T.RawValue == String>(inout left:T?,right:AnyObject?) {
+    var str: String = ""
+    str <-- right
+    if let t = T(rawValue: str) {
+        left = t
+    }
+}

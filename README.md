@@ -46,6 +46,7 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 struct Profile {
     var identifier = 0
     var name = ""
+    var weekday:WeekDay = .Monday
     var stats = Stats()
     var phoneNumbers = [PhoneNumber]()
 }
@@ -55,6 +56,7 @@ struct Profile {
 {
     "id": 15678,
     "name": "John Doe",
+    "weekdayInt" : 3,
     "stats": {
         "numberOfFriends": 163,
         "numberOfFans": 10987
@@ -75,12 +77,20 @@ struct Profile {
 ### Before (Chaos)
 ```swift
 var profile = Profile()
+
+// Int
 if let id = json["id"] as? Int {
     profile.identifier = id
 }  
+// String
 if let name = json["name"] as? String {
     profile.name = name
 }
+// Enum
+if let weekdayInt = json["weekdayInt"] as? Int, weekday = WeekDay(rawValue:weekdayInt) {
+    profile.weekday = weekday
+}
+// Custom nested object
 if let statsJson = json["stats"] as? AnyObject {
     if let numberOfFans = statsJson["numberOfFans"] as? Int {
         profile.stats.numberOfFans = numberOfFans
@@ -89,6 +99,7 @@ if let statsJson = json["stats"] as? AnyObject {
         profile.stats.numberOfFriends = numberOfFriends
     }
 }
+// Array of custom nested object
 if let pns = json["phoneNumbers"] as? [AnyObject] {
     for pn in pns {
         phoneNumbers.append(PhoneNumber(json: pn))
@@ -102,6 +113,7 @@ extension Profile:ArrowParsable {
     init(json: JSON) {
         identifier <-- json["id"]
         name <-- json["name"]
+        weekday <-- json["weekdayInt"]
         stats <== json["stats"]
         phoneNumbers <== json["phoneNumbers"]
     }
