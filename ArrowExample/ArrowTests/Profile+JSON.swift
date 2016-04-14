@@ -38,5 +38,6 @@ extension Profile:ArrowParsable {
         optionalWeekday <-- json["weekdayInt"]
         difficulty <-- json["difficulty"]
         optionalDifficulty <-- json["difficulty"]
+        meaningOfLife <-- json["nested.nested.nested.nestedValue"]
     }
 }

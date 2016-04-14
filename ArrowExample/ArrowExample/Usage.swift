@@ -36,7 +36,7 @@ class Usage {
             do {
                 let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary {
-                    return json
+                    return JSON(json as! [String : AnyObject])
                 }
             } catch {
 

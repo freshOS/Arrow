@@ -68,6 +68,8 @@ class ArrowTests: XCTestCase {
     }
     
     func testParsingArrayOfCustomModels() {
+        let v = ""
+        let t = v as String
         XCTAssertEqual(profile!.phoneNumbers.count, 3)
         
         XCTAssertEqual(profile!.phoneNumbers[0].label, "house")
@@ -93,7 +95,6 @@ class ArrowTests: XCTestCase {
     
     func testParsingArrayOfStrings() {
         XCTAssertEqual(profile!.strings.count, 3)
-        
         XCTAssertEqual(profile!.strings[0], "one")
         XCTAssertEqual(profile!.strings[1], "two")
         XCTAssertEqual(profile!.strings[2], "three")
@@ -101,7 +102,6 @@ class ArrowTests: XCTestCase {
     
     func testParsingArrayOfInts() {
         XCTAssertEqual(profile!.ints.count, 3)
-        
         XCTAssertEqual(profile!.ints[0], 1)
         XCTAssertEqual(profile!.ints[1], 2)
         XCTAssertEqual(profile!.ints[2], 3)
@@ -109,7 +109,6 @@ class ArrowTests: XCTestCase {
     
     func testParsingArrayOfBools() {
         XCTAssertEqual(profile!.bools.count, 3)
-        
         XCTAssertEqual(profile!.bools[0], true)
         XCTAssertEqual(profile!.bools[1], false)
         XCTAssertEqual(profile!.bools[2], true)
@@ -154,6 +153,10 @@ class ArrowTests: XCTestCase {
     func testParsingOptionalEnumString() {
         XCTAssertEqual(profile!.optionalDifficulty, Difficulty.High)
     }
+    
+    func testNestedParsing() {
+        XCTAssertEqual(profile?.meaningOfLife, 42)
+    }
 }
 
 
@@ -165,7 +168,7 @@ func jsonForName(name: String) -> JSON? {
         do {
             let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
             if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
-                return json
+                return JSON(json as! [String : AnyObject])
             }
         } catch {
             // json not found

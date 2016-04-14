@@ -26,5 +26,13 @@
     "float" : 0.12,
     "double" : 0.123456789,
     "floatString" : "0.12",
-    "doubleString" : "0.123456789"
+    "doubleString" : "0.123456789",
+    
+    "nested":{
+        "nested" : {
+            "nested" : {
+                "nestedValue" : "42"
+            }
+        }
+    }
 }

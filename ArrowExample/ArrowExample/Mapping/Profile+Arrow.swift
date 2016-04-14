@@ -15,6 +15,6 @@ extension Profile:ArrowParsable {
         identifier <-- json["id"]
         createdAt <-- json["created_at"]
         name <-- json["name"]
-        stats <== json["stats"]
+//        stats <== json["stats"]
     }
 }
