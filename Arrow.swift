@@ -29,7 +29,7 @@ public class Arrow {
 infix operator <-- {}
 
 public func <-- <T>(inout left: T, right: AnyObject?) {
-    var temp:T? = left
+    var temp:T? = nil
     parseType(&temp, right:right)
     if let t = temp {
         left = t
@@ -57,6 +57,29 @@ func parseType<T>(inout left:T?,right:AnyObject?) {
     }
 }
 
+// Support Array of plain Types
+
+func parseArray<T>(inout left: [T]?, right: AnyObject?) {
+    if let a = right as? [AnyObject] {
+        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
+        if tmp.count == a.count {
+            left = tmp
+        }
+    }
+}
+
+public func <-- <T>(inout left: [T], right: AnyObject?) {
+    var temp:[T]? = nil
+    parseArray(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T>(inout left: [T]?, right: AnyObject?) {
+    parseArray(&left, right: right)
+}
+
 // MARK: - Parse Custom Types
 
 public protocol ArrowParsable {
@@ -80,20 +103,14 @@ public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
 // Suppport Array of custom Types
 
 public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
-    left = [T]()
-    if let pns = right as? [AnyObject] {
-        for pn in pns {
-            left.append(T(json:pn))
-        }
+    if let a = right as? [AnyObject] {
+        left = a.map { T(json: $0) }
     }
 }
 
 public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
-    left = [T]()
-    if let pns = right as? [AnyObject] {
-        for pn in pns {
-            left?.append(T(json:pn))
-        }
+    if let a = right as? [AnyObject] {
+        left = a.map { T(json: $0) }
     }
 }
 
@@ -121,5 +138,71 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
         }
     } else if let t = right as? NSTimeInterval {
         left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
+    }
+}
+
+// MARK: - NSURL Parsing
+
+public func <-- (inout left: NSURL, right: AnyObject?) {
+    var temp:NSURL? = left
+    parseURL(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- (inout left: NSURL?, right: AnyObject?) {
+    parseURL(&left, right: right)
+}
+
+func parseURL(inout left:NSURL?, right:AnyObject?) {
+    var str = ""
+    str <-- right
+    if let url = NSURL(string:str) {
+        left = url
+    }
+}
+
+// MARK: - Enums Parsing (Int)
+
+public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T , right: AnyObject?) {
+    var temp:T? = left
+    parseEnumInt(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T:RawRepresentable where T.RawValue == Int>(inout left:T? , right: AnyObject?) {
+    parseEnumInt(&left, right:right)
+}
+
+func parseEnumInt<T:RawRepresentable where T.RawValue == Int>(inout left:T?,right:AnyObject?) {
+    var id: Int = 0
+    id <-- right
+    if let t = T(rawValue: id) {
+        left = t
+    }
+}
+
+// MARK: - Enums Parsing (String)
+
+public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T , right: AnyObject?) {
+    var temp:T? = left
+    parseEnumString(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T:RawRepresentable where T.RawValue == String>(inout left:T? , right: AnyObject?) {
+    parseEnumString(&left, right:right)
+}
+
+func parseEnumString<T:RawRepresentable where T.RawValue == String>(inout left:T?,right:AnyObject?) {
+    var str: String = ""
+    str <-- right
+    if let t = T(rawValue: str) {
+        left = t
     }
 }

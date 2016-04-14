@@ -32,6 +32,14 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.identifier, 15678)
     }
     
+    func testParsingURL() {
+        XCTAssertEqual(profile!.link.absoluteString, "https://apple.com/steve")
+    }
+    
+    func testParsingOptionalURL() {
+        XCTAssertEqual(profile!.optionalLink!.absoluteString, "https://apple.com/steve")
+    }
+    
     func testParsingDate() {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
@@ -128,6 +136,22 @@ class ArrowTests: XCTestCase {
     
     func testParsingDoubleString() {
         XCTAssertEqual(profile!.doubleString, 0.123456789)
+    }
+    
+    func testParsingEnumInt() {
+        XCTAssertEqual(profile!.weekday, WeekDay.Wednesday)
+    }
+    
+    func testParsingOptionalEnumInt() {
+        XCTAssertEqual(profile!.optionalWeekday, WeekDay.Wednesday)
+    }
+    
+    func testParsingEnumString() {
+        XCTAssertEqual(profile!.difficulty, Difficulty.High)
+    }
+    
+    func testParsingOptionalEnumString() {
+        XCTAssertEqual(profile!.optionalDifficulty, Difficulty.High)
     }
 }
 
