@@ -10,6 +10,8 @@ import Foundation
 
 struct Profile {
     var identifier = 0
+    var link = NSURL()
+    var optionalLink:NSURL?
     var createdAt = NSDate()
     var name = ""
     var optionalName:String?
@@ -36,6 +38,8 @@ extension Profile:ArrowParsable {
     
     init(json: JSON) {
         identifier <-- json["id"]
+        link <-- json["link"]
+        optionalLink <-- json["link"]
         createdAt <-- json["created_at"]
         name <-- json["name"]
         optionalName = nil
