@@ -45,6 +45,7 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 ```swift
 struct Profile {
     var identifier = 0
+    var link:NSURL?
     var name = ""
     var stats = Stats()
     var phoneNumbers = [PhoneNumber]()
@@ -54,6 +55,7 @@ struct Profile {
 ```json
 {
     "id": 15678,
+    "link": "https://apple.com/steve",
     "name": "John Doe",
     "stats": {
         "numberOfFriends": 163,
@@ -78,6 +80,9 @@ var profile = Profile()
 if let id = json["id"] as? Int {
     profile.identifier = id
 }  
+if let link = json["link"] as? String, url = NSURL(string:link)  {
+    profile.link = link
+}
 if let name = json["name"] as? String {
     profile.name = name
 }
@@ -101,6 +106,7 @@ if let pns = json["phoneNumbers"] as? [AnyObject] {
 extension Profile:ArrowParsable {
     mutating func deserialize(json: JSON) {
         identifier <-- json["id"]
+        link <-- json["link"]
         name <-- json["name"]
         stats <== json["stats"]
         phoneNumbers <== json["phoneNumbers"]

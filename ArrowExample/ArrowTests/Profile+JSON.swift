@@ -12,6 +12,8 @@ extension Profile:ArrowParsable {
     
     mutating func deserialize(json: JSON) {
         identifier <-- json["id"]
+        link <-- json["link"]
+        optionalLink <-- json["link"]
         createdAt <-- json["created_at"]
         name <-- json["name"]
         optionalName = nil

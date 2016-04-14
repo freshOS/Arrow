@@ -90,7 +90,7 @@ public protocol ArrowParsable {
 infix operator <== {}
 public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
     if let r: AnyObject = right {
-        var t = T.self()
+        var t = T.init()
         t.deserialize(r)
         left = t
     }
@@ -99,7 +99,7 @@ public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
 // Support optional Data
 public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
     if let r: AnyObject = right {
-        var t = T.self()
+        var t = T.init()
         t.deserialize(r)
         left = t
     }
@@ -110,7 +110,7 @@ public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
 public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
     if let a = right as? [AnyObject] {
         left = a.map {
-            var t = T.self()
+            var t = T.init()
             t.deserialize($0)
             return t
         }
@@ -120,7 +120,7 @@ public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
 public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
     if let a = right as? [AnyObject] {
         left = a.map {
-            var t = T.self()
+            var t = T.init()
             t.deserialize($0)
             return t
         }
@@ -151,5 +151,27 @@ func parseDate(inout left:NSDate?,right:AnyObject?) {
         }
     } else if let t = right as? NSTimeInterval {
         left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
+    }
+}
+
+// MARK: - NSURL Parsing
+
+public func <-- (inout left: NSURL, right: AnyObject?) {
+    var temp:NSURL? = left
+    parseURL(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- (inout left: NSURL?, right: AnyObject?) {
+    parseURL(&left, right: right)
+}
+
+func parseURL(inout left:NSURL?, right:AnyObject?) {
+    var str = ""
+    str <-- right
+    if let url = NSURL(string:str) {
+        left = url
     }
 }

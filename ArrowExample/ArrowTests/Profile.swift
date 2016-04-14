@@ -11,6 +11,8 @@ import CoreGraphics
 
 struct Profile {
     var identifier = 0
+    var link = NSURL()
+    var optionalLink:NSURL?
     var createdAt = NSDate()
     var name = ""
     var optionalName:String?
