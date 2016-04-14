@@ -11,7 +11,7 @@ import Arrow
 
 extension Profile:ArrowParsable {
     
-    init(json: JSON) {
+    mutating func deserialize(json: JSON) {
         identifier <-- json["id"]
         createdAt <-- json["created_at"]
         name <-- json["name"]

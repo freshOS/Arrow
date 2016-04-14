@@ -12,14 +12,3 @@ struct PhoneNumber {
     var label:String = ""
     var number:String = ""
 }
-
-
-import Arrow
-
-extension PhoneNumber: ArrowParsable {
-    
-    init(json: JSON) {
-        label <-- json["label"]
-        number <-- json["number"]
-    }
-}
