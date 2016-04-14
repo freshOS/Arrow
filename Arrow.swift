@@ -9,41 +9,6 @@
 import Foundation
 import CoreGraphics
 
-public class JSON:AnyObject { //Struct??
-    
-    var data = [String:AnyObject]()
-    
-    public init?(_ dic:AnyObject?) {
-        if let d = dic as? [String:AnyObject] {
-            data = d
-        }
-    }
-}
-
-public extension JSON {
-    
-    subscript(key: String) -> AnyObject? {
-        get {
-            let keys =  key.characters.split{$0 == "."}.map(String.init)
-            var intermediateValue:AnyObject? = data
-            for k in keys {
-                if let value = intermediateValue?[k] {
-                    intermediateValue = value
-                } else {
-                    return nil
-                }
-            }
-            return intermediateValue
-        }
-        set(obj) {
-            data[key] = obj
-        }
-    }
-    
-}
-
-//public typealias JSON = AnyObject
-
 private let dateFormatter = NSDateFormatter()
 
 private var useReferenceDate = false
