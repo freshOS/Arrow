@@ -1,5 +1,7 @@
 {
     "id": "15678",
+    "weekdayInt" : 3,
+    "difficulty": "High",
     "link": "https://apple.com/steve",
     "created_at" : "2013-06-07T16:38:40+02:00",
     "created_at_timestamp" : "392308720",
