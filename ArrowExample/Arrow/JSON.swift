@@ -13,7 +13,11 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
     public var data:AnyObject?
     
     public init?(_ dic:AnyObject?) {
-        data = dic
+        if dic == nil {
+            return nil
+        } else {
+            data = dic
+        }
     }
     
     public var debugDescription: String {
@@ -24,18 +28,27 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
 
 public extension JSON {
     
-    subscript(key: String) -> AnyObject? {
+    subscript(key: String) -> JSON? {
         get {
-            let keys =  key.characters.split{$0 == "."}.map(String.init)
-            var intermediateValue:AnyObject? = data
-            for k in keys {
-                if let value = intermediateValue?[k] {
-                    intermediateValue = value
-                } else {
-                    return nil
+            let keys =  key.characters.split{$0 == "."}
+            if keys.count > 1 { // KeyPath parsing
+                let keysArray:[String] =  keys.map(String.init)
+                if var intermediateValue = JSON(data) {
+                    for k in keysArray {
+                        if let value = intermediateValue[k] {
+                            intermediateValue = value
+                        } else {
+                            return nil
+                        }
+                    }
+                    return intermediateValue
+                }
+            } else { // Regular parsing
+                if let d = data, x = d[key], subJSON = JSON(x) {
+                    return subJSON
                 }
             }
-            return intermediateValue
+            return nil
         }
         set(obj) {
             if var d = data as? [String:AnyObject] {
