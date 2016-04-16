@@ -10,14 +10,8 @@ import Foundation
 
 public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
     
-    public func dateFormat(format:String) -> Self {
-        jsonDateFormat = format
-        return self
-    }
-    
-    public var jsonDateFormat:String?
-    
     public var data:AnyObject?
+    public var jsonDateFormat:String?
     
     public init?(_ dic:AnyObject?) {
         if dic == nil {
@@ -25,6 +19,19 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
         } else {
             data = dic
         }
+    }
+    
+    var collection:[JSON]? {
+        if let a = data as? [AnyObject] {
+            return a.map{ JSON($0)! }
+        } else {
+            return nil
+        }
+    }
+    
+    public func dateFormat(format:String) -> Self {
+        jsonDateFormat = format
+        return self
     }
     
     public var debugDescription: String {
@@ -69,5 +76,4 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
             }
         }
     }
-
 }
