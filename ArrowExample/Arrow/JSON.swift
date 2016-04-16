@@ -10,6 +10,13 @@ import Foundation
 
 public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
     
+    public func dateFormat(format:String) -> Self {
+        jsonDateFormat = format
+        return self
+    }
+    
+    public var jsonDateFormat:String?
+    
     public var data:AnyObject?
     
     public init?(_ dic:AnyObject?) {
@@ -24,11 +31,7 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
         return data!.debugDescription
     }
     
-}
-
-public extension JSON {
-    
-    subscript(key: String) -> JSON? {
+    public subscript(key: String) -> JSON? {
         get {
             let keys =  key.characters.split{$0 == "."}
             if keys.count > 1 { // KeyPath parsing
@@ -57,7 +60,7 @@ public extension JSON {
         }
     }
     
-    subscript(index: Int) -> JSON? {
+    public subscript(index: Int) -> JSON? {
         get {
             if let array = data as? [AnyObject] where array.count > index {
                 return JSON(array[index])
@@ -66,5 +69,5 @@ public extension JSON {
             }
         }
     }
-    
+
 }

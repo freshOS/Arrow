@@ -14,7 +14,7 @@ extension Profile:ArrowParsable {
         identifier <-- json["id"]
         link <-- json["link"]
         optionalLink <-- json["link"]
-        createdAt <-- json["created_at"]
+        createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         name <-- json["name"]
         optionalName = nil
         optionalName <-- json["name"]

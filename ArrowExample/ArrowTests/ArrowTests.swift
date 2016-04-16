@@ -17,7 +17,7 @@ class ArrowTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+//        Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         let json:JSON = jsonForName("Profile")!
         profile = Profile()

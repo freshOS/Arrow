@@ -137,14 +137,24 @@ public func <-- (inout left: NSDate?, right: JSON?) {
 }
 
 func parseDate(inout left:NSDate?,right:JSON?) {
-    if let s = right?.data as? String {
-        if let date = dateFormatter.dateFromString(s)  {
-            left = date
-        } else if let t = NSTimeInterval(s) {
+    
+    // Use custom date format over high level setting when provided
+    if let customFormat = right?.jsonDateFormat {
+        if let s = right?.data as? String {
+            let df = NSDateFormatter()
+            df.dateFormat = customFormat
+            left = df.dateFromString(s)
+        }
+    } else {
+        if let s = right?.data as? String {
+            if let date = dateFormatter.dateFromString(s)  {
+                left = date
+            } else if let t = NSTimeInterval(s) {
+                left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
+            }
+        } else if let t = right?.data as? NSTimeInterval {
             left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
         }
-    } else if let t = right?.data as? NSTimeInterval {
-        left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
     }
 }
 
@@ -174,8 +184,8 @@ func parseURL(inout left:NSURL?, right:JSON?) {
 // MARK: - Support Array of plain Types
 //TODO : No tests VAlitaing "Support Array of plain Types"
 
-//func parseArray<T>(inout left: [T]?, right: AnyObject?) {
-//    if let a = right as? [AnyObject] {
+//func parseArray<T>(inout left: [T]?, right: JSON?) {
+//    if let a = right?.data as? [AnyObject] {
 //        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
 //        if tmp.count == a.count {
 //            left = tmp
@@ -183,7 +193,7 @@ func parseURL(inout left:NSURL?, right:JSON?) {
 //    }
 //}
 //
-//public func <-- <T>(inout left: [T], right: AnyObject?) {
+//public func <-- <T>(inout left: [T], right: JSON?) {
 //    var temp:[T]? = nil
 //    parseArray(&temp, right:right)
 //    if let t = temp {
@@ -191,8 +201,6 @@ func parseURL(inout left:NSURL?, right:JSON?) {
 //    }
 //}
 //
-//
-//
-//public func <-- <T>(inout left: [T]?, right: AnyObject?) {
+//public func <-- <T>(inout left: [T]?, right: JSON?) {
 //    parseArray(&left, right: right)
 //}
