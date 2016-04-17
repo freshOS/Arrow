@@ -201,6 +201,34 @@ createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 ```
 Just provide it on a case per case basis ! 🎉
 
+## Accessing JSON values
+
+### Nested values
+
+```swift
+value <-- json["nested.nested.nested.nestedValue"]
+```
+
+### Object at index
+```swift
+value <-- json[12]
+```
+
+### Combine both
+```swift
+value <-- json[1]?["someKey"]?[2]?["something.other"]
+```
+
+### Looping on Array
+```swift
+if let collection = json.collection {
+    for jsonEntry in collection {
+        //Do something
+    }
+}
+```
+
+
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
 
