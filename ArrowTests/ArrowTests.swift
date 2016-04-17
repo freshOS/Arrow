@@ -70,8 +70,6 @@ class ArrowTests: XCTestCase {
     }
 
     func testParsingArrayOfCustomModels() {
-        let v = ""
-        let t = v as String
         XCTAssertEqual(profile!.phoneNumbers.count, 3)
         
         XCTAssertEqual(profile!.phoneNumbers[0].label, "house")

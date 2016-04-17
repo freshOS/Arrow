@@ -17,7 +17,7 @@
                BlueprintIdentifier = "99C292E61B24AD5E0008C32B"
                BuildableName = "Arrow.framework"
                BlueprintName = "Arrow"
-               ReferencedContainer = "container:ArrowExample.xcodeproj">
+               ReferencedContainer = "container:Arrow.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "99C292F01B24AD5F0008C32B"
                BuildableName = "ArrowTests.xctest"
                BlueprintName = "ArrowTests"
-               ReferencedContainer = "container:ArrowExample.xcodeproj">
+               ReferencedContainer = "container:Arrow.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "99C292E61B24AD5E0008C32B"
             BuildableName = "Arrow.framework"
             BlueprintName = "Arrow"
-            ReferencedContainer = "container:ArrowExample.xcodeproj">
+            ReferencedContainer = "container:Arrow.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "99C292E61B24AD5E0008C32B"
             BuildableName = "Arrow.framework"
             BlueprintName = "Arrow"
-            ReferencedContainer = "container:ArrowExample.xcodeproj">
+            ReferencedContainer = "container:Arrow.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "99C292E61B24AD5E0008C32B"
             BuildableName = "Arrow.framework"
             BlueprintName = "Arrow"
-            ReferencedContainer = "container:ArrowExample.xcodeproj">
+            ReferencedContainer = "container:Arrow.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
