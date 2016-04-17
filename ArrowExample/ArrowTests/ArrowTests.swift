@@ -17,13 +17,14 @@ class ArrowTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+//        Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         let json:JSON = jsonForName("Profile")!
         profile = Profile()
         profile?.deserialize(json)
+        
     }
-    
+
     override func tearDown() {
         profile = nil
         super.tearDown()
@@ -40,7 +41,7 @@ class ArrowTests: XCTestCase {
     func testParsingOptionalURL() {
         XCTAssertEqual(profile!.optionalLink!.absoluteString, "https://apple.com/steve")
     }
-    
+
     func testParsingDate() {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
@@ -49,25 +50,28 @@ class ArrowTests: XCTestCase {
         XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, profile!.createdAt.timeIntervalSinceReferenceDate, accuracy: 0.1)
         XCTAssertEqualWithAccuracy(timestamp, profile!.optionalDate!.timeIntervalSinceReferenceDate, accuracy: 0.1)
     }
-    
+
     func testParsingString() {
         XCTAssertEqual(profile!.name, "Francky")
     }
+    
     func testParsingOptionalString() {
         XCTAssertEqual(profile!.optionalName!, "Francky")
     }
-    
+
     func testParsingCustomModel() {
         XCTAssertEqual(profile!.stats.numberOfFriends, 163)
         XCTAssertEqual(profile!.stats.numberOfFans, 10987)
     }
-    
+
     func testParsingOptionalCustomModel() {
         XCTAssertEqual(profile!.optionalStats!.numberOfFriends, 163)
         XCTAssertEqual(profile!.optionalStats!.numberOfFans, 10987)
     }
-    
+
     func testParsingArrayOfCustomModels() {
+        let v = ""
+        let t = v as String
         XCTAssertEqual(profile!.phoneNumbers.count, 3)
         
         XCTAssertEqual(profile!.phoneNumbers[0].label, "house")
@@ -78,7 +82,7 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.phoneNumbers[1].number, "0908070656")
         XCTAssertEqual(profile!.phoneNumbers[2].number, "0916570656")
     }
-    
+
     func testParsingOptionalArrayOfCustomModels() {
         XCTAssertEqual(profile!.optionalPhoneNumbers!.count, 3)
         
@@ -90,31 +94,28 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile!.optionalPhoneNumbers![1].number, "0908070656")
         XCTAssertEqual(profile!.optionalPhoneNumbers![2].number, "0916570656")
     }
-    
+
     func testParsingArrayOfStrings() {
         XCTAssertEqual(profile!.strings.count, 3)
-        
         XCTAssertEqual(profile!.strings[0], "one")
         XCTAssertEqual(profile!.strings[1], "two")
         XCTAssertEqual(profile!.strings[2], "three")
     }
-    
+
     func testParsingArrayOfInts() {
         XCTAssertEqual(profile!.ints.count, 3)
-        
         XCTAssertEqual(profile!.ints[0], 1)
         XCTAssertEqual(profile!.ints[1], 2)
         XCTAssertEqual(profile!.ints[2], 3)
     }
-    
+
     func testParsingArrayOfBools() {
         XCTAssertEqual(profile!.bools.count, 3)
-        
         XCTAssertEqual(profile!.bools[0], true)
         XCTAssertEqual(profile!.bools[1], false)
         XCTAssertEqual(profile!.bools[2], true)
     }
-    
+
     func testParsingFloat() {
         XCTAssertEqual(profile!.float, 0.12)
     }
@@ -154,6 +155,10 @@ class ArrowTests: XCTestCase {
     func testParsingOptionalEnumString() {
         XCTAssertEqual(profile!.optionalDifficulty, Difficulty.High)
     }
+    
+    func testNestedParsing() {
+        XCTAssertEqual(profile?.meaningOfLife, 42)
+    }
 }
 
 
@@ -165,7 +170,7 @@ func jsonForName(name: String) -> JSON? {
         do {
             let jsonData = try NSData(contentsOfFile: path, options: NSDataReadingOptions.DataReadingMappedIfSafe)
             if let json: NSDictionary = try NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
-                return json
+                return JSON(json as! [String : AnyObject])
             }
         } catch {
             // json not found

@@ -9,10 +9,13 @@
 import Foundation
 import CoreGraphics
 
-public typealias JSON = AnyObject
+
+public protocol ArrowParsable {
+    init()
+    mutating func deserialize(json:JSON)
+}
 
 private let dateFormatter = NSDateFormatter()
-
 private var useReferenceDate = false
 
 public class Arrow {
@@ -28,7 +31,7 @@ public class Arrow {
 
 infix operator <-- {}
 
-public func <-- <T>(inout left: T, right: AnyObject?) {
+public func <-- <T>(inout left: T, right: JSON?) {
     var temp:T? = nil
     parseType(&temp, right:right)
     if let t = temp {
@@ -37,14 +40,14 @@ public func <-- <T>(inout left: T, right: AnyObject?) {
 }
 
 // Support optional Data
-public func <-- <T>(inout left: T?, right: AnyObject?) {
+public func <-- <T>(inout left: T?, right: JSON?) {
     parseType(&left, right: right)
 }
 
-func parseType<T>(inout left:T?,right:AnyObject?) {
-    if let v: T = right as? T {
+func parseType<T>(inout left:T?,right:JSON?) {
+    if let v: T = right?.data as? T {
         left = v
-    } else if let s = right as? String {
+    } else if let s = right?.data as? String {
         switch T.self {
         case is Int.Type: if let v = Int(s) { left = v as? T }
         case is UInt.Type: if let v = UInt(s) { left = v as? T }
@@ -57,28 +60,9 @@ func parseType<T>(inout left:T?,right:AnyObject?) {
     }
 }
 
-// Support Array of plain Types
-
-func parseArray<T>(inout left: [T]?, right: AnyObject?) {
-    if let a = right as? [AnyObject] {
-        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
-        if tmp.count == a.count {
-            left = tmp
-        }
-    }
-}
-
-public func <-- <T>(inout left: [T], right: AnyObject?) {
-    var temp:[T]? = nil
-    parseArray(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
-}
-
 // Support Enum
 
-public func <-- <T: RawRepresentable>(inout left: T, right: AnyObject?) {
+public func <-- <T: RawRepresentable>(inout left: T, right: JSON?) {
     var temp: T.RawValue? = nil
     parseType(&temp, right:right)
     if let t = temp, let e = T.init(rawValue: t) {
@@ -86,61 +70,53 @@ public func <-- <T: RawRepresentable>(inout left: T, right: AnyObject?) {
     }
 }
 
-public func <-- <T: RawRepresentable>(inout left: T?, right: AnyObject?) {
+public func <-- <T: RawRepresentable>(inout left: T?, right: JSON?) {
     var temp: T.RawValue? = nil
     parseType(&temp, right:right)
     if let t = temp, let e = T.init(rawValue: t) {
         left = e
     }
-}
-
-
-public func <-- <T>(inout left: [T]?, right: AnyObject?) {
-    parseArray(&left, right: right)
 }
 
 // MARK: - Parse Custom Types
 
-public protocol ArrowParsable {
-    init()
-    mutating func deserialize(json:JSON)
-}
-
-infix operator <== {}
-public func <== <T:ArrowParsable>(inout left:T, right: AnyObject?) {
-    if let r: AnyObject = right {
+public func <-- <T:ArrowParsable>(inout left:T, right: JSON?) {
+    if let json = JSON(right?.data) {
         var t = T.init()
-        t.deserialize(r)
+        t.deserialize(json)
         left = t
     }
 }
 
-// Support optional Data
-public func <== <T:ArrowParsable>(inout left:T?, right: AnyObject?) {
-    if let r: AnyObject = right {
+public func <-- <T:ArrowParsable>(inout left:T?, right: JSON?) {
+    if let json = JSON(right?.data) {
         var t = T.init()
-        t.deserialize(r)
+        t.deserialize(json)
         left = t
     }
 }
 
-// Suppport Array of custom Types
+// MARK: - Array of custom Types
 
-public func <== <T:ArrowParsable>(inout left:[T], right: AnyObject?) {
-    if let a = right as? [AnyObject] {
+public func <-- <T:ArrowParsable>(inout left:[T], right: JSON?) {
+    if let a = right?.data as? [AnyObject] {
         left = a.map {
             var t = T.init()
-            t.deserialize($0)
+            if let json = JSON($0) {
+                t.deserialize(json) //TODO return t even if T not parsable??
+            }
             return t
         }
     }
 }
 
-public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
-    if let a = right as? [AnyObject] {
+public func <-- <T:ArrowParsable>(inout left:[T]?, right: JSON?) {
+    if let a = right?.data as? [AnyObject] {
         left = a.map {
             var t = T.init()
-            t.deserialize($0)
+            if let json = JSON($0) {
+                t.deserialize(json) //TODO return t even if T not parsable??
+            }
             return t
         }
     }
@@ -148,8 +124,7 @@ public func <== <T:ArrowParsable>(inout left:[T]?, right: AnyObject?) {
 
 // MARK: - NSDate Parsing
 
-// Override Arrow Operator to catch NSDate Mapping and apply our transformation
-public func <-- (inout left: NSDate, right: AnyObject?) {
+public func <-- (inout left: NSDate, right: JSON?) {
     var temp: NSDate? = nil
     parseDate(&temp, right:right)
     if let t = temp {
@@ -157,25 +132,35 @@ public func <-- (inout left: NSDate, right: AnyObject?) {
     }
 }
 
-public func <-- (inout left: NSDate?, right: AnyObject?) {
+public func <-- (inout left: NSDate?, right: JSON?) {
     parseDate(&left, right:right)
 }
 
-func parseDate(inout left:NSDate?,right:AnyObject?) {
-    if let s = right as? String {
-        if let date = dateFormatter.dateFromString(s)  {
-            left = date
-        } else if let t = NSTimeInterval(s) {
+func parseDate(inout left:NSDate?,right:JSON?) {
+    
+    // Use custom date format over high level setting when provided
+    if let customFormat = right?.jsonDateFormat {
+        if let s = right?.data as? String {
+            let df = NSDateFormatter()
+            df.dateFormat = customFormat
+            left = df.dateFromString(s)
+        }
+    } else {
+        if let s = right?.data as? String {
+            if let date = dateFormatter.dateFromString(s)  {
+                left = date
+            } else if let t = NSTimeInterval(s) {
+                left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
+            }
+        } else if let t = right?.data as? NSTimeInterval {
             left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
         }
-    } else if let t = right as? NSTimeInterval {
-        left = useReferenceDate ? NSDate(timeIntervalSinceReferenceDate: t) : NSDate(timeIntervalSince1970: t)
     }
 }
 
 // MARK: - NSURL Parsing
 
-public func <-- (inout left: NSURL, right: AnyObject?) {
+public func <-- (inout left: NSURL, right: JSON?) {
     var temp: NSURL? = nil
     parseURL(&temp, right:right)
     if let t = temp {
@@ -183,14 +168,39 @@ public func <-- (inout left: NSURL, right: AnyObject?) {
     }
 }
 
-public func <-- (inout left: NSURL?, right: AnyObject?) {
+public func <-- (inout left: NSURL?, right: JSON?) {
     parseURL(&left, right: right)
 }
 
-func parseURL(inout left:NSURL?, right:AnyObject?) {
+func parseURL(inout left:NSURL?, right:JSON?) {
     var str = ""
     str <-- right
     if let url = NSURL(string:str) {
         left = url
     }
 }
+
+
+// MARK: - Support Array of plain Types
+//TODO : No tests VAlitaing "Support Array of plain Types"
+
+//func parseArray<T>(inout left: [T]?, right: JSON?) {
+//    if let a = right?.data as? [AnyObject] {
+//        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
+//        if tmp.count == a.count {
+//            left = tmp
+//        }
+//    }
+//}
+//
+//public func <-- <T>(inout left: [T], right: JSON?) {
+//    var temp:[T]? = nil
+//    parseArray(&temp, right:right)
+//    if let t = temp {
+//        left = t
+//    }
+//}
+//
+//public func <-- <T>(inout left: [T]?, right: JSON?) {
+//    parseArray(&left, right: right)
+//}

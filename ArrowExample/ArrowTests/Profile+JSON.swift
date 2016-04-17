@@ -14,17 +14,17 @@ extension Profile:ArrowParsable {
         identifier <-- json["id"]
         link <-- json["link"]
         optionalLink <-- json["link"]
-        createdAt <-- json["created_at"]
+        createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         name <-- json["name"]
         optionalName = nil
         optionalName <-- json["name"]
-        stats <== json["stats"]
+        stats <-- json["stats"]
         optionalStats = nil
-        optionalStats <== json["stats"]
+        optionalStats <-- json["stats"]
         optionalDate = nil
         optionalDate <-- json["created_at_timestamp"]
-        phoneNumbers <== json["phoneNumbers"]
-        optionalPhoneNumbers <== json["phoneNumbers"]
+        phoneNumbers <-- json["phoneNumbers"]
+        optionalPhoneNumbers <-- json["phoneNumbers"]
         strings <-- json["strings"]
         ints <-- json["ints"]
         bools <-- json["bools"]
@@ -38,5 +38,8 @@ extension Profile:ArrowParsable {
         optionalWeekday <-- json["weekdayInt"]
         difficulty <-- json["difficulty"]
         optionalDifficulty <-- json["difficulty"]
+        meaningOfLife <-- json["nested.nested.nested.nestedValue"]
     }
+    
+    
 }

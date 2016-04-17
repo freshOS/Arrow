@@ -11,6 +11,7 @@ import Arrow
 extension Stats:ArrowParsable {
     
     mutating func deserialize(json: JSON) {
+        print(json)
         numberOfFriends <-- json["numberOfFriends"]
         numberOfFans <-- json["numberOfFans"]
     }

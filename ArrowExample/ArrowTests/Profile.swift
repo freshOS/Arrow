@@ -50,4 +50,5 @@ struct Profile {
     var optionalWeekday:WeekDay?
     var difficulty = Difficulty.Low
     var optionalDifficulty:Difficulty?
+    var meaningOfLife:Int = 0
 }
