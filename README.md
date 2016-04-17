@@ -3,10 +3,11 @@
 [![Language: Swift 2](https://img.shields.io/badge/language-swift2-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
 [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 [![codebeat badge](https://codebeat.co/badges/2acb8664-02f7-463d-9de2-2be9e87ba17c)](https://codebeat.co/projects/github-com-s4cha-arrow)
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/s4cha/Arrow/blob/master/LICENSE)
-[![Release version](https://img.shields.io/badge/release-1.0-blue.svg)]()
+[![Release version](https://img.shields.io/badge/release-2.0-blue.svg)]()
 
 
 [Reason](#reason) - [Example](#example) - [Installation](#installation)
@@ -15,7 +16,7 @@
 ```swift
 identifier <-- json["id"]
 name <-- json["name"]
-stats <== json["stats"]
+stats <-- json["stats"]
 ```
 
 ## Reason
@@ -29,13 +30,13 @@ Json mapping code becomes **concise** and **maintainable** ❤️
 
 
 ## What
-- [x] Simple & Lightweight (~100lines)
+- [x] Simple & Lightweight (~200lines)
 - [x] Pure Swift
 - [x] Leaves your models clean
 - [x] Implicitly casts JSON values to the right types in your model
+- [x] Automatic NSDate, NSURL, Enum, Custom model Parsing
 - [x] Converts string values to numeric types in your model
 - [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
-- [x] NSDate Parsing
 - [x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:>>><> 😅
 
 
@@ -121,15 +122,16 @@ extension Profile:ArrowParsable {
         link <-- json["link"]
         name <-- json["name"]
         weekday <-- json["weekdayInt"]
-        stats <== json["stats"]
-        phoneNumbers <== json["phoneNumbers"]
+        stats <- json["stats"]
+        phoneNumbers <-- json["phoneNumbers"]
     }
 }
 ```
 
 ### Usage
 ```swift
-let profile = Profile(json: json)
+let profile = Profile()
+profile.deserialize(json)
 ```
 
 ## Installation
@@ -147,15 +149,12 @@ Grab this repository and build the Framework target on the example project. Then
 
 ## How Does That Work
 
-- <-- Arrow Operator is for all Swift Types : Int.. Double .. String .. NSDate etc
-- <== Thick Arrow Operator is for your own custom models
-
 Notice earlier we typed :
 
 ```swift
-stats <== json["stats"]
+stats <-- json["stats"]
 ```
-That's because we created and extension "Stats+Arrow.swift" enabling us to use the thick Arrow Operator
+That's because we created and extension "Stats+Arrow.swift" enabling us to use the Arrow Operator
 
 ```swift
 //  Stats+Arrow.swift
@@ -172,12 +171,12 @@ extension Stats:ArrowParsable {
 
 ## Flexible you said
 
-- DO I have to use the <== for my sub models
+- DO I have to use the <-- for my sub models
 - Nope, you could write it like so if you wanted :
 
 ```swift
-stats.numberOfFriends <-- json.valueForKeyPath("stats.numberOfFriends")
-stats.numberOfFans <-- json.valueForKeyPath("stats.numberOfFans")
+stats.numberOfFriends <-- json["stats.numberOfFriends"]
+stats.numberOfFans <-- json["stats.numberOfFans"]
 ```
 
 - Hey I don't want to parse NSDates in every files, do you have something for me?
@@ -191,10 +190,17 @@ Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 Arrow.setUseTimeIntervalSinceReferenceDate(true)
 
 // Dates can be parsed form custom date format or timestamp
-let json = ["date": "2013-06-07T16:38:40+02:00", "timestamp": 392308720]
+let json:JSON = JSON(["date": "2013-06-07T16:38:40+02:00", "timestamp": 392308720])
 date1 <-- json["date"]
 date2 <-- json["timestamp"]
 ```
+
+What if I want a Custom NSDate format for a specific key ?
+```swift
+createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+```
+Just provide it on a case per case basis ! 🎉
+
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
 
