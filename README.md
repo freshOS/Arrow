@@ -135,10 +135,16 @@ profile.deserialize(json)
 ```
 
 ## Installation
-#### Using Carthage
+#### Carthage
 ```
 github "s4cha/Arrow"
 ```
+#### CocoaPods
+```
+pod 'Arrow'
+use_frameworks!
+```
+
 #### Manually
 Simply Copy and Paste Arrow.swift in your Xcode Project :)
 https://github.com/s4cha/Arrow/blob/master/Arrow.swift
