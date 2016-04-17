@@ -184,23 +184,23 @@ func parseURL(inout left:NSURL?, right:JSON?) {
 // MARK: - Support Array of plain Types
 //TODO : No tests VAlitaing "Support Array of plain Types"
 
-//func parseArray<T>(inout left: [T]?, right: JSON?) {
-//    if let a = right?.data as? [AnyObject] {
-//        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: $0); return t }
-//        if tmp.count == a.count {
-//            left = tmp
-//        }
-//    }
-//}
-//
-//public func <-- <T>(inout left: [T], right: JSON?) {
-//    var temp:[T]? = nil
-//    parseArray(&temp, right:right)
-//    if let t = temp {
-//        left = t
-//    }
-//}
-//
-//public func <-- <T>(inout left: [T]?, right: JSON?) {
-//    parseArray(&left, right: right)
-//}
+func parseArray<T>(inout left: [T]?, right: JSON?) {
+    if let a = right?.data as? [AnyObject] {
+        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
+        if tmp.count == a.count {
+            left = tmp
+        }
+    }
+}
+
+public func <-- <T>(inout left: [T], right: JSON?) {
+    var temp:[T]? = nil
+    parseArray(&temp, right:right)
+    if let t = temp {
+        left = t
+    }
+}
+
+public func <-- <T>(inout left: [T]?, right: JSON?) {
+    parseArray(&left, right: right)
+}
