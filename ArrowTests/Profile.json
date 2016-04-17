@@ -34,5 +34,6 @@
                 "nestedValue" : "42"
             }
         }
-    }
+    },
+    "nestedArray" : ["one", "two", "Cool", "four"]
 }

@@ -39,6 +39,7 @@ extension Profile:ArrowParsable {
         difficulty <-- json["difficulty"]
         optionalDifficulty <-- json["difficulty"]
         meaningOfLife <-- json["nested.nested.nested.nestedValue"]
+        nestedArrayParsing <-- json["nestedArray.2"]
     }
     
     

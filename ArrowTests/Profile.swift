@@ -51,4 +51,5 @@ struct Profile {
     var difficulty = Difficulty.Low
     var optionalDifficulty:Difficulty?
     var meaningOfLife:Int = 0
+    var nestedArrayParsing = ""
 }

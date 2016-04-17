@@ -157,6 +157,10 @@ class ArrowTests: XCTestCase {
     func testNestedParsing() {
         XCTAssertEqual(profile?.meaningOfLife, 42)
     }
+    
+    func testNestedArrayParsing() {
+        XCTAssertEqual(profile?.nestedArrayParsing, "Cool")
+    }
 }
 
 

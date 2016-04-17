@@ -45,10 +45,18 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
                 let keysArray:[String] =  keys.map(String.init)
                 if var intermediateValue = JSON(data) {
                     for k in keysArray {
-                        if let value = intermediateValue[k] {
-                            intermediateValue = value
-                        } else {
-                            return nil
+                        if let ik = Int(k) { // Array index
+                            if let value = intermediateValue[ik] {
+                                intermediateValue = value
+                            } else {
+                                return nil
+                            }
+                        } else { // Key
+                            if let value = intermediateValue[k] {
+                                intermediateValue = value
+                            } else {
+                                return nil
+                            }
                         }
                     }
                     return intermediateValue
