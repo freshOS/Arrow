@@ -1,0 +1,25 @@
+client:
+  name: swift-build
+tools: {}
+targets:
+  test: []
+  default: [<Arrow.module>]
+commands: 
+  /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build:
+    tool: mkdir
+    outputs: [/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build]
+
+  <Arrow.module>:
+    tool: swift-compiler
+    executable: /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2016-04-12-a.xctoolchain/usr/bin/swiftc
+    module-name: Arrow
+    module-output-path: /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.swiftmodule
+    inputs: []
+    outputs: [<Arrow.module>, /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow.swift.o, /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON.swift.o]
+    import-paths: [/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug]
+    temps-path: /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build
+    objects: [/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow.swift.o, /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON.swift.o]
+    other-args: ["-j8", "-Onone", "-g", "-D", SWIFT_PACKAGE, "-enable-testing", "-F", /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks, "-target", "x86_64-apple-macosx10.10", "-sdk", /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk]
+    sources: [/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/Arrow.swift, /Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/JSON.swift]
+    is-library: true
+

@@ -1,0 +1,6 @@
+version: "Apple Swift version 3.0-dev (LLVM 752e1430fc, Clang 3987718dae, Swift 36739f7b57)"
+options: "65439652772c87c9993aac5030b26789"
+build_time: [514924119, 624691000]
+inputs:
+  "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/Arrow.swift": [514924113, 0]
+  "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/JSON.swift": [514923537, 0]

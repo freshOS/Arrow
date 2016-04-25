@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/master.swiftdeps"
+  },
+  "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/Arrow.swift": {
+    "dependencies": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow.d",
+    "object": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow.swift.o",
+    "swiftmodule": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow~partial.swiftmodule",
+    "swift-dependencies": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/Arrow.swiftdeps"
+  },
+  "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/Source/JSON.swift": {
+    "dependencies": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON.d",
+    "object": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON.swift.o",
+    "swiftmodule": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON~partial.swiftmodule",
+    "swift-dependencies": "/Users/aevitas/Desktop/Projects/Swift/Server/Arrow/.build/debug/Arrow.build/JSON.swiftdeps"
+  }
+}
