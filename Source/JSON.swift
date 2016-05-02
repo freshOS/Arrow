@@ -28,6 +28,7 @@ class JSON:AnyObject, CustomDebugStringConvertible
         }
     }
     
+    public
     var collection:[JSON]?
     {
         if
