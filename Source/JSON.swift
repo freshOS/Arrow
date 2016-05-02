@@ -7,16 +7,16 @@
 //
 
 public
-class JSON:AnyObject, CustomDebugStringConvertible
+class JSON: AnyObject, CustomDebugStringConvertible
 {
     public
-    var data:AnyObject?
+    var data: AnyObject?
     
     public
-    var jsonDateFormat:String?
+    var jsonDateFormat: String?
     
     public
-    init?(_ dic:AnyObject?)
+    init?(_ dic: AnyObject?)
     {
         if dic == nil
         {
@@ -29,7 +29,7 @@ class JSON:AnyObject, CustomDebugStringConvertible
     }
     
     public
-    var collection:[JSON]?
+    var collection: [JSON]?
     {
         if
             let a = data as? [AnyObject]
@@ -43,7 +43,7 @@ class JSON:AnyObject, CustomDebugStringConvertible
     }
     
     public
-    func dateFormat(format:String) -> Self
+    func dateFormat(format: String) -> Self
     {
         jsonDateFormat = format
         
