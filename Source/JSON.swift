@@ -19,21 +19,14 @@ class JSON: AnyObject, CustomDebugStringConvertible
     
     private(set)
     public
-    var data: AnyObject?
+    var data: AnyObject
     
     //=== Initialization
     
     public
-    init?(_ deserializedData: AnyObject?)
+    init(_ deserializedData: AnyObject)
     {
-        if deserializedData == nil
-        {
-            return nil
-        }
-        else
-        {
-            data = deserializedData
-        }
+        data = deserializedData
     }
     
     //=== Access data
@@ -43,61 +36,60 @@ class JSON: AnyObject, CustomDebugStringConvertible
     {
         get
         {
-            let keys =  key.characters.split{$0 == "."}
+            var result: JSON? = nil
+            
+            //===
+            
+            let keys = key.characters.split{$0 == "."}
             
             if keys.count > 1 // KeyPath parsing
             {
                 let keysArray:[String] =  keys.map(String.init)
                 
-                if var intermediateValue = JSON(data)
+                result = JSON(data)
+                
+                for k in keysArray
                 {
-                    for k in keysArray
+                    if let ik = Int(k) // Array index
                     {
-                        if let ik = Int(k) // Array index
+                        if
+                            let value = result?[ik]
                         {
-                            if
-                                let value = intermediateValue[ik]
-                            {
-                                intermediateValue = value
-                            }
-                            else
-                            {
-                                return nil
-                            }
+                            result = value
                         }
-                        else // Key
+                        else
                         {
-                            if
-                                let value = intermediateValue[k]
-                            {
-                                intermediateValue = value
-                            }
-                            else
-                            {
-                                return nil
-                            }
+                            result = nil
+                            break
                         }
                     }
-                    
-                    //===
-                    
-                    return intermediateValue
+                    else // Key
+                    {
+                        if
+                            let value = result?[k]
+                        {
+                            result = value
+                        }
+                        else
+                        {
+                            result = nil
+                            break
+                        }
+                    }
                 }
             }
             else // Regular parsing
             {
                 if
-                    let d = data,
-                    x = d[key],
-                    subJSON = JSON(x)
+                    let x = data[key] // relay on system built-in subscripting???
                 {
-                    return subJSON
+                    result = JSON(x!) // subJSON
                 }
             }
             
             //===
             
-            return nil
+            return result
         }
         
         set(newValue)
@@ -140,7 +132,7 @@ extension JSON
         if
             let a = data as? [AnyObject]
         {
-            return a.map{ JSON($0)! }
+            return a.map{ JSON($0) }
         }
         else
         {
@@ -151,7 +143,7 @@ extension JSON
     public
     var debugDescription: String
     {
-        return data!.debugDescription
+        return data.debugDescription
     }
     
     public
