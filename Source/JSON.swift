@@ -10,11 +10,18 @@ public
 final
 class JSON: AnyObject, CustomDebugStringConvertible
 {
-    public
-    var data: AnyObject?
+    //=== Public properties
     
     public
     var jsonDateFormat: String?
+    
+    //=== Public read-ONLY properties
+    
+    private(set)
+    public
+    var data: AnyObject?
+    
+    //=== Initialization
     
     public
     init?(_ dic: AnyObject?)
@@ -29,35 +36,7 @@ class JSON: AnyObject, CustomDebugStringConvertible
         }
     }
     
-    public
-    var collection: [JSON]?
-    {
-        if
-            let a = data as? [AnyObject]
-        {
-            return a.map{ JSON($0)! }
-        }
-        else
-        {
-            return nil
-        }
-    }
-    
-    public
-    func dateFormat(format: String) -> Self
-    {
-        jsonDateFormat = format
-        
-        //===
-        
-        return self
-    }
-    
-    public
-    var debugDescription: String
-    {
-        return data!.debugDescription
-    }
+    //=== Access data
     
     public
     subscript(key: String) -> JSON?
@@ -146,5 +125,42 @@ class JSON: AnyObject, CustomDebugStringConvertible
                 return nil
             }
         }
+        
+        // TODO: add "set" method implementation?
+    }
+}
+
+//=== MARK: - Helpers
+
+extension JSON
+{
+    public
+    var collection: [JSON]?
+    {
+        if
+            let a = data as? [AnyObject]
+        {
+            return a.map{ JSON($0)! }
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    public
+    var debugDescription: String
+    {
+        return data!.debugDescription
+    }
+    
+    public
+    func dateFormat(format: String) -> Self
+    {
+        jsonDateFormat = format
+        
+        //===
+        
+        return self
     }
 }
