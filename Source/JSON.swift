@@ -7,6 +7,7 @@
 //
 
 public
+final
 class JSON: AnyObject, CustomDebugStringConvertible
 {
     public
