@@ -24,15 +24,15 @@ class JSON: AnyObject, CustomDebugStringConvertible
     //=== Initialization
     
     public
-    init?(_ dic: AnyObject?)
+    init?(_ deserializedData: AnyObject?)
     {
-        if dic == nil
+        if deserializedData == nil
         {
             return nil
         }
         else
         {
-            data = dic
+            data = deserializedData
         }
     }
     
