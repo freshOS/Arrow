@@ -1,13 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = 'Arrow'
-  s.version          = "2.0.0"
+  s.version          = "2.0.1"
   s.summary          = "Elegant JSON Parsing in Swift"
   s.homepage         = "https://github.com/s4cha/Arrow"
   s.license          = { :type => "MIT", :file => "LICENSE" }
   s.author           = 'S4cha'
   s.platform         = :ios
-  s.source           = { :git => "https://github.com/s4cha/Arrow.git",
-                         :tag => s.version.to_s }
+  s.source           = { :git => "#{s.homepage}.git", :tag => "#{s.version}" }
   s.social_media_url = 'https://twitter.com/sachadso'
   s.source_files     = "Source/*.swift"
   s.requires_arc     = true
