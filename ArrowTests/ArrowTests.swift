@@ -28,6 +28,7 @@ class ArrowTests: XCTestCase
         let json: JSON = jsonForName("Profile")!
         profile = Profile()
         profile.deserialize(json)
+
     }
     
     func testParsingInt()

@@ -6,9 +6,13 @@
 //  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import CoreGraphics
+private
+let dateFormatter = NSDateFormatter()
 
-//===
+private
+var useReferenceDate = false
+
+//=== MARK: - Protocols
 
 public
 protocol ArrowParsable
@@ -17,13 +21,16 @@ protocol ArrowParsable
     mutating func deserialize(json:JSON)
 }
 
-private
-let dateFormatter = NSDateFormatter()
+public
+protocol ArrowInitializable
+{
+    init(json:JSON)
+}
 
-private
-var useReferenceDate = false
+//=== MARK: - Singlton
 
 public
+final
 class Arrow
 {
     public
@@ -41,10 +48,13 @@ class Arrow
     }
 }
 
-// MARK: - Parse Default swift Types
+
+//=== MARK: - Custom operator
 
 infix
 operator <-- {}
+
+//=== MARK: - Custom operator - Parse system Swift types
 
 public
 func <-- <T>(inout left: T, right: JSON?)
@@ -60,7 +70,8 @@ func <-- <T>(inout left: T, right: JSON?)
     }
 }
 
-// Support optional Data
+//=== MARK: - Custom operator - Support optional Data
+
 public
 func <-- <T>(inout left: T?, right: JSON?)
 {
@@ -92,7 +103,7 @@ func parseType<T>(inout left:T?,right:JSON?)
     }
 }
 
-// Support Enum
+//=== MARK: - Custom operator - Support Enum
 
 public
 func <-- <T: RawRepresentable>(inout left: T, right: JSON?)
@@ -124,10 +135,10 @@ func <-- <T: RawRepresentable>(inout left: T?, right: JSON?)
     }
 }
 
-// MARK: - Parse Custom Types
+//=== MARK: - Custom operator - Parse Custom Types
 
 public
-func <-- <T:ArrowParsable>(inout left:T, right: JSON?)
+func <-- <T: ArrowParsable>(inout left:T, right: JSON?)
 {
     if
         let data = right?.data
@@ -138,7 +149,7 @@ func <-- <T:ArrowParsable>(inout left:T, right: JSON?)
 }
 
 public
-func <-- <T:ArrowParsable>(inout left:T?, right: JSON?)
+func <-- <T: ArrowParsable>(inout left:T?, right: JSON?)
 {
     if
         let data = right?.data
@@ -148,10 +159,10 @@ func <-- <T:ArrowParsable>(inout left:T?, right: JSON?)
     }
 }
 
-// MARK: - Array of custom Types
+//=== MARK: - Custom operator - Array of custom Types
 
 public
-func <-- <T:ArrowParsable>(inout left:[T], right: JSON?)
+func <-- <T: ArrowParsable>(inout left:[T], right: JSON?)
 {
     if
         let a = right?.data as? [AnyObject]
@@ -169,7 +180,7 @@ func <-- <T:ArrowParsable>(inout left:[T], right: JSON?)
 }
 
 public
-func <-- <T:ArrowParsable>(inout left:[T]?, right: JSON?)
+func <-- <T: ArrowParsable>(inout left:[T]?, right: JSON?)
 {
     if
         let a = right?.data as? [AnyObject]
@@ -186,7 +197,7 @@ func <-- <T:ArrowParsable>(inout left:[T]?, right: JSON?)
     }
 }
 
-// MARK: - NSDate Parsing
+//=== MARK: - Custom operator - NSDate Parsing
 
 public
 func <-- (inout left: NSDate, right: JSON?)
@@ -246,7 +257,7 @@ func parseDate(inout left:NSDate?,right:JSON?)
     }
 }
 
-// MARK: - NSURL Parsing
+//=== MARK: - Custom operator - NSURL Parsing
 
 public
 func <-- (inout left: NSURL, right: JSON?)
@@ -280,8 +291,9 @@ func parseURL(inout left:NSURL?, right:JSON?)
     }
 }
 
-// MARK: - Support Array of plain Types
-//TODO : No tests VAlitaing "Support Array of plain Types"
+//=== MARK: - Custom operator - Support Array of plain Types
+
+//TODO : No tests Validaing "Support Array of plain Types"
 
 func parseArray<T>(inout left: [T]?, right: JSON?)
 {
@@ -314,4 +326,57 @@ public
 func <-- <T>(inout left: [T]?, right: JSON?)
 {
     parseArray(&left, right: right)
+}
+
+//=== MARK: - Custom operator - Initializable
+
+infix
+operator <--/ {}
+
+public
+func <--/ <T: ArrowInitializable>(inout left:T, right: JSON?)
+{
+    if
+        let data = right?.data
+    {
+        left = T.init(json: JSON(data))
+    }
+}
+
+public
+func <--/ <T: ArrowInitializable>(inout left:T?, right: JSON?)
+{
+    if
+        let data = right?.data
+    {
+        left = T.init(json: JSON(data))
+    }
+}
+
+public
+func <--/ <T: ArrowInitializable>(inout left:[T], right: JSON?)
+{
+    if
+        let a = right?.data as? [AnyObject]
+    {
+        left = a.map {
+            
+            return
+                T.init(json: JSON($0)) //TODO return t even if T not parsable?? // what???
+        }
+    }
+}
+
+public
+func <--/ <T: ArrowInitializable>(inout left:[T]?, right: JSON?)
+{
+    if
+        let a = right?.data as? [AnyObject]
+    {
+        left = a.map {
+            
+            return
+                T.init(json: JSON($0)) //TODO return t even if T not parsable?? // what???
+        }
+    }
 }
