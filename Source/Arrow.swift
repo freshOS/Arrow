@@ -132,11 +132,8 @@ func <-- <T:ArrowParsable>(inout left:T, right: JSON?)
     if
         let data = right?.data
     {
-        let json = JSON(data)
-        
-        var t = T.init()
-        t.deserialize(json)
-        left = t
+        left = T.init()
+        left.deserialize(JSON(data))
     }
 }
 
@@ -146,11 +143,8 @@ func <-- <T:ArrowParsable>(inout left:T?, right: JSON?)
     if
         let data = right?.data
     {
-        let json = JSON(data)
-        
-        var t = T.init()
-        t.deserialize(json)
-        left = t
+        left = T.init()
+        left?.deserialize(JSON(data))
     }
 }
 
@@ -165,12 +159,11 @@ func <-- <T:ArrowParsable>(inout left:[T], right: JSON?)
         left = a.map {
             
             var result = T.init()
-            
-            result.deserialize(JSON($0)) //TODO return t even if T not parsable??
+            result.deserialize(JSON($0))
             
             //===
             
-            return result
+            return result  //TODO return t even if T not parsable?? // what???
         }
     }
 }
@@ -184,11 +177,11 @@ func <-- <T:ArrowParsable>(inout left:[T]?, right: JSON?)
         left = a.map {
             
             var result = T.init()
-            result.deserialize(JSON($0)) //TODO return t even if T not parsable??
+            result.deserialize(JSON($0))
             
             //===
             
-            return result
+            return result  //TODO return t even if T not parsable?? // what???
         }
     }
 }
