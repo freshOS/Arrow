@@ -6,9 +6,8 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import Foundation
-
-struct PhoneNumber {
+struct PhoneNumber
+{
     var label:String = ""
     var number:String = ""
 }
