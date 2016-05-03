@@ -81,9 +81,10 @@ class JSON: AnyObject, CustomDebugStringConvertible
             else // Regular parsing
             {
                 if
-                    let x = data[key] // relay on system built-in subscripting???
+                    let x = data[key], // relay on system built-in subscripting???
+                    let val = x // fo some reason one unwrapping is not enough in this case
                 {
-                    result = JSON(x!) // subJSON
+                    result = JSON(val) // subJSON
                 }
             }
             
