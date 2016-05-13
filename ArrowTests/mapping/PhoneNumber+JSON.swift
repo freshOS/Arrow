@@ -8,9 +8,13 @@
 
 import Arrow
 
-extension PhoneNumber: ArrowParsable {
-    
-    mutating func deserialize(json: JSON) {
+//===
+
+extension PhoneNumber: ArrowParsable
+{
+    mutating
+    func deserialize(json: JSON)
+    {
         label <-- json["label"]
         number <-- json["number"]
     }

@@ -8,9 +8,13 @@
 
 import Arrow
 
-extension Profile:ArrowParsable {
-    
-    mutating func deserialize(json: JSON) {
+//===
+
+extension Profile: ArrowParsable
+{
+    mutating
+    func deserialize(json: JSON)
+    {
         identifier <-- json["id"]
         link <-- json["link"]
         optionalLink <-- json["link"]
@@ -41,6 +45,4 @@ extension Profile:ArrowParsable {
         meaningOfLife <-- json["nested.nested.nested.nestedValue"]
         nestedArrayParsing <-- json["nestedArray.2"]
     }
-    
-    
 }

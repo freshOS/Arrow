@@ -6,82 +6,154 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import Foundation
-
-public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
+public
+final
+class JSON: AnyObject, CustomDebugStringConvertible
+{
+    //=== Public properties
     
-    public var data:AnyObject?
-    public var jsonDateFormat:String?
+    public
+    var jsonDateFormat: String?
     
-    public init?(_ dic:AnyObject?) {
-        if dic == nil {
-            return nil
-        } else {
-            data = dic
-        }
+    //=== Public read-ONLY properties
+    
+    private(set)
+    public
+    var data: AnyObject
+    
+    //=== Initialization
+    
+    public
+    init(_ deserializedData: AnyObject)
+    {
+        data = deserializedData
     }
     
-    var collection:[JSON]? {
-        if let a = data as? [AnyObject] {
-            return a.map{ JSON($0)! }
-        } else {
-            return nil
-        }
-    }
+    //=== Access data
     
-    public func dateFormat(format:String) -> Self {
-        jsonDateFormat = format
-        return self
-    }
-    
-    public var debugDescription: String {
-        return data!.debugDescription
-    }
-    
-    public subscript(key: String) -> JSON? {
-        get {
-            let keys =  key.characters.split{$0 == "."}
-            if keys.count > 1 { // KeyPath parsing
+    public
+    subscript(key: String) -> JSON?
+    {
+        get
+        {
+            var result: JSON? = nil
+            
+            //===
+            
+            let keys = key.characters.split{$0 == "."}
+            
+            if keys.count > 1 // KeyPath parsing
+            {
                 let keysArray:[String] =  keys.map(String.init)
-                if var intermediateValue = JSON(data) {
-                    for k in keysArray {
-                        if let ik = Int(k) { // Array index
-                            if let value = intermediateValue[ik] {
-                                intermediateValue = value
-                            } else {
-                                return nil
-                            }
-                        } else { // Key
-                            if let value = intermediateValue[k] {
-                                intermediateValue = value
-                            } else {
-                                return nil
-                            }
+                
+                result = JSON(data)
+                
+                for k in keysArray
+                {
+                    if let ik = Int(k) // Array index
+                    {
+                        if
+                            let value = result?[ik]
+                        {
+                            result = value
+                        }
+                        else
+                        {
+                            result = nil
+                            break
                         }
                     }
-                    return intermediateValue
-                }
-            } else { // Regular parsing
-                if let d = data, x = d[key], subJSON = JSON(x) {
-                    return subJSON
+                    else // Key
+                    {
+                        if
+                            let value = result?[k]
+                        {
+                            result = value
+                        }
+                        else
+                        {
+                            result = nil
+                            break
+                        }
+                    }
                 }
             }
-            return nil
+            else // Regular parsing
+            {
+                if
+                    let x = data[key], // relay on system built-in subscripting???
+                    let val = x // fo some reason one unwrapping is not enough in this case
+                {
+                    result = JSON(val) // subJSON
+                }
+            }
+            
+            //===
+            
+            return result
         }
-        set(obj) {
-            if var d = data as? [String:AnyObject] {
-                d[key] = obj
+        
+        set(newValue)
+        {
+            if
+                var d = data as? [String:AnyObject]
+            {
+                d[key] = newValue
             }
         }
     }
     
-    public subscript(index: Int) -> JSON? {
-        get {
-            if let array = data as? [AnyObject] where array.count > index {
+    public
+    subscript(index: Int) -> JSON?
+    {
+        get
+        {
+            if
+                let array = data as? [AnyObject] where array.count > index
+            {
                 return JSON(array[index])
-            } else {
+            }
+            else
+            {
                 return nil
             }
         }
+        
+        // TODO: add "set" method implementation?
+    }
+}
+
+//=== MARK: - Helpers
+
+extension JSON
+{
+    public
+    var collection: [JSON]?
+    {
+        if
+            let a = data as? [AnyObject]
+        {
+            return a.map{ JSON($0) }
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+    public
+    var debugDescription: String
+    {
+        return data.debugDescription
+    }
+    
+    public
+    func dateFormat(format: String) -> Self
+    {
+        jsonDateFormat = format
+        
+        //===
+        
+        return self
     }
 }
