@@ -70,15 +70,13 @@ func <-- <T>(inout left: T, right: JSON?)
     }
 }
 
-//=== MARK: - Custom operator - Support optional Data
-
 public
 func <-- <T>(inout left: T?, right: JSON?)
 {
     parseType(&left, right: right)
 }
 
-func parseType<T>(inout left:T?,right:JSON?)
+func parseType<T>(inout left:T?, right: JSON?)
 {
     if
         let v: T = right?.data as? T
