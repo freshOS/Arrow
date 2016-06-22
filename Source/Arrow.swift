@@ -175,7 +175,7 @@ public func <-- (inout left: NSURL?, right: JSON?) {
 func parseURL(inout left:NSURL?, right:JSON?) {
     var str = ""
     str <-- right
-    if let url = NSURL(string:str) {
+    if let escapedStr = str.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet()), let url = NSURL(string:escapedStr) {
         left = url
     }
 }

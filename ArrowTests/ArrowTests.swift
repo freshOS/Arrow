@@ -35,11 +35,27 @@ class ArrowTests: XCTestCase {
     }
     
     func testParsingURL() {
-        XCTAssertEqual(profile!.link.absoluteString, "https://apple.com/steve")
+        XCTAssertEqual(profile!.link.absoluteString.stringByRemovingPercentEncoding, "https://apple.com/steve")
     }
     
     func testParsingOptionalURL() {
-        XCTAssertEqual(profile!.optionalLink!.absoluteString, "https://apple.com/steve")
+        XCTAssertEqual(profile!.optionalLink!.absoluteString.stringByRemovingPercentEncoding, "https://apple.com/steve")
+    }
+    
+    func testParsingEmojiURL() {
+        XCTAssertEqual(profile!.emojiLink.absoluteString.stringByRemovingPercentEncoding, "http://🆒🔗.ws")
+    }
+    
+    func testParsingOptionalEmojiURL() {
+        XCTAssertEqual(profile!.optionalEmojiLink!.absoluteString.stringByRemovingPercentEncoding, "http://🆒🔗.ws")
+    }
+    
+    func testParsingAccentURL() {
+        XCTAssertEqual(profile!.accentLink.absoluteString.stringByRemovingPercentEncoding, "http://gégé.com")
+    }
+    
+    func testParsingOptionalAccentURL() {
+        XCTAssertEqual(profile!.optionalAccentLink!.absoluteString.stringByRemovingPercentEncoding, "http://gégé.com")
     }
 
     func testParsingDate() {
