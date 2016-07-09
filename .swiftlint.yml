@@ -2,7 +2,8 @@
 disabled_rules:
 - cyclomatic_complexity
 - trailing_whitespace
+- valid_docs
 opt_in_rules:
 - empty_count
-# - missing_docs
+- missing_docs
 - force_unwrapping
