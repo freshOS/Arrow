@@ -8,12 +8,12 @@
 
 import Foundation
 
-public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
+public class JSON: AnyObject, CustomDebugStringConvertible {
     
-    public var data:AnyObject?
-    public var jsonDateFormat:String?
+    public var data: AnyObject?
+    public var jsonDateFormat: String?
     
-    public init?(_ dic:AnyObject?) {
+    public init?(_ dic: AnyObject?) {
         if dic == nil {
             return nil
         } else {
@@ -21,28 +21,31 @@ public class JSON:AnyObject, CustomDebugStringConvertible { //Struct??
         }
     }
     
-    var collection:[JSON]? {
+    var collection: [JSON]? {
         if let a = data as? [AnyObject] {
-            return a.map{ JSON($0)! }
+            return a.map { JSON($0) }.flatMap {$0}
         } else {
             return nil
         }
     }
     
-    public func dateFormat(format:String) -> Self {
+    public func dateFormat(format: String) -> Self {
         jsonDateFormat = format
         return self
     }
     
     public var debugDescription: String {
-        return data!.debugDescription
+        if let data = data {
+            return data.debugDescription
+        }
+        return ""
     }
     
     public subscript(key: String) -> JSON? {
         get {
-            let keys =  key.characters.split{$0 == "."}
+            let keys =  key.characters.split {$0 == "."}
             if keys.count > 1 { // KeyPath parsing
-                let keysArray:[String] =  keys.map(String.init)
+                let keysArray: [String] =  keys.map(String.init)
                 if var intermediateValue = JSON(data) {
                     for k in keysArray {
                         if let ik = Int(k) { // Array index

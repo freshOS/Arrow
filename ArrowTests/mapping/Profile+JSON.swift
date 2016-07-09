@@ -45,6 +45,4 @@ extension Profile:ArrowParsable {
         meaningOfLife <-- json["nested.nested.nested.nestedValue"]
         nestedArrayParsing <-- json["nestedArray.2"]
     }
-    
-    
 }

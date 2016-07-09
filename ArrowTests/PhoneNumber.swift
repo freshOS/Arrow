@@ -9,6 +9,6 @@
 import Foundation
 
 struct PhoneNumber {
-    var label:String = ""
-    var number:String = ""
+    var label: String = ""
+    var number: String = ""
 }

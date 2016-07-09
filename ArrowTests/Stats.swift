@@ -12,5 +12,3 @@ struct Stats {
     var numberOfFriends = 0
     var numberOfFans = 0
 }
-
-
