@@ -29,6 +29,10 @@ struct Profile {
     var identifier = 0
     var link = NSURL()
     var optionalLink:NSURL?
+    var emojiLink = NSURL()
+    var optionalEmojiLink:NSURL?
+    var accentLink = NSURL()
+    var optionalAccentLink:NSURL?
     var createdAt = NSDate()
     var name = ""
     var optionalName:String?
