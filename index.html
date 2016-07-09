@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Arrow by s4cha</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Arrow</h1>
+      <h2 class="project-tagline">Elegant JSON Parsing in Swift :tophat:</h2>
+      <a href="https://github.com/s4cha/Arrow" class="btn">View on GitHub</a>
+      <a href="https://github.com/s4cha/Arrow/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/s4cha/Arrow/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="arrow----elegant-json-parsing-in-swift" class="anchor" href="#arrow----elegant-json-parsing-in-swift" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Arrow 🏹 - <em>Elegant JSON Parsing in Swift</em>
+</h1>
+
+<p><a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/language-swift2-f48041.svg?style=flat" alt="Language: Swift 2"></a>
+<img src="https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat" alt="Platform: iOS 8+">
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href="https://cocoapods.org"><img src="https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat" alt="Cocoapods compatible"></a>
+<a href="https://www.bitrise.io/app/ffd8fe5df34624ff"><img src="https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ" alt="Build Status"></a>
+<a href="https://codebeat.co/projects/github-com-s4cha-arrow"><img src="https://codebeat.co/badges/2acb8664-02f7-463d-9de2-2be9e87ba17c" alt="codebeat badge"></a>
+<a href="https://github.com/s4cha/Arrow/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat" alt="License: MIT"></a>
+<a href=""><img src="https://img.shields.io/badge/release-2.0-blue.svg" alt="Release version"></a></p>
+
+<p><a href="#reason">Reason</a> - <a href="#example">Example</a> - <a href="#installation">Installation</a></p>
+
+<div class="highlight highlight-source-swift"><pre>identifier <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>]
+name <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>]
+stats <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats<span class="pl-pds">"</span></span>]</pre></div>
+
+<h2>
+<a id="reason" class="anchor" href="#reason" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reason</h2>
+
+<h3>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why</h3>
+
+<p>Because parsing JSON in Swift is full of <strong>unecessary if lets, obvious casts and nil-checks</strong><br>
+<em>There must be a better way</em></p>
+
+<h2>
+<a id="how" class="anchor" href="#how" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How</h2>
+
+<p>By using a simple arrow operator that takes care of the boilerplate code for us.<br>
+Json mapping code becomes <strong>concise</strong> and <strong>maintainable</strong> <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png">❤️</g-emoji></p>
+
+<h2>
+<a id="what" class="anchor" href="#what" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What</h2>
+
+<ul>
+<li>[x] Simple &amp; Lightweight (~200lines)</li>
+<li>[x] Pure Swift</li>
+<li>[x] Leaves your models clean</li>
+<li>[x] Implicitly casts JSON values to the right types in your model</li>
+<li>[x] Automatic NSDate, NSURL, Enum, Custom model Parsing</li>
+<li>[x] Converts string values to numeric types in your model</li>
+<li>[x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything</li>
+<li>[x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:&gt;&gt;&gt;&lt;&gt; <g-emoji alias="sweat_smile" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f605.png">😅</g-emoji>
+</li>
+</ul>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+
+<h3>
+<a id="swift-model" class="anchor" href="#swift-model" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Swift Model</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">struct</span> Profile {
+    <span class="pl-k">var</span> identifier <span class="pl-k">=</span> <span class="pl-c1">0</span>
+    <span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>
+    <span class="pl-k">var</span> link:NSURL?
+    <span class="pl-k">var</span> weekday:WeekDay <span class="pl-k">=</span> <span class="pl-k">.</span>Monday
+    <span class="pl-k">var</span> stats <span class="pl-k">=</span> Stats()
+    <span class="pl-k">var</span> phoneNumbers <span class="pl-k">=</span> [PhoneNumber]()
+}</pre></div>
+
+<h3>
+<a id="json-file" class="anchor" href="#json-file" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JSON File</h3>
+
+<div class="highlight highlight-source-json"><pre>{
+    <span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>: <span class="pl-c1">15678</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>John Doe<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>link<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>https://apple.com/steve<span class="pl-pds">"</span></span>,
+    <span class="pl-s"><span class="pl-pds">"</span>weekdayInt<span class="pl-pds">"</span></span> : <span class="pl-c1">3</span>,
+    <span class="pl-s"><span class="pl-pds">"</span>stats<span class="pl-pds">"</span></span>: {
+        <span class="pl-s"><span class="pl-pds">"</span>numberOfFriends<span class="pl-pds">"</span></span>: <span class="pl-c1">163</span>,
+        <span class="pl-s"><span class="pl-pds">"</span>numberOfFans<span class="pl-pds">"</span></span>: <span class="pl-c1">10987</span>
+    },
+    <span class="pl-s"><span class="pl-pds">"</span>phoneNumbers<span class="pl-pds">"</span></span>: [{
+                     <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>house<span class="pl-pds">"</span></span>,
+                     <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>9809876545<span class="pl-pds">"</span></span>
+                     }, {
+                     <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>cell<span class="pl-pds">"</span></span>,
+                     <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0908070656<span class="pl-pds">"</span></span>
+                     }, {
+                     <span class="pl-s"><span class="pl-pds">"</span>label<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>work<span class="pl-pds">"</span></span>,
+                     <span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>0916570656<span class="pl-pds">"</span></span>
+    }]
+}</pre></div>
+
+<h3>
+<a id="before-chaos" class="anchor" href="#before-chaos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Before (Chaos)</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">var</span> profile <span class="pl-k">=</span> Profile()
+
+<span class="pl-c">// Int</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> id <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">Int</span> {
+    profile<span class="pl-k">.</span>identifier <span class="pl-k">=</span> id
+}  
+<span class="pl-c">// String</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> name <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">String</span> {
+    profile<span class="pl-k">.</span>name <span class="pl-k">=</span> name
+}
+<span class="pl-c">// NSURL</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> link <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>link<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">String</span>, url <span class="pl-k">=</span> NSURL(string:link)  {
+    profile<span class="pl-k">.</span>link <span class="pl-k">=</span> link
+}
+<span class="pl-c">// Enum</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> weekdayInt <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>weekdayInt<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">Int</span>, weekday <span class="pl-k">=</span> WeekDay(rawValue:weekdayInt) {
+    profile<span class="pl-k">.</span>weekday <span class="pl-k">=</span> weekday
+}
+<span class="pl-c">// Custom nested object</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> statsJson <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">AnyObject</span> {
+    <span class="pl-k">if</span> <span class="pl-k">let</span> numberOfFans <span class="pl-k">=</span> statsJson[<span class="pl-s"><span class="pl-pds">"</span>numberOfFans<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">Int</span> {
+        profile<span class="pl-k">.</span>stats<span class="pl-k">.</span>numberOfFans <span class="pl-k">=</span> numberOfFans
+    }
+    <span class="pl-k">if</span> <span class="pl-k">let</span> numberOfFriends <span class="pl-k">=</span> statsJson[<span class="pl-s"><span class="pl-pds">"</span>numberOfFriends<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> <span class="pl-c1">Int</span> {
+        profile<span class="pl-k">.</span>stats<span class="pl-k">.</span>numberOfFriends <span class="pl-k">=</span> numberOfFriends
+    }
+}
+<span class="pl-c">// Array of custom nested object</span>
+<span class="pl-k">if</span> <span class="pl-k">let</span> pns <span class="pl-k">=</span> json[<span class="pl-s"><span class="pl-pds">"</span>phoneNumbers<span class="pl-pds">"</span></span>] <span class="pl-k">as?</span> [<span class="pl-c1">AnyObject</span>] {
+    <span class="pl-k">for</span> pn <span class="pl-k">in</span> pns {
+        phoneNumbers<span class="pl-k">.</span>append(PhoneNumber(json: pn))
+    }
+}</pre></div>
+
+<h3>
+<a id="after--" class="anchor" href="#after--" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>After  <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji><g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji><g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji>
+</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">extension</span> Profile:ArrowParsable {
+    <span class="pl-k">mutating</span> <span class="pl-k">func</span> <span class="pl-en">deserialize</span>(json: JSON) {
+        identifier <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>]
+        link <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>link<span class="pl-pds">"</span></span>]
+        name <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>name<span class="pl-pds">"</span></span>]
+        weekday <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>weekdayInt<span class="pl-pds">"</span></span>]
+        stats <span class="pl-k">&lt;-</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats<span class="pl-pds">"</span></span>]
+        phoneNumbers <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>phoneNumbers<span class="pl-pds">"</span></span>]
+    }
+}</pre></div>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">let</span> profile <span class="pl-k">=</span> Profile()
+profile<span class="pl-k">.</span>deserialize(json)</pre></div>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<h4>
+<a id="carthage" class="anchor" href="#carthage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Carthage</h4>
+
+<pre><code>github "s4cha/Arrow"
+</code></pre>
+
+<h4>
+<a id="cocoapods" class="anchor" href="#cocoapods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CocoaPods</h4>
+
+<pre><code>pod 'Arrow'
+use_frameworks!
+</code></pre>
+
+<h4>
+<a id="manually" class="anchor" href="#manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Manually</h4>
+
+<p>Simply Copy and Paste Arrow.swift in your Xcode Project :)
+<a href="https://github.com/s4cha/Arrow/blob/master/Arrow.swift">https://github.com/s4cha/Arrow/blob/master/Arrow.swift</a></p>
+
+<h4>
+<a id="as-a-framework" class="anchor" href="#as-a-framework" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>As A Framework</h4>
+
+<p>Grab this repository and build the Framework target on the example project. Then Link against this framework.</p>
+
+<h2>
+<a id="how-does-that-work" class="anchor" href="#how-does-that-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How Does That Work</h2>
+
+<p>Notice earlier we typed :</p>
+
+<div class="highlight highlight-source-swift"><pre>stats <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats<span class="pl-pds">"</span></span>]</pre></div>
+
+<p>That's because we created and extension "Stats+Arrow.swift" enabling us to use the Arrow Operator</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">//  Stats+Arrow.swift</span>
+
+<span class="pl-k">import</span> <span class="pl-c1">Foundation</span>
+
+<span class="pl-k">extension</span> Stats:ArrowParsable {
+    <span class="pl-k">mutating</span> <span class="pl-k">func</span> <span class="pl-en">deserialize</span>(json: JSON) {
+        numberOfFriends <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>numberOfFriends<span class="pl-pds">"</span></span>]
+        numberOfFans <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>numberOfFans<span class="pl-pds">"</span></span>]
+    }
+}</pre></div>
+
+<h2>
+<a id="flexible-you-said" class="anchor" href="#flexible-you-said" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flexible you said</h2>
+
+<ul>
+<li>DO I have to use the &lt;-- for my sub models</li>
+<li>Nope, you could write it like so if you wanted :</li>
+</ul>
+
+<div class="highlight highlight-source-swift"><pre>stats<span class="pl-k">.</span>numberOfFriends <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats.numberOfFriends<span class="pl-pds">"</span></span>]
+stats<span class="pl-k">.</span>numberOfFans <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>stats.numberOfFans<span class="pl-pds">"</span></span>]</pre></div>
+
+<ul>
+<li>Hey I don't want to parse NSDates in every files, do you have something for me?</li>
+</ul>
+
+<p>Sure, just set your date format once and you're done.</p>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-c">// Configure NSDate Parsing</span>
+Arrow<span class="pl-k">.</span>setDateFormat(<span class="pl-s"><span class="pl-pds">"</span>yyyy-MM-dd'T'HH:mm:ssZZZZZ<span class="pl-pds">"</span></span>)
+Arrow<span class="pl-k">.</span>setUseTimeIntervalSinceReferenceDate(<span class="pl-c1">true</span>)
+
+<span class="pl-c">// Dates can be parsed form custom date format or timestamp</span>
+<span class="pl-k">let</span> json:JSON <span class="pl-k">=</span> JSON([<span class="pl-s"><span class="pl-pds">"</span>date<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>2013-06-07T16:38:40+02:00<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>timestamp<span class="pl-pds">"</span></span>: <span class="pl-c1">392308720</span>])
+date1 <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>date<span class="pl-pds">"</span></span>]
+date2 <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>timestamp<span class="pl-pds">"</span></span>]</pre></div>
+
+<p>What if I want a Custom NSDate format for a specific key ?</p>
+
+<div class="highlight highlight-source-swift"><pre>createdAt <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>created_at<span class="pl-pds">"</span></span>]?<span class="pl-k">.</span>dateFormat(<span class="pl-s"><span class="pl-pds">"</span>yyyy-MM-dd'T'HH:mm:ssZZZZZ<span class="pl-pds">"</span></span>)</pre></div>
+
+<p>Just provide it on a case per case basis ! <g-emoji alias="tada" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png">🎉</g-emoji></p>
+
+<h2>
+<a id="accessing-json-values" class="anchor" href="#accessing-json-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accessing JSON values</h2>
+
+<h3>
+<a id="nested-values" class="anchor" href="#nested-values" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Nested values</h3>
+
+<div class="highlight highlight-source-swift"><pre>value <span class="pl-k">&lt;--</span> json[<span class="pl-s"><span class="pl-pds">"</span>nested.nested.nested.nestedValue<span class="pl-pds">"</span></span>]</pre></div>
+
+<h3>
+<a id="object-at-index" class="anchor" href="#object-at-index" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Object at index</h3>
+
+<div class="highlight highlight-source-swift"><pre>value <span class="pl-k">&lt;--</span> json[<span class="pl-c1">12</span>]</pre></div>
+
+<h3>
+<a id="combine-both" class="anchor" href="#combine-both" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Combine both</h3>
+
+<div class="highlight highlight-source-swift"><pre>value <span class="pl-k">&lt;--</span> json[<span class="pl-c1">1</span>]?[<span class="pl-s"><span class="pl-pds">"</span>someKey<span class="pl-pds">"</span></span>]?[<span class="pl-c1">2</span>]?[<span class="pl-s"><span class="pl-pds">"</span>something.other<span class="pl-pds">"</span></span>]</pre></div>
+
+<h3>
+<a id="looping-on-array" class="anchor" href="#looping-on-array" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Looping on Array</h3>
+
+<div class="highlight highlight-source-swift"><pre><span class="pl-k">if</span> <span class="pl-k">let</span> collection <span class="pl-k">=</span> json<span class="pl-k">.</span>collection {
+    <span class="pl-k">for</span> jsonEntry <span class="pl-k">in</span> collection {
+        <span class="pl-c">//Do something</span>
+    }
+}</pre></div>
+
+<h2>
+<a id="acknoledgments" class="anchor" href="#acknoledgments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknoledgments</h2>
+
+<p>This wouldn't exist without <a href="https://github.com/YannickDot">YannickDot</a>, <a href="https://github.com/damien-nd">Damien-nd</a> and <a href="https://github.com/maxkonovalov">maxkonovalov</a></p>
+
+<h2>
+<a id="other-repos-️" class="anchor" href="#other-repos-%EF%B8%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Other repos <g-emoji alias="heart" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/2764.png">❤️</g-emoji>
+</h2>
+
+<p>Arrow is part of a series of lightweight libraries aiming to make developing iOS Apps a <em>breeze</em> :</p>
+
+<ul>
+<li>Layout : <a href="https://github.com/s4cha/Stevia">Stevia</a>
+</li>
+<li>Async code : <a href="https://github.com/s4cha/then">then</a>
+</li>
+<li>JSON WebServices : <a href="https://github.com/s4cha/ws">ws</a>
+</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/s4cha/Arrow">Arrow</a> is maintained by <a href="https://github.com/s4cha">s4cha</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
