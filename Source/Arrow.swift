@@ -107,46 +107,30 @@ public func <-- <T: RawRepresentable>(inout left: T?, right: JSON?) {
 
 /// Parses user defined custom types.
 public func <-- <T: ArrowParsable>(inout left: T, right: JSON?) {
-    if let json = JSON(right?.data) {
-        var t = T.init()
-        t.deserialize(json)
+    var temp: T? = nil
+    parseUserDefinedType(&temp, right: right)
+    if let t = temp {
         left = t
     }
 }
 
 /// Parses user defined optional custom types.
 public func <-- <T: ArrowParsable>(inout left: T?, right: JSON?) {
-    if let json = JSON(right?.data) {
-        var t = T.init()
-        t.deserialize(json)
-        left = t
-    }
+    parseUserDefinedType(&left, right: right)
 }
 
 /// Parses arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(inout left: [T], right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
-        left = a.map {
-            var t = T.init()
-            if let json = JSON($0) {
-                t.deserialize(json)
-            }
-            return t
-        }
+    var temp: [T]? = nil
+    parseArrayOfUserDefinedTypes(&temp, right: right)
+    if let t = temp {
+        left = t
     }
 }
 
 /// Parses optional arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(inout left: [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
-        left = a.map {
-            var t = T.init()
-            if let json = JSON($0) {
-                t.deserialize(json)
-            }
-            return t
-        }
-    }
+    parseArrayOfUserDefinedTypes(&left, right: right)
 }
 
 /// Parses NSDates.
@@ -254,6 +238,26 @@ func parseArray<T>(inout left: [T]?, right: JSON?) {
         let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
         if tmp.count == a.count {
             left = tmp
+        }
+    }
+}
+
+func parseUserDefinedType<T: ArrowParsable>(inout left: T?, right: JSON?) {
+    if let json = JSON(right?.data) {
+        var t = T.init()
+        t.deserialize(json)
+        left = t
+    }
+}
+
+func parseArrayOfUserDefinedTypes<T: ArrowParsable>(inout left: [T]?, right: JSON?) {
+    if let a = right?.data as? [AnyObject] {
+        left = a.map {
+            var t = T.init()
+            if let json = JSON($0) {
+                t.deserialize(json)
+            }
+            return t
         }
     }
 }
