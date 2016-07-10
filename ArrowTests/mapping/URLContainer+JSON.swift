@@ -15,7 +15,5 @@ extension URLContainer:ArrowParsable {
         emojiLink <-- json["emoji_link"]
         accentLink <-- json["accent_link"]
         optionalLink <-- json["link"]
-        optionalEmojiLink <-- json["emoji_link"]
-        optionalAccentLink <-- json["accent_link"]
     }
 }

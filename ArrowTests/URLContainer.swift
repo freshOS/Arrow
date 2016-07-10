@@ -13,6 +13,4 @@ struct URLContainer {
     var emojiLink = NSURL()
     var accentLink = NSURL()
     var optionalLink: NSURL?
-    var optionalEmojiLink: NSURL?
-    var optionalAccentLink: NSURL?
 }

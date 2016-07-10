@@ -40,15 +40,4 @@ class URLTests: XCTestCase {
         XCTAssertEqual(urlContainer.optionalLink?.absoluteString
             .stringByRemovingPercentEncoding, "https://apple.com/steve")
     }
-    
-    func testParsingOptionalEmojiURL() {
-        XCTAssertEqual(urlContainer.optionalEmojiLink?.absoluteString
-            .stringByRemovingPercentEncoding, "http://🆒🔗.ws")
-    }
-    
-    func testParsingOptionalAccentURL() {
-        XCTAssertEqual(urlContainer.optionalAccentLink?.absoluteString
-            .stringByRemovingPercentEncoding, "http://gégé.com")
-    }
-
 }
