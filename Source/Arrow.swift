@@ -210,27 +210,25 @@ func parseURL(inout left: NSURL?, right: JSON?) {
 
 func parseDate(inout left: NSDate?, right: JSON?) {
     // Use custom date format over high level setting when provided
-    if let customFormat = right?.jsonDateFormat {
-        if let s = right?.data as? String {
-            let df = NSDateFormatter()
-            df.dateFormat = customFormat
-            left = df.dateFromString(s)
+    if let customFormat = right?.jsonDateFormat, s = right?.data as? String {
+        let df = NSDateFormatter()
+        df.dateFormat = customFormat
+        left = df.dateFromString(s)
+    } else if let s = right?.data as? String {
+        if let date = dateFormatter.dateFromString(s) {
+            left = date
+        } else if let t = NSTimeInterval(s) {
+            left = timeIntervalToDate(t)
         }
-    } else {
-        if let s = right?.data as? String {
-            if let date = dateFormatter.dateFromString(s) {
-                left = date
-            } else if let t = NSTimeInterval(s) {
-                left = useReferenceDate
-                    ? NSDate(timeIntervalSinceReferenceDate: t)
-                    : NSDate(timeIntervalSince1970: t)
-            }
-        } else if let t = right?.data as? NSTimeInterval {
-            left = useReferenceDate
-                ? NSDate(timeIntervalSinceReferenceDate: t)
-                : NSDate(timeIntervalSince1970: t)
-        }
+    } else if let t = right?.data as? NSTimeInterval {
+        left = timeIntervalToDate(t)
     }
+}
+
+func timeIntervalToDate(timeInterval: NSTimeInterval) -> NSDate {
+    return useReferenceDate
+    ? NSDate(timeIntervalSinceReferenceDate: timeInterval)
+    : NSDate(timeIntervalSince1970: timeInterval)
 }
 
 func parseArray<T>(inout left: [T]?, right: JSON?) {
