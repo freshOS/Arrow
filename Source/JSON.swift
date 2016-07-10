@@ -64,40 +64,47 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     }
     
     public subscript(key: String) -> JSON? {
-        get {
-            let keys =  key.characters.split {$0 == "."}
-            if keys.count > 1 { // KeyPath parsing
-                let keysArray: [String] =  keys.map(String.init)
-                if var intermediateValue = JSON(data) {
-                    for k in keysArray {
-                        if let ik = Int(k) { // Array index
-                            if let value = intermediateValue[ik] {
-                                intermediateValue = value
-                            } else {
-                                return nil
-                            }
-                        } else { // Key
-                            if let value = intermediateValue[k] {
-                                intermediateValue = value
-                            } else {
-                                return nil
-                            }
-                        }
-                    }
-                    return intermediateValue
-                }
-            } else { // Regular parsing
-                if let d = data, x = d[key], subJSON = JSON(x) {
-                    return subJSON
-                }
-            }
-            return nil
-        }
+        get { return isKeyPath(key) ? parseKeyPath(key) : regularParsing(key) }
         set(obj) {
             if var d = data as? [String:AnyObject] {
                 d[key] = obj
             }
         }
+    }
+    
+    func isKeyPath(key: String) -> Bool {
+        return key.characters.split {$0 == "."}.count > 1
+    }
+    
+    func parseKeyPath(keyPath: String) -> JSON? {
+        let keys = keyPath.characters.split {$0 == "."}
+        let keysArray: [String] =  keys.map(String.init)
+        if var intermediateValue = JSON(data) {
+            for k in keysArray {
+                if let ik = Int(k) { // Array index
+                    if let value = intermediateValue[ik] {
+                        intermediateValue = value
+                    } else {
+                        return nil
+                    }
+                } else { // Key
+                    if let value = intermediateValue[k] {
+                        intermediateValue = value
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return intermediateValue
+        }
+        return nil
+    }
+    
+    func regularParsing(key: String) -> JSON? {
+        if let d = data, x = d[key], subJSON = JSON(x) {
+            return subJSON
+        }
+        return nil
     }
     
     public subscript(index: Int) -> JSON? {
