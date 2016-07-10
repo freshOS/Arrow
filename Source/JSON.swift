@@ -77,27 +77,30 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     }
     
     func parseKeyPath(keyPath: String) -> JSON? {
-        let keys = keyPath.characters.split {$0 == "."}
-        let keysArray: [String] =  keys.map(String.init)
         if var intermediateValue = JSON(data) {
-            for k in keysArray {
-                if let ik = Int(k) { // Array index
-                    if let value = intermediateValue[ik] {
-                        intermediateValue = value
-                    } else {
-                        return nil
-                    }
-                } else { // Key
-                    if let value = intermediateValue[k] {
-                        intermediateValue = value
-                    } else {
-                        return nil
-                    }
+            for k in keysForKeyPath(keyPath) {
+                if !tryParseJSONKeyPathKey(k, intermediateValue: &intermediateValue) {
+                    return nil
                 }
             }
             return intermediateValue
         }
         return nil
+    }
+    
+    func keysForKeyPath(keyPath: String) -> [String] {
+        return keyPath.characters.split {$0 == "."}.map(String.init)
+    }
+    
+    func tryParseJSONKeyPathKey(key: String, inout intermediateValue: JSON) -> Bool {
+        if let ik = Int(key), value = intermediateValue[ik] { // Array index
+            intermediateValue = value
+        } else if let value = intermediateValue[key] { //key
+            intermediateValue = value
+        } else {
+            return false
+        }
+        return true
     }
     
     func regularParsing(key: String) -> JSON? {
