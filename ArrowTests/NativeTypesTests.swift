@@ -27,14 +27,6 @@ class NativeTypesTests: XCTestCase {
         XCTAssertEqual(profile.identifier, 15678)
     }
 
-    func testParsingString() {
-        XCTAssertEqual(profile.name, "Francky")
-    }
-    
-    func testParsingOptionalString() {
-        XCTAssertEqual(profile.optionalName, "Francky")
-    }
-
     func testParsingFloat() {
         XCTAssertEqual(profile.float, 0.12)
     }

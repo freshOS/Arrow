@@ -11,8 +11,6 @@ import CoreGraphics
 
 struct Profile {
     var identifier = 0
-    var name = ""
-    var optionalName: String?
     var double: Double = 0.0
     var float: Float = 0.0
     var cgfloat: CGFloat = 0.0

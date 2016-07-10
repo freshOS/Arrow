@@ -12,9 +12,6 @@ extension Profile:ArrowParsable {
     
     mutating func deserialize(json: JSON) {
         identifier <-- json["id"]
-        name <-- json["name"]
-        optionalName = nil
-        optionalName <-- json["name"]
         cgfloat <-- json["float"]
         float <-- json["float"]
         double <-- json["double"]

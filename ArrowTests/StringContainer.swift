@@ -1,5 +1,5 @@
 //
-//  CustomModelContainer.swift
+//  StringContainer.swift
 //  Arrow
 //
 //  Created by Sacha Durand Saint Omer on 10/07/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CustomModelContainer {
-    var stats = Stats()
-    var optionalStats: Stats?
+struct StringContainer {
+    var name = ""
+    var optionalName: String?
 }
