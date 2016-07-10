@@ -14,7 +14,4 @@ struct Profile {
     var double: Double = 0.0
     var float: Float = 0.0
     var cgfloat: CGFloat = 0.0
-    var doubleString: Double = 0.0
-    var floatString: Float = 0.0
-    var cgfloatString: CGFloat = 0.0
 }

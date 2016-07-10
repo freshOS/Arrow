@@ -15,8 +15,5 @@ extension Profile:ArrowParsable {
         cgfloat <-- json["float"]
         float <-- json["float"]
         double <-- json["double"]
-        cgfloatString <-- json["floatString"]
-        floatString <-- json["floatString"]
-        doubleString <-- json["doubleString"]
     }
 }

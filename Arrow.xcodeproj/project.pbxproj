@@ -29,6 +29,7 @@
 		998FA7041D326CDD003C7047 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA7031D326CDD003C7047 /* StringTests.swift */; };
 		998FA7061D326D4B003C7047 /* StringContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA7051D326D4B003C7047 /* StringContainer.swift */; };
 		998FA7081D326D63003C7047 /* StringContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA7071D326D63003C7047 /* StringContainer+JSON.swift */; };
+		998FA70A1D32713F003C7047 /* StringCoercionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA7091D32713F003C7047 /* StringCoercionTests.swift */; };
 		99C292F21B24AD5F0008C32B /* Arrow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C292E71B24AD5E0008C32B /* Arrow.framework */; };
 		99C292FB1B24AD5F0008C32B /* NativeTypesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292FA1B24AD5F0008C32B /* NativeTypesTests.swift */; };
 		99F4F05F1CC3FBF10018D4C1 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F4F05B1CC3FBF10018D4C1 /* JSON.swift */; };
@@ -72,6 +73,7 @@
 		998FA7031D326CDD003C7047 /* StringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		998FA7051D326D4B003C7047 /* StringContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringContainer.swift; sourceTree = "<group>"; };
 		998FA7071D326D63003C7047 /* StringContainer+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StringContainer+JSON.swift"; sourceTree = "<group>"; };
+		998FA7091D32713F003C7047 /* StringCoercionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringCoercionTests.swift; sourceTree = "<group>"; };
 		99C292E71B24AD5E0008C32B /* Arrow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Arrow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C292F11B24AD5F0008C32B /* ArrowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArrowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C292F91B24AD5F0008C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				99C292FA1B24AD5F0008C32B /* NativeTypesTests.swift */,
 				998FA6E21D32644C003C7047 /* EnumTests.swift */,
+				998FA7091D32713F003C7047 /* StringCoercionTests.swift */,
 				998FA7031D326CDD003C7047 /* StringTests.swift */,
 				998FA6E61D3265A6003C7047 /* URLTests.swift */,
 				998FA6E41D3264DE003C7047 /* DateTests.swift */,
@@ -351,6 +354,7 @@
 				994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */,
 				998FA6F41D3269A1003C7047 /* EnumContainer.swift in Sources */,
 				99F4F0691CC3FC710018D4C1 /* Stats+JSON.swift in Sources */,
+				998FA70A1D32713F003C7047 /* StringCoercionTests.swift in Sources */,
 				998FA6FC1D326A4D003C7047 /* CustomModelContainer.swift in Sources */,
 				994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */,
 				998FA6F61D3269BB003C7047 /* DateContainer.swift in Sources */,

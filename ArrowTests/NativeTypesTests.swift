@@ -38,18 +38,6 @@ class NativeTypesTests: XCTestCase {
     func testParsingDouble() {
         XCTAssertEqual(profile.double, 0.123456789)
     }
-    
-    func testParsingFloatString() {
-        XCTAssertEqual(profile.floatString, 0.12)
-    }
-    
-    func testParsingCGFloatString() {
-        XCTAssertEqual(profile.cgfloatString, 0.12)
-    }
-    
-    func testParsingDoubleString() {
-        XCTAssertEqual(profile.doubleString, 0.123456789)
-    }
 }
 
 
