@@ -32,18 +32,8 @@ class ArrowTests: XCTestCase {
             .stringByRemovingPercentEncoding, "https://apple.com/steve")
     }
     
-    func testParsingOptionalURL() {
-        XCTAssertEqual(profile.optionalLink?.absoluteString
-            .stringByRemovingPercentEncoding, "https://apple.com/steve")
-    }
-    
     func testParsingEmojiURL() {
         XCTAssertEqual(profile.emojiLink.absoluteString
-            .stringByRemovingPercentEncoding, "http://🆒🔗.ws")
-    }
-    
-    func testParsingOptionalEmojiURL() {
-        XCTAssertEqual(profile.optionalEmojiLink?.absoluteString
             .stringByRemovingPercentEncoding, "http://🆒🔗.ws")
     }
     
@@ -51,24 +41,13 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile.accentLink.absoluteString
             .stringByRemovingPercentEncoding, "http://gégé.com")
     }
-    
-    func testParsingOptionalAccentURL() {
-        XCTAssertEqual(profile.optionalAccentLink?.absoluteString
-            .stringByRemovingPercentEncoding, "http://gégé.com")
-    }
 
     func testParsingDate() {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         if let date = df.dateFromString("2013-06-07T16:38:40+02:00") {
-        let timestamp: NSTimeInterval = 392308720
         XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, profile.createdAt
             .timeIntervalSinceReferenceDate, accuracy: 0.1)
-            if let d = profile.optionalDate?.timeIntervalSinceReferenceDate {
-                XCTAssertEqualWithAccuracy(timestamp, d, accuracy: 0.1)
-            } else {
-                XCTFail()
-            }
         } else {
             XCTFail()
         }
@@ -77,19 +56,10 @@ class ArrowTests: XCTestCase {
     func testParsingString() {
         XCTAssertEqual(profile.name, "Francky")
     }
-    
-    func testParsingOptionalString() {
-        XCTAssertEqual(profile.optionalName, "Francky")
-    }
 
     func testParsingCustomModel() {
         XCTAssertEqual(profile.stats.numberOfFriends, 163)
         XCTAssertEqual(profile.stats.numberOfFans, 10987)
-    }
-
-    func testParsingOptionalCustomModel() {
-        XCTAssertEqual(profile.optionalStats?.numberOfFriends, 163)
-        XCTAssertEqual(profile.optionalStats?.numberOfFans, 10987)
     }
 
     func testParsingArrayOfCustomModels() {
@@ -105,18 +75,6 @@ class ArrowTests: XCTestCase {
         } else {
             XCTFail()
         }
-    }
-
-    func testParsingOptionalArrayOfCustomModels() {
-        XCTAssertEqual(profile.optionalPhoneNumbers?.count, 3)
-        
-        XCTAssertEqual(profile.optionalPhoneNumbers?[0].label, "house")
-        XCTAssertEqual(profile.optionalPhoneNumbers?[1].label, "cell")
-        XCTAssertEqual(profile.optionalPhoneNumbers?[2].label, "work")
-        
-        XCTAssertEqual(profile.optionalPhoneNumbers?[0].number, "9809876545")
-        XCTAssertEqual(profile.optionalPhoneNumbers?[1].number, "0908070656")
-        XCTAssertEqual(profile.optionalPhoneNumbers?[2].number, "0916570656")
     }
 
     func testParsingArrayOfStrings() {
@@ -180,16 +138,8 @@ class ArrowTests: XCTestCase {
         XCTAssertEqual(profile.weekday, WeekDay.Wednesday)
     }
     
-    func testParsingOptionalEnumInt() {
-        XCTAssertEqual(profile.optionalWeekday, WeekDay.Wednesday)
-    }
-    
     func testParsingEnumString() {
         XCTAssertEqual(profile.difficulty, Difficulty.High)
-    }
-    
-    func testParsingOptionalEnumString() {
-        XCTAssertEqual(profile.optionalDifficulty, Difficulty.High)
     }
     
     func testNestedParsing() {

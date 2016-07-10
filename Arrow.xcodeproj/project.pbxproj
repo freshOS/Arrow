@@ -13,6 +13,9 @@
 		994243B11CAA502A00B5DB6C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 994243B01CAA502A00B5DB6C /* Profile.json */; };
 		99C292F21B24AD5F0008C32B /* Arrow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99C292E71B24AD5E0008C32B /* Arrow.framework */; };
 		99C292FB1B24AD5F0008C32B /* ArrowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C292FA1B24AD5F0008C32B /* ArrowTests.swift */; };
+		99CA1BA91D325F9E008D8E52 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CA1BA81D325F9E008D8E52 /* OptionalTests.swift */; };
+		99CA1BAB1D32627B008D8E52 /* OptionalProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CA1BAA1D32627B008D8E52 /* OptionalProfile.swift */; };
+		99CA1BAD1D3262A6008D8E52 /* OptionalProfile+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99CA1BAC1D3262A6008D8E52 /* OptionalProfile+JSON.swift */; };
 		99F4F05F1CC3FBF10018D4C1 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F4F05B1CC3FBF10018D4C1 /* JSON.swift */; };
 		99F4F0601CC3FBF10018D4C1 /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F4F05C1CC3FBF10018D4C1 /* Arrow.swift */; };
 		99F4F0621CC3FBF10018D4C1 /* Arrow.h in Headers */ = {isa = PBXBuildFile; fileRef = 99F4F05E1CC3FBF10018D4C1 /* Arrow.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,6 +43,9 @@
 		99C292F11B24AD5F0008C32B /* ArrowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArrowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99C292F91B24AD5F0008C32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99C292FA1B24AD5F0008C32B /* ArrowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowTests.swift; sourceTree = "<group>"; };
+		99CA1BA81D325F9E008D8E52 /* OptionalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
+		99CA1BAA1D32627B008D8E52 /* OptionalProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalProfile.swift; sourceTree = "<group>"; };
+		99CA1BAC1D3262A6008D8E52 /* OptionalProfile+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OptionalProfile+JSON.swift"; sourceTree = "<group>"; };
 		99F4F05B1CC3FBF10018D4C1 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Source/JSON.swift; sourceTree = SOURCE_ROOT; };
 		99F4F05C1CC3FBF10018D4C1 /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Arrow.swift; path = Source/Arrow.swift; sourceTree = SOURCE_ROOT; };
 		99F4F05D1CC3FBF10018D4C1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Source/Info.plist; sourceTree = SOURCE_ROOT; };
@@ -109,7 +115,9 @@
 			isa = PBXGroup;
 			children = (
 				99C292FA1B24AD5F0008C32B /* ArrowTests.swift */,
+				99CA1BA81D325F9E008D8E52 /* OptionalTests.swift */,
 				994243AC1CAA4F3E00B5DB6C /* Profile.swift */,
+				99CA1BAA1D32627B008D8E52 /* OptionalProfile.swift */,
 				994243AE1CAA4F4D00B5DB6C /* Stats.swift */,
 				993D14D01CAC7D83003CAEE3 /* PhoneNumber.swift */,
 				99F4F0631CC3FC710018D4C1 /* mapping */,
@@ -131,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				99F4F0651CC3FC710018D4C1 /* Profile+JSON.swift */,
+				99CA1BAC1D3262A6008D8E52 /* OptionalProfile+JSON.swift */,
 				99F4F0661CC3FC710018D4C1 /* Stats+JSON.swift */,
 				99F4F0641CC3FC710018D4C1 /* PhoneNumber+JSON.swift */,
 			);
@@ -281,7 +290,10 @@
 				994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */,
 				99F4F0691CC3FC710018D4C1 /* Stats+JSON.swift in Sources */,
 				994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */,
+				99CA1BAB1D32627B008D8E52 /* OptionalProfile.swift in Sources */,
 				993D14D11CAC7D83003CAEE3 /* PhoneNumber.swift in Sources */,
+				99CA1BA91D325F9E008D8E52 /* OptionalTests.swift in Sources */,
+				99CA1BAD1D3262A6008D8E52 /* OptionalProfile+JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
