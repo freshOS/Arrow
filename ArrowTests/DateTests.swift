@@ -23,9 +23,9 @@ class DateTests: XCTestCase {
     }
     
     func testParsingDate() {
-        let df = NSDateFormatter()
+        let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        if let date = df.dateFromString("2013-06-07T16:38:40+02:00") {
+        if let date = df.date(from: "2013-06-07T16:38:40+02:00") {
             XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, dateContainer.createdAt
                 .timeIntervalSinceReferenceDate, accuracy: 0.1)
         } else {
@@ -34,7 +34,7 @@ class DateTests: XCTestCase {
     }
     
     func testParsingOptionalDate() {
-        let timestamp: NSTimeInterval = 392308720
+        let timestamp: TimeInterval = 392308720
         if let d = dateContainer.optionalDate?.timeIntervalSinceReferenceDate {
             XCTAssertEqualWithAccuracy(timestamp, d, accuracy: 0.1)
         } else {

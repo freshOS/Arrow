@@ -22,7 +22,7 @@ class EnumTests: XCTestCase {
     }
 
     func testParsingEnumInt() {
-        XCTAssertEqual(enumContainer.weekday, WeekDay.Wednesday)
+        XCTAssertEqual(enumContainer.weekday, WeekDay.wednesday)
     }
     
     func testParsingEnumString() {
@@ -30,7 +30,7 @@ class EnumTests: XCTestCase {
     }
     
     func testParsingOptionalEnumInt() {
-        XCTAssertEqual(enumContainer.optionalWeekday, WeekDay.Wednesday)
+        XCTAssertEqual(enumContainer.optionalWeekday, WeekDay.wednesday)
     }
     
     func testParsingOptionalEnumString() {

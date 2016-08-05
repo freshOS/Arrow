@@ -3,6 +3,10 @@ disabled_rules:
 - cyclomatic_complexity
 - trailing_whitespace
 - valid_docs
+- type_name
+- missing_docs
+- conditional_binding_cascade
+- force_unwrapping
 opt_in_rules:
 - empty_count
 - missing_docs

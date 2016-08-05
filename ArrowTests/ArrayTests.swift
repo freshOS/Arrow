@@ -24,7 +24,7 @@ struct ArrayContainer {
 
 extension ArrayContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         phoneNumbers <-- json["phoneNumbers"]
         optionalPhoneNumbers <-- json["phoneNumbers"]
         strings <-- json["strings"]

@@ -9,11 +9,11 @@
 import Foundation
 
 enum WeekDay: Int {
-    case Monday = 1
-    case Tuesday
-    case Wednesday
-    case Thursday
-    case Friday
-    case Saturday
-    case Sunday
+    case monday = 1
+    case tuesday
+    case wednesday
+    case thursday
+    case friday
+    case saturday
+    case sunday
 }

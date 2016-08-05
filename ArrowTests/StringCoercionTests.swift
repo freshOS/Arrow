@@ -17,7 +17,7 @@ struct CoercionContainer {
 
 extension CoercionContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         cgfloatString <-- json["floatString"]
         floatString <-- json["floatString"]
         doubleString <-- json["doubleString"]

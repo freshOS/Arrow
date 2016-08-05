@@ -31,10 +31,10 @@ public protocol ArrowParsable {
     /// Makes sur your models can be constructed with an empty constructor.
     init()
     /// The method you declare your json mapping in.
-    mutating func deserialize(json: JSON)
+    mutating func deserialize(_ json: JSON)
 }
 
-private let dateFormatter = NSDateFormatter()
+private let dateFormatter = DateFormatter()
 private var useReferenceDate = false
 
 /**
@@ -51,7 +51,7 @@ For more fine grained control, use `dateFormat` on a per field basis :
  */
 public class Arrow {
     /// Sets the defaut dateFormat for parsing NSDates.
-    public class func setDateFormat(format: String) {
+    public class func setDateFormat(_ format: String) {
         dateFormatter.dateFormat = format
     }
     
@@ -63,7 +63,7 @@ public class Arrow {
      For more information see `NSDate(timeIntervalSinceReferenceDate`
      documentation
      */
-    public class func setUseTimeIntervalSinceReferenceDate(ref: Bool) {
+    public class func setUseTimeIntervalSinceReferenceDate(_ ref: Bool) {
         useReferenceDate = ref
     }
 }
@@ -74,7 +74,7 @@ infix operator <-- {}
 
 
 /// Parses default swift types.
-public func <-- <T>(inout left: T, right: JSON?) {
+public func <-- <T>(left: inout T, right: JSON?) {
     var temp: T? = nil
     parseType(&temp, right:right)
     if let t = temp {
@@ -83,12 +83,12 @@ public func <-- <T>(inout left: T, right: JSON?) {
 }
 
 /// Parses optional default swift types.
-public func <-- <T>(inout left: T?, right: JSON?) {
+public func <-- <T>(left: inout T?, right: JSON?) {
     parseType(&left, right: right)
 }
 
 /// Parses enums.
-public func <-- <T: RawRepresentable>(inout left: T, right: JSON?) {
+public func <-- <T: RawRepresentable>(left: inout T, right: JSON?) {
     var temp: T.RawValue? = nil
     parseType(&temp, right:right)
     if let t = temp, let e = T.init(rawValue: t) {
@@ -97,7 +97,7 @@ public func <-- <T: RawRepresentable>(inout left: T, right: JSON?) {
 }
 
 /// Parses optional enums.
-public func <-- <T: RawRepresentable>(inout left: T?, right: JSON?) {
+public func <-- <T: RawRepresentable>(left: inout T?, right: JSON?) {
     var temp: T.RawValue? = nil
     parseType(&temp, right:right)
     if let t = temp, let e = T.init(rawValue: t) {
@@ -120,7 +120,7 @@ public func <-- <T: RawRepresentable>(inout left: [T]?, right: JSON?) {
 }
 
 /// Parses user defined custom types.
-public func <-- <T: ArrowParsable>(inout left: T, right: JSON?) {
+public func <-- <T: ArrowParsable>(left: inout T, right: JSON?) {
     var temp: T? = nil
     parseUserDefinedType(&temp, right: right)
     if let t = temp {
@@ -129,12 +129,12 @@ public func <-- <T: ArrowParsable>(inout left: T, right: JSON?) {
 }
 
 /// Parses user defined optional custom types.
-public func <-- <T: ArrowParsable>(inout left: T?, right: JSON?) {
+public func <-- <T: ArrowParsable>(left: inout T?, right: JSON?) {
     parseUserDefinedType(&left, right: right)
 }
 
 /// Parses arrays of user defined custom types.
-public func <-- <T: ArrowParsable>(inout left: [T], right: JSON?) {
+public func <-- <T: ArrowParsable>(left: inout [T], right: JSON?) {
     var temp: [T]? = nil
     parseArrayOfUserDefinedTypes(&temp, right: right)
     if let t = temp {
@@ -143,13 +143,13 @@ public func <-- <T: ArrowParsable>(inout left: [T], right: JSON?) {
 }
 
 /// Parses optional arrays of user defined custom types.
-public func <-- <T: ArrowParsable>(inout left: [T]?, right: JSON?) {
+public func <-- <T: ArrowParsable>(left: inout [T]?, right: JSON?) {
     parseArrayOfUserDefinedTypes(&left, right: right)
 }
 
 /// Parses NSDates.
-public func <-- (inout left: NSDate, right: JSON?) {
-    var temp: NSDate? = nil
+public func <-- (left: inout Date, right: JSON?) {
+    var temp: Date? = nil
     parseDate(&temp, right:right)
     if let t = temp {
         left = t
@@ -157,13 +157,13 @@ public func <-- (inout left: NSDate, right: JSON?) {
 }
 
 /// Parses optional NSDates.
-public func <-- (inout left: NSDate?, right: JSON?) {
+public func <-- (left: inout Date?, right: JSON?) {
     parseDate(&left, right:right)
 }
 
 /// Parses NSURLs.
-public func <-- (inout left: NSURL, right: JSON?) {
-    var temp: NSURL? = nil
+public func <-- (left: inout URL, right: JSON?) {
+    var temp: URL? = nil
     parseURL(&temp, right:right)
     if let t = temp {
         left = t
@@ -171,12 +171,12 @@ public func <-- (inout left: NSURL, right: JSON?) {
 }
 
 /// Parses optional NSURLs.
-public func <-- (inout left: NSURL?, right: JSON?) {
+public func <-- (left: inout URL?, right: JSON?) {
     parseURL(&left, right: right)
 }
 
 /// Parses arrays of plain swift types.
-public func <-- <T>(inout left: [T], right: JSON?) {
+public func <-- <T>(left: inout [T], right: JSON?) {
     var temp: [T]? = nil
     parseArray(&temp, right:right)
     if let t = temp {
@@ -185,14 +185,14 @@ public func <-- <T>(inout left: [T], right: JSON?) {
 }
 
 /// Parses optional arrays of plain swift types.
-public func <-- <T>(inout left: [T]?, right: JSON?) {
+public func <-- <T>(left: inout [T]?, right: JSON?) {
     parseArray(&left, right: right)
 }
 
 
 // MARK: - Private methods.
 
-func parseType<T>(inout left: T?, right: JSON?) {
+func parseType<T>(_ left: inout T?, right: JSON?) {
     if let v: T = right?.data as? T {
         left = v
     } else if let s = right?.data as? String {
@@ -200,7 +200,7 @@ func parseType<T>(inout left: T?, right: JSON?) {
     }
 }
 
-func parseString<T>(inout left: T?, string: String) {
+func parseString<T>(_ left: inout T?, string: String) {
     switch T.self {
     case is Int.Type: if let v = Int(string) { left = v as? T }
     case is UInt.Type: if let v = UInt(string) { left = v as? T }
@@ -212,40 +212,40 @@ func parseString<T>(inout left: T?, string: String) {
     }
 }
 
-func parseURL(inout left: NSURL?, right: JSON?) {
+func parseURL(_ left: inout URL?, right: JSON?) {
     var str = ""
     str <-- right
-    let set = NSCharacterSet.URLQueryAllowedCharacterSet()
-    if let escapedStr = str.stringByAddingPercentEncodingWithAllowedCharacters(set),
-        url = NSURL(string:escapedStr) {
+    let set = CharacterSet.urlQueryAllowed
+    if let escapedStr = str.addingPercentEncoding(withAllowedCharacters: set),
+        let url = URL(string:escapedStr) {
         left = url
     }
 }
 
-func parseDate(inout left: NSDate?, right: JSON?) {
+func parseDate(_ left: inout Date?, right: JSON?) {
     // Use custom date format over high level setting when provided
-    if let customFormat = right?.jsonDateFormat, s = right?.data as? String {
-        let df = NSDateFormatter()
+    if let customFormat = right?.jsonDateFormat, let s = right?.data as? String {
+        let df = DateFormatter()
         df.dateFormat = customFormat
-        left = df.dateFromString(s)
+        left = df.date(from: s)
     } else if let s = right?.data as? String {
-        if let date = dateFormatter.dateFromString(s) {
+        if let date = dateFormatter.date(from: s) {
             left = date
-        } else if let t = NSTimeInterval(s) {
+        } else if let t = TimeInterval(s) {
             left = timeIntervalToDate(t)
         }
-    } else if let t = right?.data as? NSTimeInterval {
+    } else if let t = right?.data as? TimeInterval {
         left = timeIntervalToDate(t)
     }
 }
 
-func timeIntervalToDate(timeInterval: NSTimeInterval) -> NSDate {
+func timeIntervalToDate(_ timeInterval: TimeInterval) -> Date {
     return useReferenceDate
-    ? NSDate(timeIntervalSinceReferenceDate: timeInterval)
-    : NSDate(timeIntervalSince1970: timeInterval)
+    ? Date(timeIntervalSinceReferenceDate: timeInterval)
+    : Date(timeIntervalSince1970: timeInterval)
 }
 
-func parseArray<T>(inout left: [T]?, right: JSON?) {
+func parseArray<T>(_ left: inout [T]?, right: JSON?) {
     if let a = right?.data as? [AnyObject] {
         let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
         if tmp.count == a.count {
@@ -254,7 +254,7 @@ func parseArray<T>(inout left: [T]?, right: JSON?) {
     }
 }
 
-func parseUserDefinedType<T: ArrowParsable>(inout left: T?, right: JSON?) {
+func parseUserDefinedType<T: ArrowParsable>(_ left: inout T?, right: JSON?) {
     if let json = JSON(right?.data) {
         var t = T.init()
         t.deserialize(json)
@@ -262,7 +262,7 @@ func parseUserDefinedType<T: ArrowParsable>(inout left: T?, right: JSON?) {
     }
 }
 
-func parseArrayOfUserDefinedTypes<T: ArrowParsable>(inout left: [T]?, right: JSON?) {
+func parseArrayOfUserDefinedTypes<T: ArrowParsable>(_ left: inout [T]?, right: JSON?) {
     if let a = right?.data as? [AnyObject] {
         left = a.map {
             var t = T.init()

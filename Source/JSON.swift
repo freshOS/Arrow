@@ -50,7 +50,7 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
      
      - Returns: Itself for chaining purposes.
      */
-    public func dateFormat(format: String) -> Self {
+    public func dateFormat(_ format: String) -> Self {
         jsonDateFormat = format
         return self
     }
@@ -72,11 +72,11 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
         }
     }
     
-    func isKeyPath(key: String) -> Bool {
+    func isKeyPath(_ key: String) -> Bool {
         return key.characters.split {$0 == "."}.count > 1
     }
     
-    func parseKeyPath(keyPath: String) -> JSON? {
+    func parseKeyPath(_ keyPath: String) -> JSON? {
         if var intermediateValue = JSON(data) {
             for k in keysForKeyPath(keyPath) {
                 if !tryParseJSONKeyPathKey(k, intermediateValue: &intermediateValue) {
@@ -88,12 +88,12 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
         return nil
     }
     
-    func keysForKeyPath(keyPath: String) -> [String] {
+    func keysForKeyPath(_ keyPath: String) -> [String] {
         return keyPath.characters.split {$0 == "."}.map(String.init)
     }
     
-    func tryParseJSONKeyPathKey(key: String, inout intermediateValue: JSON) -> Bool {
-        if let ik = Int(key), value = intermediateValue[ik] { // Array index
+    func tryParseJSONKeyPathKey(_ key: String, intermediateValue: inout JSON) -> Bool {
+        if let ik = Int(key), let value = intermediateValue[ik] { // Array index
             intermediateValue = value
         } else if let value = intermediateValue[key] { //key
             intermediateValue = value
@@ -103,8 +103,8 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
         return true
     }
     
-    func regularParsing(key: String) -> JSON? {
-        if let d = data, x = d[key], subJSON = JSON(x) {
+    func regularParsing(_ key: String) -> JSON? {
+        if let d = data, let x = d[key], let subJSON = JSON(x) {
             return subJSON
         }
         return nil
@@ -112,7 +112,7 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     
     public subscript(index: Int) -> JSON? {
         get {
-            if let array = data as? [AnyObject] where array.count > index {
+            if let array = data as? [AnyObject], array.count > index {
                 return JSON(array[index])
             } else {
                 return nil

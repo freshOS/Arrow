@@ -10,7 +10,7 @@ import Arrow
 
 extension CustomModelContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         stats <-- json["stats"]
         optionalStats = nil
         optionalStats <-- json["stats"]

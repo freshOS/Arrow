@@ -10,7 +10,7 @@ import Arrow
 
 extension EnumContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         weekday <-- json["weekdayInt"]
         difficulty <-- json["difficulty"]
         optionalWeekday <-- json["weekdayInt"]

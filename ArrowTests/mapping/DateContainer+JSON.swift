@@ -10,7 +10,7 @@ import Arrow
 
 extension DateContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
         optionalDate = nil
         optionalDate <-- json["created_at_timestamp"]

@@ -43,15 +43,14 @@ class NativeTypesTests: XCTestCase {
 
 // Helper
 
-func jsonForName(name: String) -> JSON? {
-    let bundle = NSBundle(forClass: NativeTypesTests.self)
-    if let path: String = bundle.pathForResource(name, ofType: "json"),
-        jsonData = try? NSData(contentsOfFile: path,
-                               options:.DataReadingMappedIfSafe),
-        json = try? NSJSONSerialization
-            .JSONObjectWithData(jsonData,
-                                options: .MutableContainers) as? NSDictionary,
-        dic = json as? [String : AnyObject] {
+func jsonForName(_ name: String) -> JSON? {
+    let bundle = Bundle(for: NativeTypesTests.self)
+    if let path: String = bundle.path(forResource: name, ofType: "json"),
+        let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)),
+        let json = try? JSONSerialization
+            .jsonObject(with: jsonData,
+                                options: .mutableContainers) as? NSDictionary,
+        let dic = json as? [String : AnyObject] {
             return JSON(dic)
     }
     return nil

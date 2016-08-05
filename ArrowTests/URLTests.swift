@@ -22,22 +22,22 @@ class URLTests: XCTestCase {
     }
     
     func testParsingURL() {
-        XCTAssertEqual(urlContainer.link.absoluteString
-            .stringByRemovingPercentEncoding, "https://apple.com/steve")
+        XCTAssertEqual(urlContainer.link.absoluteString.removingPercentEncoding,
+                       "https://apple.com/steve")
     }
     
     func testParsingEmojiURL() {
-        XCTAssertEqual(urlContainer.emojiLink.absoluteString
-            .stringByRemovingPercentEncoding, "http://🆒🔗.ws")
+        XCTAssertEqual(urlContainer.emojiLink.absoluteString.removingPercentEncoding,
+                       "http://🆒🔗.ws")
     }
     
     func testParsingAccentURL() {
-        XCTAssertEqual(urlContainer.accentLink.absoluteString
-            .stringByRemovingPercentEncoding, "http://gégé.com")
+        XCTAssertEqual(urlContainer.accentLink.absoluteString.removingPercentEncoding,
+                       "http://gégé.com")
     }
     
     func testParsingOptionalURL() {
-        XCTAssertEqual(urlContainer.optionalLink?.absoluteString
-            .stringByRemovingPercentEncoding, "https://apple.com/steve")
+        XCTAssertEqual(urlContainer.optionalLink?.absoluteString.removingPercentEncoding,
+                       "https://apple.com/steve")
     }
 }

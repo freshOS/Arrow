@@ -9,7 +9,7 @@
 import Arrow
 
 extension StringContainer:ArrowParsable {
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         name <-- json["name"]
         optionalName = nil
         optionalName <-- json["name"]

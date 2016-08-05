@@ -10,7 +10,7 @@ import Arrow
 
 extension URLContainer:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         link <-- json["link"]
         emojiLink <-- json["emoji_link"]
         accentLink <-- json["accent_link"]

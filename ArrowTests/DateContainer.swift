@@ -9,6 +9,6 @@
 import Foundation
 
 struct DateContainer {
-    var createdAt = NSDate()
-    var optionalDate: NSDate?
+    var createdAt = Date()
+    var optionalDate: Date?
 }

@@ -9,8 +9,8 @@
 import Foundation
 
 struct URLContainer {
-    var link = NSURL()
-    var emojiLink = NSURL()
-    var accentLink = NSURL()
-    var optionalLink: NSURL?
+    var link = URL(string: "http://")!
+    var emojiLink = URL(string: "http://")!
+    var accentLink = URL(string: "http://")!
+    var optionalLink: URL?
 }

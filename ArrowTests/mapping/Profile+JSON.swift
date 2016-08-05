@@ -10,7 +10,7 @@ import Arrow
 
 extension Profile:ArrowParsable {
     
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         identifier <-- json["id"]
         cgfloat <-- json["float"]
         float <-- json["float"]
