@@ -6,7 +6,7 @@
 [![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
 [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 [![codebeat badge](https://codebeat.co/badges/2acb8664-02f7-463d-9de2-2be9e87ba17c)](https://codebeat.co/projects/github-com-s4cha-arrow)
-[![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/s4cha/Arrow/blob/master/LICENSE)
+[![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
 [![Release version](https://img.shields.io/badge/release-2.0-blue.svg)]()
 
 
@@ -137,7 +137,7 @@ profile.deserialize(json)
 ## Installation
 #### Carthage
 ```
-github "s4cha/Arrow"
+github "freshOS/Arrow"
 ```
 #### CocoaPods
 ```
@@ -147,7 +147,7 @@ use_frameworks!
 
 #### Manually
 Simply Copy and Paste Arrow.swift in your Xcode Project :)
-https://github.com/s4cha/Arrow/blob/master/Arrow.swift
+https://github.com/freshOS/Arrow/blob/master/Arrow.swift
 
 #### As A Framework
 Grab this repository and build the Framework target on the example project. Then Link against this framework.
@@ -242,5 +242,5 @@ This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien
 ## Other repos ❤️
 Arrow is part of a series of lightweight libraries aiming to make developing iOS Apps a *breeze* :
 - Layout : [Stevia](https://github.com/s4cha/Stevia)
-- Async code : [then](https://github.com/s4cha/then)
-- JSON WebServices : [ws](https://github.com/s4cha/ws)
+- Async code : [then](https://github.com/freshOS/then)
+- JSON WebServices : [ws](https://github.com/freshOS/ws)
