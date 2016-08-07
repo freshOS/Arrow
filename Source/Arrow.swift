@@ -105,6 +105,22 @@ public func <-- <T: RawRepresentable>(inout left: T?, right: JSON?) {
     }
 }
 
+/// Parses Array of enums.
+public func <-- <T: RawRepresentable>(inout left: [T], right: JSON?) {
+    if let array = right?.data as? [Int] {
+        left = array.map { $0 as? T.RawValue }.flatMap {$0}
+            .map { T.init(rawValue: $0) }.flatMap {$0}
+    }
+}
+
+/// Parses Optional Array of enums.
+public func <-- <T: RawRepresentable>(inout left: [T]?, right: JSON?) {
+    if let array = right?.data as? [Int] {
+        left = array.map { $0 as? T.RawValue }.flatMap {$0}
+            .map { T.init(rawValue: $0) }.flatMap {$0}
+    }
+}
+
 /// Parses user defined custom types.
 public func <-- <T: ArrowParsable>(inout left: T, right: JSON?) {
     var temp: T? = nil

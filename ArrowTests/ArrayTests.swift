@@ -18,6 +18,8 @@ struct ArrayContainer {
     var bools = [Bool]()
     var meaningOfLife: Int = 0
     var nestedArrayParsing = ""
+    var weekdays = [WeekDay]()
+    var optionalWeekdays: [WeekDay]? = nil
 }
 
 extension ArrayContainer:ArrowParsable {
@@ -30,6 +32,8 @@ extension ArrayContainer:ArrowParsable {
         bools <-- json["bools"]
         meaningOfLife <-- json["nested.nested.nested.nestedValue"]
         nestedArrayParsing <-- json["nestedArray.2"]
+        weekdays <-- json["weekdays"]
+        optionalWeekdays <-- json["weekdays"]
     }
 }
 
@@ -113,5 +117,27 @@ class ArrayTests: XCTestCase {
     
     func testNestedArrayParsing() {
         XCTAssertEqual(arrayContainer.nestedArrayParsing, "Cool")
+    }
+    
+    func testParsingArrayOfEnums() {
+        XCTAssertEqual(arrayContainer.weekdays.count, 3)
+        if arrayContainer.weekdays.count >= 3 {
+            XCTAssertEqual(arrayContainer.weekdays[0], WeekDay.Monday)
+            XCTAssertEqual(arrayContainer.weekdays[1], WeekDay.Wednesday)
+            XCTAssertEqual(arrayContainer.weekdays[2], WeekDay.Friday)
+        } else {
+            XCTFail()
+        }
+    }
+    
+    func testParsingOptionalArrayOfEnums() {
+        XCTAssertEqual(arrayContainer.optionalWeekdays?.count, 3)
+        if arrayContainer.optionalWeekdays?.count >= 3 {
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[0], WeekDay.Monday)
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[1], WeekDay.Wednesday)
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[2], WeekDay.Friday)
+        } else {
+            XCTFail()
+        }
     }
 }
