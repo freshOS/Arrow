@@ -122,9 +122,9 @@ class ArrayTests: XCTestCase {
     func testParsingArrayOfEnums() {
         XCTAssertEqual(arrayContainer.weekdays.count, 3)
         if arrayContainer.weekdays.count >= 3 {
-            XCTAssertEqual(arrayContainer.weekdays[0], WeekDay.Monday)
-            XCTAssertEqual(arrayContainer.weekdays[1], WeekDay.Wednesday)
-            XCTAssertEqual(arrayContainer.weekdays[2], WeekDay.Friday)
+            XCTAssertEqual(arrayContainer.weekdays[0], WeekDay.monday)
+            XCTAssertEqual(arrayContainer.weekdays[1], WeekDay.wednesday)
+            XCTAssertEqual(arrayContainer.weekdays[2], WeekDay.friday)
         } else {
             XCTFail()
         }
@@ -132,10 +132,10 @@ class ArrayTests: XCTestCase {
     
     func testParsingOptionalArrayOfEnums() {
         XCTAssertEqual(arrayContainer.optionalWeekdays?.count, 3)
-        if arrayContainer.optionalWeekdays?.count >= 3 {
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[0], WeekDay.Monday)
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[1], WeekDay.Wednesday)
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[2], WeekDay.Friday)
+        if let w = arrayContainer.optionalWeekdays, w.count >= 3 {
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[0], WeekDay.monday)
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[1], WeekDay.wednesday)
+            XCTAssertEqual(arrayContainer.optionalWeekdays?[2], WeekDay.friday)
         } else {
             XCTFail()
         }
