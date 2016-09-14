@@ -51,7 +51,7 @@ func jsonForName(_ name: String) -> JSON? {
             .jsonObject(with: jsonData,
                                 options: .mutableContainers) as? NSDictionary,
         let dic = json as? [String : AnyObject] {
-            return JSON(dic)
+            return JSON(dic as AnyObject?)
     }
     return nil
 }

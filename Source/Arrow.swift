@@ -70,7 +70,7 @@ public class Arrow {
 
 // MARK: - Parse Default swift Types
 
-infix operator <-- {}
+infix operator <--
 
 
 /// Parses default swift types.
@@ -207,7 +207,7 @@ func parseString<T>(_ left: inout T?, string: String) {
     case is Double.Type: if let v = Double(string) { left = v as? T }
     case is Float.Type: if let v = Float(string) { left = v as? T }
     case is CGFloat.Type: if let v = CGFloat.NativeType(string) { left = CGFloat(v) as? T }
-    case is Bool.Type: if let v = Int(string) { left = Bool(v) as? T}
+    case is Bool.Type: if let v = Int(string) { left = Bool(v != 0)  as? T}
     default:()
     }
 }

@@ -104,7 +104,7 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     }
     
     func regularParsing(_ key: String) -> JSON? {
-        if let d = data, let x = d[key], let subJSON = JSON(x) {
+        if let d = data, let x = d[key], let subJSON = JSON(x as AnyObject?) {
             return subJSON
         }
         return nil
