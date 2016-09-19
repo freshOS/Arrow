@@ -1,6 +1,6 @@
 # Arrow 🏹 - *Elegant JSON Parsing in Swift*
 
-[![Language: Swift 2](https://img.shields.io/badge/language-swift2-f48041.svg?style=flat)](https://developer.apple.com/swift)
+[![Language: Swift 2 and 3](https://img.shields.io/badge/language-swift2|swift3-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
