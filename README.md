@@ -1,4 +1,6 @@
-# Arrow 🏹 - *Elegant JSON Parsing in Swift*
+![Arrow](https://raw.githubusercontent.com/freshOS/Arrow/master/banner.png)
+
+# Arrow
 
 [![Language: Swift 2 and 3](https://img.shields.io/badge/language-swift2|swift3-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
