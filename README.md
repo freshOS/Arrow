@@ -147,6 +147,7 @@ github "freshOS/Arrow"
 ```
 #### CocoaPods
 ```
+target 'MyApp'
 pod 'Arrow'
 use_frameworks!
 ```
