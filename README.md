@@ -7,7 +7,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
 [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
-[![codebeat badge](https://codebeat.co/badges/2acb8664-02f7-463d-9de2-2be9e87ba17c)](https://codebeat.co/projects/github-com-s4cha-arrow)
+[![codebeat badge](https://codebeat.co/badges/f037ac0c-b3d9-4132-9fca-64150a908113)](https://codebeat.co/projects/github-com-freshos-arrow)
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
 [![Release version](https://img.shields.io/badge/release-3.0-blue.svg)]()
 
