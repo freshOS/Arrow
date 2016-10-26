@@ -135,11 +135,7 @@ public func <-- <T: ArrowParsable>(left: inout T?, right: JSON?) {
 
 /// Parses arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout [T], right: JSON?) {
-    var temp: [T]? = nil
-    parseArrayOfUserDefinedTypes(&temp, right: right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left:&left, right:right, function: parseArrayOfUserDefinedTypes)
 }
 
 /// Parses optional arrays of user defined custom types.
@@ -175,13 +171,10 @@ public func <-- (left: inout URL?, right: JSON?) {
     parseURL(&left, right: right)
 }
 
+
 /// Parses arrays of plain swift types.
 public func <-- <T>(left: inout [T], right: JSON?) {
-    var temp: [T]? = nil
-    parseArray(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left:&left, right:right, function: parseArray)
 }
 
 /// Parses optional arrays of plain swift types.
@@ -271,5 +264,13 @@ func parseArrayOfUserDefinedTypes<T: ArrowParsable>(_ left: inout [T]?, right: J
             }
             return t
         }
+    }
+}
+
+func setLeftIfIsResultNonNil<T>(left: inout [T], right: JSON?, function:(inout [T]?, JSON?) -> Void) {
+    var temp: [T]? = nil
+    function(&temp, right)
+    if let t = temp {
+        left = t
     }
 }
