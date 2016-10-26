@@ -72,14 +72,8 @@ public class Arrow {
 
 infix operator <--
 
-
-/// Parses default swift types.
 public func <-- <T>(left: inout T, right: JSON?) {
-    var temp: T? = nil
-    parseType(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: parseType)
 }
 
 /// Parses optional default swift types.
@@ -89,11 +83,7 @@ public func <-- <T>(left: inout T?, right: JSON?) {
 
 /// Parses enums.
 public func <-- <T: RawRepresentable>(left: inout T, right: JSON?) {
-    var temp: T.RawValue? = nil
-    parseType(&temp, right:right)
-    if let t = temp, let e = T.init(rawValue: t) {
-        left = e
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses optional enums.
@@ -107,9 +97,7 @@ public func <-- <T: RawRepresentable>(left: inout T?, right: JSON?) {
 
 /// Parses Array of enums.
 public func <-- <T: RawRepresentable>(left: inout [T], right: JSON?) {
-    if let array = right?.data as? [T.RawValue] {
-        left = array.map { T.init(rawValue: $0) }.flatMap {$0}
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses Optional Array of enums.
@@ -121,65 +109,88 @@ public func <-- <T: RawRepresentable>(left: inout [T]?, right: JSON?) {
 
 /// Parses user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout T, right: JSON?) {
-    var temp: T? = nil
-    parseUserDefinedType(&temp, right: right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses user defined optional custom types.
 public func <-- <T: ArrowParsable>(left: inout T?, right: JSON?) {
-    parseUserDefinedType(&left, right: right)
+    if let json = JSON(right?.data) {
+        var t = T.init()
+        t.deserialize(json)
+        left = t
+    }
 }
 
 /// Parses arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout [T], right: JSON?) {
-    setLeftIfIsResultNonNil(left:&left, right:right, function: parseArrayOfUserDefinedTypes)
+    setLeftIfIsResultNonNil(left:&left, right:right, function: <--)
 }
 
 /// Parses optional arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout [T]?, right: JSON?) {
-    parseArrayOfUserDefinedTypes(&left, right: right)
+    if let a = right?.data as? [AnyObject] {
+        left = a.map {
+            var t = T.init()
+            if let json = JSON($0) {
+                t.deserialize(json)
+            }
+            return t
+        }
+    }
 }
 
 /// Parses NSDates.
 public func <-- (left: inout Date, right: JSON?) {
-    var temp: Date? = nil
-    parseDate(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses optional NSDates.
 public func <-- (left: inout Date?, right: JSON?) {
-    parseDate(&left, right:right)
+    // Use custom date format over high level setting when provided
+    if let customFormat = right?.jsonDateFormat, let s = right?.data as? String {
+        let df = DateFormatter()
+        df.dateFormat = customFormat
+        left = df.date(from: s)
+    } else if let s = right?.data as? String {
+        if let date = dateFormatter.date(from: s) {
+            left = date
+        } else if let t = TimeInterval(s) {
+            left = timeIntervalToDate(t)
+        }
+    } else if let t = right?.data as? TimeInterval {
+        left = timeIntervalToDate(t)
+    }
 }
 
 /// Parses NSURLs.
 public func <-- (left: inout URL, right: JSON?) {
-    var temp: URL? = nil
-    parseURL(&temp, right:right)
-    if let t = temp {
-        left = t
-    }
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses optional NSURLs.
 public func <-- (left: inout URL?, right: JSON?) {
-    parseURL(&left, right: right)
+    var str = ""
+    str <-- right
+    let set = CharacterSet.urlQueryAllowed
+    if let escapedStr = str.addingPercentEncoding(withAllowedCharacters: set),
+        let url = URL(string:escapedStr) {
+        left = url
+    }
 }
-
 
 /// Parses arrays of plain swift types.
 public func <-- <T>(left: inout [T], right: JSON?) {
-    setLeftIfIsResultNonNil(left:&left, right:right, function: parseArray)
+    setLeftIfIsResultNonNil(left:&left, right:right, function: <--)
 }
 
 /// Parses optional arrays of plain swift types.
 public func <-- <T>(left: inout [T]?, right: JSON?) {
-    parseArray(&left, right: right)
+    if let a = right?.data as? [AnyObject] {
+        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
+        if tmp.count == a.count {
+            left = tmp
+        }
+    }
 }
 
 
@@ -205,70 +216,14 @@ func parseString<T>(_ left: inout T?, string: String) {
     }
 }
 
-func parseURL(_ left: inout URL?, right: JSON?) {
-    var str = ""
-    str <-- right
-    let set = CharacterSet.urlQueryAllowed
-    if let escapedStr = str.addingPercentEncoding(withAllowedCharacters: set),
-        let url = URL(string:escapedStr) {
-        left = url
-    }
-}
-
-func parseDate(_ left: inout Date?, right: JSON?) {
-    // Use custom date format over high level setting when provided
-    if let customFormat = right?.jsonDateFormat, let s = right?.data as? String {
-        let df = DateFormatter()
-        df.dateFormat = customFormat
-        left = df.date(from: s)
-    } else if let s = right?.data as? String {
-        if let date = dateFormatter.date(from: s) {
-            left = date
-        } else if let t = TimeInterval(s) {
-            left = timeIntervalToDate(t)
-        }
-    } else if let t = right?.data as? TimeInterval {
-        left = timeIntervalToDate(t)
-    }
-}
-
 func timeIntervalToDate(_ timeInterval: TimeInterval) -> Date {
     return useReferenceDate
     ? Date(timeIntervalSinceReferenceDate: timeInterval)
     : Date(timeIntervalSince1970: timeInterval)
 }
 
-func parseArray<T>(_ left: inout [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
-        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
-        if tmp.count == a.count {
-            left = tmp
-        }
-    }
-}
-
-func parseUserDefinedType<T: ArrowParsable>(_ left: inout T?, right: JSON?) {
-    if let json = JSON(right?.data) {
-        var t = T.init()
-        t.deserialize(json)
-        left = t
-    }
-}
-
-func parseArrayOfUserDefinedTypes<T: ArrowParsable>(_ left: inout [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
-        left = a.map {
-            var t = T.init()
-            if let json = JSON($0) {
-                t.deserialize(json)
-            }
-            return t
-        }
-    }
-}
-
-func setLeftIfIsResultNonNil<T>(left: inout [T], right: JSON?, function:(inout [T]?, JSON?) -> Void) {
-    var temp: [T]? = nil
+func setLeftIfIsResultNonNil<T>(left: inout T, right: JSON?, function: (inout T?, JSON?) -> Void) {
+    var temp: T? = nil
     function(&temp, right)
     if let t = temp {
         left = t
