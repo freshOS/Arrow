@@ -193,6 +193,25 @@ public func <-- <T>(left: inout [T]?, right: JSON?) {
     }
 }
 
+/// Parses dictionaries of plain swift types.
+public func <-- <K: Hashable, V>(left: inout [K: V], right: JSON?) {
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
+}
+
+/// Parses optional dictionaries of plain swift types.
+public func <-- <K: Hashable, V>(left: inout [K: V]?, right: JSON?) {
+    if let d = right?.data as? [AnyHashable: Any] {
+        var tmp: [K: V] = [:]
+        d.forEach {
+            var k: K?; parseType(&k, right: JSON($0 as AnyObject))
+            var v: V?; parseType(&v, right: JSON($1 as AnyObject))
+            if let k = k, let v = v { tmp[k] = v }
+        }
+        if tmp.count == d.count {
+            left = tmp
+        }
+    }
+}
 
 // MARK: - Private methods.
 
