@@ -16,8 +16,7 @@ class CustomModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if let json: JSON = jsonForName("Profile") {
-            customModelContainer = CustomModelContainer()
-            customModelContainer.deserialize(json)
+            customModelContainer <-- json
         }
     }
     

@@ -18,8 +18,7 @@ class NativeTypesTests: XCTestCase {
         super.setUp()
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         if let json: JSON = jsonForName("Profile") {
-            profile = Profile()
-            profile.deserialize(json)
+            profile <-- json
         }
     }
     

@@ -16,8 +16,7 @@ class EnumTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if let json: JSON = jsonForName("Profile") {
-            enumContainer = EnumContainer()
-            enumContainer.deserialize(json)
+            enumContainer <-- json
         }
     }
 
