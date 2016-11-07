@@ -35,11 +35,10 @@ open class JSON {
      this will return nil.
      */
     open var collection: [JSON]? {
-        if let a = data as? [Any] {
-            return a.map { JSON($0) }.flatMap {$0}
-        } else {
+        guard let a = data as? [Any] else {
             return nil
         }
+        return a.map { JSON($0) }.flatMap {$0}
     }
     
     /**

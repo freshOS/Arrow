@@ -48,8 +48,8 @@ func jsonForName(_ name: String) -> JSON? {
         let json = try? JSONSerialization
             .jsonObject(with: jsonData,
                                 options: .mutableContainers) as? NSDictionary,
-        let dic = json as? [String : AnyObject] {
-            return JSON(dic as AnyObject?)
+        let dic = json as? [String : Any] {
+            return JSON(dic)
     }
     return nil
 }
