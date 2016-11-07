@@ -17,8 +17,7 @@ class DateTests: XCTestCase {
         super.setUp()
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         if let json: JSON = jsonForName("Profile") {
-            dateContainer = DateContainer()
-            dateContainer.deserialize(json)
+            dateContainer <-- json
         }
     }
     

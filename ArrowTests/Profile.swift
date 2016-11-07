@@ -15,3 +15,15 @@ struct Profile {
     var float: Float = 0.0
     var cgfloat: CGFloat = 0.0
 }
+
+extension Profile: RawRepresentable {
+    
+    init?(rawValue: String?) {
+        
+    }
+    
+    var rawValue: String? {
+        return ""
+    }
+    
+}

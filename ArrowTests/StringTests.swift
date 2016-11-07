@@ -16,8 +16,7 @@ class StringTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if let json: JSON = jsonForName("Profile") {
-            stringContainer = StringContainer()
-            stringContainer.deserialize(json)
+            stringContainer <-- json
         }
     }
     

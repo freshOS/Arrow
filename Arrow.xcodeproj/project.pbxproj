@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5084897D1DCB794D004BED69 /* CustomRawRepresentableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084897C1DCB794D004BED69 /* CustomRawRepresentableContainer.swift */; };
+		5084897F1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084897E1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift */; };
+		508489811DCB7B11004BED69 /* CustomRawRepresentableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */; };
 		994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AC1CAA4F3E00B5DB6C /* Profile.swift */; };
 		994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AE1CAA4F4D00B5DB6C /* Stats.swift */; };
 		994243B11CAA502A00B5DB6C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 994243B01CAA502A00B5DB6C /* Profile.json */; };
@@ -51,6 +54,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5084897C1DCB794D004BED69 /* CustomRawRepresentableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRawRepresentableContainer.swift; sourceTree = "<group>"; };
+		5084897E1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomRawRepresentableContainer+JSON.swift"; sourceTree = "<group>"; };
+		508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRawRepresentableTests.swift; sourceTree = "<group>"; };
 		994243AC1CAA4F3E00B5DB6C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		994243AE1CAA4F4D00B5DB6C /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		994243B01CAA502A00B5DB6C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 				998FA6F51D3269BB003C7047 /* DateContainer.swift */,
 				998FA6FF1D326B2B003C7047 /* URLContainer.swift */,
 				998FA6FB1D326A4D003C7047 /* CustomModelContainer.swift */,
+				5084897C1DCB794D004BED69 /* CustomRawRepresentableContainer.swift */,
 				998FA7051D326D4B003C7047 /* StringContainer.swift */,
 			);
 			name = Models;
@@ -171,6 +178,7 @@
 				998FA6E41D3264DE003C7047 /* DateTests.swift */,
 				998FA6E81D3266DA003C7047 /* ArrayTests.swift */,
 				998FA6F91D326A2D003C7047 /* CustomModelTests.swift */,
+				508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */,
 				998FA6EE1D326945003C7047 /* Models */,
 				99F4F0631CC3FC710018D4C1 /* mapping */,
 				994243B01CAA502A00B5DB6C /* Profile.json */,
@@ -198,6 +206,7 @@
 				99F4F0641CC3FC710018D4C1 /* PhoneNumber+JSON.swift */,
 				998FA6EC1D326926003C7047 /* EnumContainer+JSON.swift */,
 				998FA6F71D3269CF003C7047 /* DateContainer+JSON.swift */,
+				5084897E1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift */,
 			);
 			path = mapping;
 			sourceTree = "<group>";
@@ -261,7 +270,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Sacha Durand Saint Omer";
 				TargetAttributes = {
 					99C292E61B24AD5E0008C32B = {
@@ -344,12 +353,14 @@
 			files = (
 				99F4F0671CC3FC710018D4C1 /* PhoneNumber+JSON.swift in Sources */,
 				998FA6EB1D32681D003C7047 /* PhoneNumber.swift in Sources */,
+				5084897F1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift in Sources */,
 				998FA7041D326CDD003C7047 /* StringTests.swift in Sources */,
 				998FA6E91D3266DA003C7047 /* ArrayTests.swift in Sources */,
 				998FA7001D326B2B003C7047 /* URLContainer.swift in Sources */,
 				998FA6ED1D326926003C7047 /* EnumContainer+JSON.swift in Sources */,
 				99F4F0681CC3FC710018D4C1 /* Profile+JSON.swift in Sources */,
 				998FA7021D326B40003C7047 /* URLContainer+JSON.swift in Sources */,
+				508489811DCB7B11004BED69 /* CustomRawRepresentableTests.swift in Sources */,
 				99C292FB1B24AD5F0008C32B /* NativeTypesTests.swift in Sources */,
 				998FA6E31D32644C003C7047 /* EnumTests.swift in Sources */,
 				998FA7061D326D4B003C7047 /* StringContainer.swift in Sources */,
@@ -362,6 +373,7 @@
 				998FA6F61D3269BB003C7047 /* DateContainer.swift in Sources */,
 				998FA6FE1D326A70003C7047 /* CustomModelContainer+JSON.swift in Sources */,
 				998FA6E51D3264DE003C7047 /* DateTests.swift in Sources */,
+				5084897D1DCB794D004BED69 /* CustomRawRepresentableContainer.swift in Sources */,
 				998FA6F81D3269CF003C7047 /* DateContainer+JSON.swift in Sources */,
 				998FA6FA1D326A2D003C7047 /* CustomModelTests.swift in Sources */,
 				998FA6F21D32696F003C7047 /* WeekDay.swift in Sources */,
@@ -474,6 +486,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -501,6 +514,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -524,10 +538,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = A6CJ26NGRU;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -544,10 +554,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = A6CJ26NGRU;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = ArrowTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fresh.$(PRODUCT_NAME:rfc1034identifier)";

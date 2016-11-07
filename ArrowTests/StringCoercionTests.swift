@@ -31,8 +31,7 @@ class StringCoercionTests: XCTestCase {
     override func setUp() {
         super.setUp()
         if let json: JSON = jsonForName("Profile") {
-            coercionContainer = CoercionContainer()
-            coercionContainer.deserialize(json)
+            coercionContainer <-- json
         }
     }
     

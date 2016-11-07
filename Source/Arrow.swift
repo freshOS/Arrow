@@ -139,6 +139,38 @@ public func <-- <T: ArrowParsable>(left: inout [T]?, right: JSON?) {
     }
 }
 
+/// Parses user defined custom types conforming to `RawRepresentable` protocol.
+public func <-- <T: ArrowParsable & RawRepresentable>(left: inout T, right: JSON?) {
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
+}
+
+/// Parses user defined optional custom types conforming to `RawRepresentable` protocol.
+public func <-- <T: ArrowParsable & RawRepresentable>(left: inout T?, right: JSON?) {
+    if let json = JSON(right?.data) {
+        var t = T.init()
+        t.deserialize(json)
+        left = t
+    }
+}
+
+/// Parses array of user defined custom types conforming to `RawRepresentable` protocol.
+public func <-- <T: ArrowParsable & RawRepresentable>(left: inout [T], right: JSON?) {
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
+}
+
+/// Parses array of user defined optional custom types conforming to `RawRepresentable` protocol.
+public func <-- <T: ArrowParsable & RawRepresentable>(left: inout [T]?, right: JSON?) {
+    if let a = right?.data as? [AnyObject] {
+        left = a.map {
+            var t = T.init()
+            if let json = JSON($0) {
+                t.deserialize(json)
+            }
+            return t
+        }
+    }
+}
+
 /// Parses NSDates.
 public func <-- (left: inout Date, right: JSON?) {
     setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
