@@ -35,7 +35,10 @@ public protocol ArrowParsable {
 }
 
 public extension ArrowParsable {
-    public init(json: JSON) {
+    public init?(_ json: JSON?) {
+        guard let json = json else {
+            return nil
+        }
         self.init()
         self.deserialize(json)
     }
