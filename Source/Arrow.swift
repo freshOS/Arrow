@@ -34,6 +34,25 @@ public protocol ArrowParsable {
     mutating func deserialize(_ json: JSON)
 }
 
+/**
+ This is a shortcut protocol to init your custom models with JSON.
+ 
+ If the Model conforms to `ArrowParsable` protocol, to also make it initializable with JSON,
+ just declare an extension like this:
+ 
+        extension MyModel: ArrowInitializable {}
+ */
+public protocol ArrowInitializable {
+    init(json: JSON)
+}
+
+extension ArrowInitializable where Self: ArrowParsable {
+    public init(json: JSON) {
+        self.init()
+        self.deserialize(json)
+    }
+}
+
 private let dateFormatter = DateFormatter()
 private var useReferenceDate = false
 
