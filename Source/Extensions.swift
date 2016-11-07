@@ -8,9 +8,13 @@
 
 import Foundation
 
+public protocol ArrowInitializable {
+    init?(_ json: JSON?)
+}
+
 // MARK: - Plain types
 
-extension String {
+extension String: ArrowInitializable {
     /// Construct a `String` from JSON
     public init?(_ json: JSON?) {
         var x: String?
@@ -22,7 +26,7 @@ extension String {
     }
 }
 
-extension Int {
+extension Int: ArrowInitializable {
     /// Construct an `Int` from JSON
     public init?(_ json: JSON?) {
         var x: Int?
@@ -34,7 +38,7 @@ extension Int {
     }
 }
 
-extension UInt {
+extension UInt: ArrowInitializable {
     /// Construct a `UInt` from JSON
     public init?(_ json: JSON?) {
         var x: UInt?
@@ -46,7 +50,7 @@ extension UInt {
     }
 }
 
-extension Double {
+extension Double: ArrowInitializable {
     /// Construct a `Double` from JSON
     public init?(_ json: JSON?) {
         var x: Double?
@@ -58,7 +62,7 @@ extension Double {
     }
 }
 
-extension Float {
+extension Float: ArrowInitializable {
     /// Construct a `Float` from JSON
     public init?(_ json: JSON?) {
         var x: Float?
@@ -70,7 +74,7 @@ extension Float {
     }
 }
 
-extension CGFloat {
+extension CGFloat: ArrowInitializable {
     /// Construct a `CGFloat` from JSON
     public init?(_ json: JSON?) {
         var x: CGFloat?
@@ -82,7 +86,7 @@ extension CGFloat {
     }
 }
 
-extension Bool {
+extension Bool: ArrowInitializable {
     /// Construct a `Bool` from JSON
     public init?(_ json: JSON?) {
         var x: Bool?
@@ -94,7 +98,7 @@ extension Bool {
     }
 }
 
-extension URL {
+extension URL: ArrowInitializable {
     /// Construct a `URL` from JSON
     public init?(_ json: JSON?) {
         var x: String?
@@ -108,7 +112,7 @@ extension URL {
 
 // MARK: - Raw representable
 
-extension RawRepresentable {
+extension RawRepresentable where RawValue: ArrowInitializable {
     /// Construct a `RawRepresentable` from JSON
     public init?(_ json: JSON?) {
         var x: Self.RawValue?
@@ -120,9 +124,9 @@ extension RawRepresentable {
     }
 }
 
-// MARK: - Array of plain types
+// MARK: - Arrays
 
-extension Array {
+extension Array where Element: ArrowInitializable {
     /// Construct an `Array` from JSON
     public init?(_ json: JSON?) {
         var x: [Element]?
@@ -134,14 +138,30 @@ extension Array {
     }
 }
 
-//extension Array where Element: RawRepresentable {
-//    /// Construct an `Array` of `RawRepresentable` elements from JSON
-//    public init?(_ json: JSON?) {
-//        var x: [Element]?
-//        x <-- json
-//        guard let a = x else {
-//            return nil
-//        }
-//        self.init(a)
-//    }
-//}
+extension Array where Element: RawRepresentable, Element.RawValue: ArrowInitializable {
+    /// Construct an `Array` from JSON
+    public init?(_ json: JSON?) {
+        var x: [Element]?
+        x <-- json
+        guard let a = x else {
+            return nil
+        }
+        self.init(a)
+    }
+}
+
+// MARK: - Dictionaries
+
+extension Dictionary where Key: Hashable, Value: ArrowInitializable {
+    public init?(_ json: JSON?) {
+        var x: [Key: Value]?
+        x <-- json
+        guard let d = x else {
+            return nil
+        }
+        self.init()
+        for (k, v) in d {
+            self.updateValue(v, forKey: k)
+        }
+    }
+}

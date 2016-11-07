@@ -53,4 +53,8 @@ class TypeConversionTests: XCTestCase {
         XCTAssertEqual(Array<WeekDay>(json?["weekdays"]) ?? [], [.monday, .wednesday, .friday])
     }
     
+    func testDictionaryConversions() {
+        XCTAssertEqual(Dictionary<String, String>(json?["dict"]) ?? [:], ["one": "1", "two": "2"])
+    }
+    
 }

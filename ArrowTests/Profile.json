@@ -39,5 +39,6 @@
         }
     },
     "nestedArray" : ["one", "two", "Cool", "four"],
-    "weekdays": [1, 3, 5]
+    "weekdays": [1, 3, 5],
+    "dict": { "one": "1", "two": "2" }
 }
