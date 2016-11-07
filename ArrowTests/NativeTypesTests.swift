@@ -39,7 +39,6 @@ class NativeTypesTests: XCTestCase {
     }
 }
 
-
 // Helper
 
 func jsonForName(_ name: String) -> JSON? {

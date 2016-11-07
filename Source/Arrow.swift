@@ -128,7 +128,7 @@ public func <-- <T: ArrowParsable>(left: inout [T], right: JSON?) {
 
 /// Parses optional arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
+    if let a = right?.data as? [Any] {
         left = a.map {
             var t = T.init()
             if let json = JSON($0) {
@@ -160,7 +160,7 @@ public func <-- <T: ArrowParsable & RawRepresentable>(left: inout [T], right: JS
 
 /// Parses array of user defined optional custom types conforming to `RawRepresentable` protocol.
 public func <-- <T: ArrowParsable & RawRepresentable>(left: inout [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
+    if let a = right?.data as? [Any] {
         left = a.map {
             var t = T.init()
             if let json = JSON($0) {
@@ -217,7 +217,7 @@ public func <-- <T>(left: inout [T], right: JSON?) {
 
 /// Parses optional arrays of plain swift types.
 public func <-- <T>(left: inout [T]?, right: JSON?) {
-    if let a = right?.data as? [AnyObject] {
+    if let a = right?.data as? [Any] {
         let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
         if tmp.count == a.count {
             left = tmp
@@ -235,8 +235,8 @@ public func <-- <K: Hashable, V>(left: inout [K: V]?, right: JSON?) {
     if let d = right?.data as? [AnyHashable: Any] {
         var tmp: [K: V] = [:]
         d.forEach {
-            var k: K?; parseType(&k, right: JSON($0 as AnyObject))
-            var v: V?; parseType(&v, right: JSON($1 as AnyObject))
+            var k: K?; parseType(&k, right: JSON($0))
+            var v: V?; parseType(&v, right: JSON($1))
             if let k = k, let v = v { tmp[k] = v }
         }
         if tmp.count == d.count {
