@@ -25,6 +25,7 @@
     "strings": ["one", "two", "three"],
     "ints": [1, 2, 3],
     "bools": [true, false, true],
+    "bool": true,
     "float" : 0.12,
     "double" : 0.123456789,
     "floatString" : "0.12",
