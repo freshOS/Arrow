@@ -85,10 +85,10 @@ open class JSON {
     }
     
     func regularParsing(_ key: String) -> JSON? {
-        if let d = data as? [String: Any], let x = d[key], let subJSON = JSON(x) {
-            return subJSON
+        guard let d = data as? [String: Any], let x = d[key], let subJSON = JSON(x) else {
+            return nil
         }
-        return nil
+        return subJSON
     }
     
     open subscript(key: String) -> JSON? {
@@ -102,11 +102,10 @@ open class JSON {
     
     open subscript(index: Int) -> JSON? {
         get {
-            if let array = data as? [Any], array.count > index {
-                return JSON(array[index])
-            } else {
+            guard let array = data as? [Any], array.count > index else {
                 return nil
             }
+            return JSON(array[index])
         }
     }
 }
