@@ -13,17 +13,17 @@ import Foundation
  It provives a way to access JSON values via subscripting, whether
  it's an array or a dictionary.
  */
-public class JSON: AnyObject, CustomDebugStringConvertible {
+public class JSON {
     
     /// This is the raw data of the JSON
-    public var data: AnyObject?
+    public var data: Any?
     
     /// This date formating strategy that will be used for that JSON section.
     /// This should not be set, use `dateFormat` instead.
     public var jsonDateFormat: String?
     
     /// This build a JSON object with raw data.
-    public init?(_ dic: AnyObject?) {
+    public init?(_ dic: Any?) {
         if dic == nil {
             return nil
         } else {
@@ -36,7 +36,7 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
      this will return nil.
      */
     public var collection: [JSON]? {
-        if let a = data as? [AnyObject] {
+        if let a = data as? [Any] {
             return a.map { JSON($0) }.flatMap {$0}
         } else {
             return nil
@@ -55,18 +55,10 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
         return self
     }
     
-    /// This is just for supporting default console logs.
-    public var debugDescription: String {
-        if let data = data {
-            return data.debugDescription
-        }
-        return ""
-    }
-    
     public subscript(key: String) -> JSON? {
         get { return isKeyPath(key) ? parseKeyPath(key) : regularParsing(key) }
         set(obj) {
-            if var d = data as? [String:AnyObject] {
+            if var d = data as? [String:Any] {
                 d[key] = obj
             }
         }
@@ -104,7 +96,9 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     }
     
     func regularParsing(_ key: String) -> JSON? {
-        if let d = data, let x = d[key], let subJSON = JSON(x as AnyObject?) {
+        if let d = data as? [AnyHashable: Any],
+            let x = d[key],
+            let subJSON = JSON(x) {
             return subJSON
         }
         return nil
@@ -112,11 +106,22 @@ public class JSON: AnyObject, CustomDebugStringConvertible {
     
     public subscript(index: Int) -> JSON? {
         get {
-            if let array = data as? [AnyObject], array.count > index {
+            if let array = data as? [Any], array.count > index {
                 return JSON(array[index])
             } else {
                 return nil
             }
         }
+    }
+}
+
+extension JSON: CustomDebugStringConvertible {
+    
+    /// This is just for supporting default console logs.
+    public var debugDescription: String {
+        if let data = data {
+            return (data as AnyObject).debugDescription
+        }
+        return ""
     }
 }
