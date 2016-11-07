@@ -9,7 +9,6 @@
 import XCTest
 import Arrow
 
-
 struct ArrayContainer {
     var phoneNumbers = [PhoneNumber]()
     var optionalPhoneNumbers: [PhoneNumber]? = nil
@@ -37,7 +36,6 @@ extension ArrayContainer:ArrowParsable {
     }
 }
 
-
 class ArrayTests: XCTestCase {
     
     var arrayContainer = ArrayContainer()
@@ -63,7 +61,6 @@ class ArrayTests: XCTestCase {
             XCTFail()
         }
     }
-    
     
     func testParsingOptionalArrayOfCustomModels() {
         XCTAssertEqual(arrayContainer.optionalPhoneNumbers?.count, 3)
