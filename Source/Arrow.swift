@@ -34,6 +34,13 @@ public protocol ArrowParsable {
     mutating func deserialize(_ json: JSON)
 }
 
+public extension ArrowParsable {
+    public init(json: JSON) {
+        self.init()
+        self.deserialize(json)
+    }
+}
+
 private let dateFormatter = DateFormatter()
 private var useReferenceDate = false
 
