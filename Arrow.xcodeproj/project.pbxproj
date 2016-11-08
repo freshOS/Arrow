@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		501B4F4C1DD0B95E00721F84 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B4F4B1DD0B95E00721F84 /* Extensions.swift */; };
+		501B4F4E1DD0BA0800721F84 /* TypeConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501B4F4D1DD0BA0800721F84 /* TypeConversionTests.swift */; };
 		5084897D1DCB794D004BED69 /* CustomRawRepresentableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084897C1DCB794D004BED69 /* CustomRawRepresentableContainer.swift */; };
 		5084897F1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084897E1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift */; };
 		508489811DCB7B11004BED69 /* CustomRawRepresentableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		501B4F4B1DD0B95E00721F84 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Source/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		501B4F4D1DD0BA0800721F84 /* TypeConversionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeConversionTests.swift; sourceTree = "<group>"; };
 		5084897C1DCB794D004BED69 /* CustomRawRepresentableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRawRepresentableContainer.swift; sourceTree = "<group>"; };
 		5084897E1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CustomRawRepresentableContainer+JSON.swift"; sourceTree = "<group>"; };
 		508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRawRepresentableTests.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			children = (
 				99F4F05B1CC3FBF10018D4C1 /* JSON.swift */,
 				99F4F05C1CC3FBF10018D4C1 /* Arrow.swift */,
+				501B4F4B1DD0B95E00721F84 /* Extensions.swift */,
 				99F4F05E1CC3FBF10018D4C1 /* Arrow.h */,
 				99C292E91B24AD5E0008C32B /* Supporting Files */,
 			);
@@ -179,6 +184,7 @@
 				998FA6E81D3266DA003C7047 /* ArrayTests.swift */,
 				998FA6F91D326A2D003C7047 /* CustomModelTests.swift */,
 				508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */,
+				501B4F4D1DD0BA0800721F84 /* TypeConversionTests.swift */,
 				998FA6EE1D326945003C7047 /* Models */,
 				99F4F0631CC3FC710018D4C1 /* mapping */,
 				994243B01CAA502A00B5DB6C /* Profile.json */,
@@ -229,11 +235,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99C293001B24AD5F0008C32B /* Build configuration list for PBXNativeTarget "Arrow" */;
 			buildPhases = (
-				99709F361D310F74002A92D5 /* ShellScript */,
 				99C292E21B24AD5E0008C32B /* Sources */,
 				99C292E31B24AD5E0008C32B /* Frameworks */,
 				99C292E41B24AD5E0008C32B /* Headers */,
 				99C292E51B24AD5E0008C32B /* Resources */,
+				99709F361D310F74002A92D5 /* Run swiftlint */,
 			);
 			buildRules = (
 			);
@@ -322,13 +328,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		99709F361D310F74002A92D5 /* ShellScript */ = {
+		99709F361D310F74002A92D5 /* Run swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run swiftlint";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99F4F05F1CC3FBF10018D4C1 /* JSON.swift in Sources */,
+				501B4F4C1DD0B95E00721F84 /* Extensions.swift in Sources */,
 				99F4F0601CC3FBF10018D4C1 /* Arrow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +378,7 @@
 				998FA70A1D32713F003C7047 /* StringCoercionTests.swift in Sources */,
 				998FA6FC1D326A4D003C7047 /* CustomModelContainer.swift in Sources */,
 				994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */,
+				501B4F4E1DD0BA0800721F84 /* TypeConversionTests.swift in Sources */,
 				998FA6F61D3269BB003C7047 /* DateContainer.swift in Sources */,
 				998FA6FE1D326A70003C7047 /* CustomModelContainer+JSON.swift in Sources */,
 				998FA6E51D3264DE003C7047 /* DateTests.swift in Sources */,

@@ -28,14 +28,18 @@ import CoreGraphics
         }
  */
 public protocol ArrowParsable {
-    /// Makes sur your models can be constructed with an empty constructor.
+    /// Makes sure your models can be constructed with an empty constructor.
     init()
-    /// The method you declare your json mapping in.
+    /// The method you declare your JSON mapping in.
     mutating func deserialize(_ json: JSON)
 }
 
 public extension ArrowParsable {
-    public init(json: JSON) {
+    /// A shortcut to init custom models with JSON.
+    public init?(_ json: JSON?) {
+        guard let json = json else {
+            return nil
+        }
         self.init()
         self.deserialize(json)
     }
