@@ -153,6 +153,7 @@ extension Array where Element: RawRepresentable, Element.RawValue: ArrowInitiali
 // MARK: - Dictionaries
 
 extension Dictionary where Key: Hashable, Value: ArrowInitializable {
+    /// Construct a `Dictionary` from JSON
     public init?(_ json: JSON?) {
         var x: [Key: Value]?
         x <-- json
