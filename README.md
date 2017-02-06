@@ -11,7 +11,6 @@
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
 [![Release version](https://img.shields.io/badge/release-3.0-blue.svg)]()
 
-
 [Reason](#reason) - [Example](#example) - [Installation](#installation)
 
 
@@ -20,13 +19,8 @@ identifier <-- json["id"]
 name <-- json["name"]
 stats <-- json["stats"]
 ```
+Arrow is part of [freshOS](http://freshos.org) iOS toolset. Try it in an example App : <a class="github-button" href="https://github.com/freshOS/StarterProject/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download freshOS/StarterProject on GitHub">Download Starter Project</a>
 
-## Swift Version
-Swift 2 -> version **2.0.3**  
-Swift 3 -> version **3.0.3**
-
-## Reason
-### Why
 Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**  
 *There must be a better way*
 
@@ -35,16 +29,12 @@ By using a simple arrow operator that takes care of the boilerplate code for us.
 Json mapping code becomes **concise** and **maintainable** ❤️
 
 
-## What
-- [x] Simple & Lightweight (~200lines)
-- [x] Pure Swift
+## Why use Arrow
+- [x] Infers types
 - [x] Leaves your models clean
-- [x] Implicitly casts JSON values to the right types in your model
-- [x] Automatic NSDate, NSURL, Enum, Custom model Parsing
-- [x] Converts string values to numeric types in your model
-- [x] Does not crash if JSON key is not there, nor returns nil, it simply doesn't do anything
-- [x] No overly complex obscure functional chaining operator overloading voodoo magic ?==:>>><> 😅
-
+- [x] Handles custom & nested models
+- [x] Dot and array syntax
+- [x] Pure Swift, Simple & Lightweight
 
 ## Example
 
@@ -241,13 +231,9 @@ if let collection = json.collection {
 }
 ```
 
+## Swift Version
+Swift 2 -> version **2.0.3**  
+Swift 3 -> version **3.0.3**
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
-
-
-## Other repos ❤️
-Arrow is part of a series of lightweight libraries aiming to make developing iOS Apps a *breeze* :
-- Layout : [Stevia](https://github.com/s4cha/Stevia)
-- Async code : [then](https://github.com/freshOS/then)
-- JSON WebServices : [ws](https://github.com/freshOS/ws)
