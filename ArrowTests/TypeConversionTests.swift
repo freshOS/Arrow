@@ -46,15 +46,15 @@ class TypeConversionTests: XCTestCase {
     }
     
     func testArrayConversions() {
-        XCTAssertEqual(Array<String>(json?["strings"]) ?? [], ["one", "two", "three"])
+        XCTAssertEqual([String](json?["strings"]) ?? [], ["one", "two", "three"])
     }
     
     func testArrayEnumConversions() {
-        XCTAssertEqual(Array<WeekDay>(json?["weekdays"]) ?? [], [.monday, .wednesday, .friday])
+        XCTAssertEqual([WeekDay](json?["weekdays"]) ?? [], [.monday, .wednesday, .friday])
     }
     
     func testDictionaryConversions() {
-        XCTAssertEqual(Dictionary<String, String>(json?["dict"]) ?? [:], ["one": "1", "two": "2"])
+        XCTAssertEqual([String: String](json?["dict"]) ?? [:], ["one": "1", "two": "2"])
     }
     
 }
