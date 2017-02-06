@@ -19,10 +19,13 @@ identifier <-- json["id"]
 name <-- json["name"]
 stats <-- json["stats"]
 ```
-Arrow is part of [freshOS](http://freshos.org) iOS toolset. Try it in an example App : <a class="github-button" href="https://github.com/freshOS/StarterProject/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download freshOS/StarterProject on GitHub">Download Starter Project</a>
 
 Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and nil-checks**  
 *There must be a better way*
+
+## Try it
+
+Arrow is part of [freshOS](http://freshos.org) iOS toolset. Try it in an example App ! <a class="github-button" href="https://github.com/freshOS/StarterProject/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download freshOS/StarterProject on GitHub">Download Starter Project</a>
 
 ## How
 By using a simple arrow operator that takes care of the boilerplate code for us.  
@@ -143,8 +146,7 @@ use_frameworks!
 ```
 
 #### Manually
-Simply Copy and Paste Arrow.swift in your Xcode Project :)
-https://github.com/freshOS/Arrow/blob/master/Arrow.swift
+Simply Copy and Paste `.swift` files in your Xcode Project :)
 
 #### As A Framework
 Grab this repository and build the Framework target on the example project. Then Link against this framework.
