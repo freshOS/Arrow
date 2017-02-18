@@ -11,14 +11,14 @@ import Arrow
 
 struct ArrayContainer {
     var phoneNumbers = [PhoneNumber]()
-    var optionalPhoneNumbers: [PhoneNumber]? = nil
+    var optionalPhoneNumbers: [PhoneNumber]?
     var strings = [String]()
     var ints = [Int]()
     var bools = [Bool]()
     var meaningOfLife: Int = 0
     var nestedArrayParsing = ""
     var weekdays = [WeekDay]()
-    var optionalWeekdays: [WeekDay]? = nil
+    var optionalWeekdays: [WeekDay]?
 }
 
 extension ArrayContainer:ArrowParsable {
