@@ -45,7 +45,7 @@ public extension ArrowParsable {
     }
 }
 
-private let dateFormatter = DateFormatter()
+private var dateFormatter: DateFormatter? = DateFormatter()
 private var useReferenceDate = false
 
 /**
@@ -63,7 +63,12 @@ For more fine grained control, use `dateFormat` on a per field basis :
 public class Arrow {
     /// Sets the defaut dateFormat for parsing NSDates.
     public class func setDateFormat(_ format: String) {
-        dateFormatter.dateFormat = format
+        dateFormatter?.dateFormat = format
+    }
+    
+    /// Sets the defaut dateFormatter for parsing NSDates.
+    public class func setDateFormatter(_ formatter: DateFormatter?) {
+        dateFormatter = formatter
     }
     
     /**
@@ -190,12 +195,14 @@ public func <-- (left: inout Date, right: JSON?) {
 /// Parses optional NSDates.
 public func <-- (left: inout Date?, right: JSON?) {
     // Use custom date format over high level setting when provided
-    if let customFormat = right?.jsonDateFormat, let s = right?.data as? String {
+    if let customFormatter = right?.jsonDateFormatter, let s = right?.data as? String {
+        left = customFormatter.date(from: s)
+    } else if let customFormat = right?.jsonDateFormat, let s = right?.data as? String {
         let df = DateFormatter()
         df.dateFormat = customFormat
         left = df.date(from: s)
     } else if let s = right?.data as? String {
-        if let date = dateFormatter.date(from: s) {
+        if let date = dateFormatter?.date(from: s) {
             left = date
         } else if let t = TimeInterval(s) {
             left = timeIntervalToDate(t)

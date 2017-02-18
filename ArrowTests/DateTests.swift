@@ -40,4 +40,32 @@ class DateTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testCustomDateFormatterDate() {
+        if let json: JSON = jsonForName("Profile") {
+            var aDate = Date()
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+            df.timeZone = TimeZone(secondsFromGMT: 60*60*5)
+            aDate <-- json["created_at"]?.dateFormatter(df)
+            XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
+        } else {
+            XCTFail()
+        }
+    }
+    
+    func testGlobalDateFormatterDate() {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        Arrow.setDateFormatter(df)
+        if let json: JSON = jsonForName("Profile") {
+            var aDate = Date()
+            aDate <-- json["created_at"]
+            XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
+        } else {
+            XCTFail()
+        }
+        
+        Arrow.setDateFormatter(nil)
+    }
 }

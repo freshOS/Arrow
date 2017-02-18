@@ -20,7 +20,9 @@ open class JSON {
     
     /// This date formating strategy that will be used for that JSON section.
     /// This should not be set, use `dateFormat` instead.
-    open var jsonDateFormat: String?
+    internal var jsonDateFormat: String?
+    
+    internal var jsonDateFormatter: DateFormatter?
     
     /// This build a JSON object with raw data.
     public init?(_ data: Any?) {
@@ -50,6 +52,11 @@ open class JSON {
      */
     open func dateFormat(_ format: String) -> Self {
         jsonDateFormat = format
+        return self
+    }
+    
+    open func dateFormatter(_ formatter: DateFormatter) -> Self {
+        jsonDateFormatter = formatter
         return self
     }
     
