@@ -184,25 +184,26 @@ stats.numberOfFriends <-- json["stats.numberOfFriends"]
 stats.numberOfFans <-- json["stats.numberOfFans"]
 ```
 
-- Hey I don't want to parse NSDates in every files, do you have something for me?
+## Date Parsing
 
-
-Sure, just set your date format once and you're done.
+### Globally
 
 ```swift
-// Configure NSDate Parsing
+// Configure Global Date Parsing with one of those
 Arrow.setDateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
 Arrow.setUseTimeIntervalSinceReferenceDate(true)
+Arrow.setDateFormatter(aDateFormatter)
 
-// Dates can be parsed form custom date format or timestamp
+// Then later dates can be parsed form custom date format or timestamps automatically 🎉
 let json:JSON = JSON(["date": "2013-06-07T16:38:40+02:00", "timestamp": 392308720])
 date1 <-- json["date"]
 date2 <-- json["timestamp"]
 ```
 
-What if I want a Custom NSDate format for a specific key ?
+### On a per-key basis
 ```swift
 createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
+createdAt <-- json["created_at"]?.dateFormatter(aCustomDateFormatter)
 ```
 Just provide it on a case per case basis ! 🎉
 
@@ -235,7 +236,7 @@ if let collection = json.collection {
 
 ## Swift Version
 Swift 2 -> version **2.0.3**  
-Swift 3 -> version **3.0.3**
+Swift 3 -> version **3.0.4**
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
