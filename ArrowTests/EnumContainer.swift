@@ -10,7 +10,7 @@ import Foundation
 
 struct EnumContainer {
     var weekday: WeekDay = .monday
-    var difficulty = Difficulty.Low
+    var difficulty = Difficulty.low
     var optionalWeekday: WeekDay?
     var optionalDifficulty: Difficulty?
 }

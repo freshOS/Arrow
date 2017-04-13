@@ -25,7 +25,7 @@ class EnumTests: XCTestCase {
     }
     
     func testParsingEnumString() {
-        XCTAssertEqual(enumContainer.difficulty, Difficulty.High)
+        XCTAssertEqual(enumContainer.difficulty, Difficulty.high)
     }
     
     func testParsingOptionalEnumInt() {
@@ -33,6 +33,6 @@ class EnumTests: XCTestCase {
     }
     
     func testParsingOptionalEnumString() {
-        XCTAssertEqual(enumContainer.optionalDifficulty, Difficulty.High)
+        XCTAssertEqual(enumContainer.optionalDifficulty, Difficulty.high)
     }
 }

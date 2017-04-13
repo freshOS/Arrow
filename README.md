@@ -236,7 +236,7 @@ if let collection = json.collection {
 
 ## Swift Version
 Swift 2 -> version **2.0.3**  
-Swift 3 -> version **3.0.4**
+Swift 3 -> version **3.0.5**
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)

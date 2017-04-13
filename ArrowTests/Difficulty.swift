@@ -9,7 +9,7 @@
 import Foundation
 
 enum Difficulty: String {
-    case Low
-    case Medium
-    case High
+    case low
+    case medium
+    case high
 }
