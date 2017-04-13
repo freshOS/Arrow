@@ -86,7 +86,7 @@ public class Arrow {
 
 // MARK: - Parse Default swift Types
 
-infix operator <--
+infix operator <-- : AssignmentPrecedence
 
 public func <-- <T>(left: inout T, right: JSON?) {
     setLeftIfIsResultNonNil(left: &left, right: right, function: parseType)
