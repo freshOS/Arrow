@@ -47,6 +47,7 @@ class DateTests: XCTestCase {
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
             df.timeZone = TimeZone(secondsFromGMT: 60*60*5)
+            Arrow.setDateFormatter(df)
             aDate <-- json["created_at"]?.dateFormatter(df)
             XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
         } else {
