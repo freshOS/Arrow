@@ -9,7 +9,7 @@
 [![Build Status](https://www.bitrise.io/app/ffd8fe5df34624ff.svg?token=IahWn-RB5hTWzvBbcIktsQ)](https://www.bitrise.io/app/ffd8fe5df34624ff)
 [![codebeat badge](https://codebeat.co/badges/f037ac0c-b3d9-4132-9fca-64150a908113)](https://codebeat.co/projects/github-com-freshos-arrow)
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
-[![Release version](https://img.shields.io/badge/release-4.0-blue.svg)]()
+![Release version](https://img.shields.io/github/release/freshos/then.svg)
 
 [Reason](#reason) - [Example](#example) - [Installation](#installation)
 
@@ -239,6 +239,7 @@ if let collection = json.collection {
 - Swift 2 -> version [**2.0.3**](https://github.com/freshOS/Arrow/releases/tag/2.0.3)
 - Swift 3 -> version [**3.0.5**](https://github.com/freshOS/Arrow/releases/tag/3.0.5)
 - Swift 4 -> version [**4.0.0**](https://github.com/freshOS/Arrow/releases/tag/4.0.0)
+- Swift 4.1 -> version [**4.1.0**](https://github.com/freshOS/Arrow/releases/tag/4.1.0)
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
@@ -249,7 +250,7 @@ This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien
 
 
 ### Backers
-Like the project? Offer coffee or support us with a monthly donation and help us continue our activities :) 
+Like the project? Offer coffee or support us with a monthly donation and help us continue our activities :)
 
 <a href="https://opencollective.com/freshos/backer/0/website" target="_blank"><img src="https://opencollective.com/freshos/backer/0/avatar.svg"></a>
 <a href="https://opencollective.com/freshos/backer/1/website" target="_blank"><img src="https://opencollective.com/freshos/backer/1/avatar.svg"></a>
@@ -283,7 +284,7 @@ Like the project? Offer coffee or support us with a monthly donation and help us
 <a href="https://opencollective.com/freshos/backer/29/website" target="_blank"><img src="https://opencollective.com/freshos/backer/29/avatar.svg"></a>
 
 ### Sponsors
-Become a sponsor and get your logo on our README on Github with a link to your site :) 
+Become a sponsor and get your logo on our README on Github with a link to your site :)
 
 <a href="https://opencollective.com/freshos/sponsor/0/website" target="_blank"><img src="https://opencollective.com/freshos/sponsor/0/avatar.svg"></a>
 <a href="https://opencollective.com/freshos/sponsor/1/website" target="_blank"><img src="https://opencollective.com/freshos/sponsor/1/avatar.svg"></a>

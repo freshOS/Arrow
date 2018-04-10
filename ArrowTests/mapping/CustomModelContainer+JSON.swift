@@ -8,7 +8,7 @@
 
 import Arrow
 
-extension CustomModelContainer:ArrowParsable {
+extension CustomModelContainer: ArrowParsable {
     
     mutating func deserialize(_ json: JSON) {
         stats <-- json["stats"]

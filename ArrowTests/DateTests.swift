@@ -25,19 +25,19 @@ class DateTests: XCTestCase {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         if let date = df.date(from: "2013-06-07T16:38:40+02:00") {
-            XCTAssertEqualWithAccuracy(date.timeIntervalSinceReferenceDate, dateContainer.createdAt
+            XCTAssertEqual(date.timeIntervalSinceReferenceDate, dateContainer.createdAt
                 .timeIntervalSinceReferenceDate, accuracy: 0.1)
         } else {
-            XCTFail()
+            XCTFail("Parsing a date fails")
         }
     }
     
     func testParsingOptionalDate() {
         let timestamp: TimeInterval = 392308720
         if let d = dateContainer.optionalDate?.timeIntervalSinceReferenceDate {
-            XCTAssertEqualWithAccuracy(timestamp, d, accuracy: 0.1)
+            XCTAssertEqual(timestamp, d, accuracy: 0.1)
         } else {
-            XCTFail()
+            XCTFail("Parsing an Optional Date fails")
         }
     }
     
@@ -50,7 +50,7 @@ class DateTests: XCTestCase {
             aDate <-- json["created_at"]?.dateFormatter(df)
             XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
         } else {
-            XCTFail()
+            XCTFail("Using a custom date Parser fails")
         }
     }
     
@@ -63,7 +63,7 @@ class DateTests: XCTestCase {
             aDate <-- json["created_at"]
             XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
         } else {
-            XCTFail()
+            XCTFail("Using a global date parser fails")
         }
         
         Arrow.setDateFormatter(nil)

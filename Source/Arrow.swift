@@ -105,7 +105,7 @@ public func <-- <T: RawRepresentable>(left: inout T, right: JSON?) {
 /// Parses optional enums.
 public func <-- <T: RawRepresentable>(left: inout T?, right: JSON?) {
     var temp: T.RawValue? = nil
-    parseType(&temp, right:right)
+    parseType(&temp, right: right)
     if let t = temp, let e = T.init(rawValue: t) {
         left = e
     }
@@ -119,7 +119,7 @@ public func <-- <T: RawRepresentable>(left: inout [T], right: JSON?) {
 /// Parses Optional Array of enums.
 public func <-- <T: RawRepresentable>(left: inout [T]?, right: JSON?) {
     if let array = right?.data as? [T.RawValue] {
-        left = array.map { T.init(rawValue: $0) }.flatMap {$0}
+        left = array.map { T.init(rawValue: $0) }.compactMap {$0}
     }
 }
 
@@ -139,7 +139,7 @@ public func <-- <T: ArrowParsable>(left: inout T?, right: JSON?) {
 
 /// Parses arrays of user defined custom types.
 public func <-- <T: ArrowParsable>(left: inout [T], right: JSON?) {
-    setLeftIfIsResultNonNil(left:&left, right:right, function: <--)
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses optional arrays of user defined custom types.
@@ -223,20 +223,20 @@ public func <-- (left: inout URL?, right: JSON?) {
     str <-- right
     let set = CharacterSet.urlQueryAllowed
     if let escapedStr = str.addingPercentEncoding(withAllowedCharacters: set),
-        let url = URL(string:escapedStr) {
+        let url = URL(string: escapedStr) {
         left = url
     }
 }
 
 /// Parses arrays of plain swift types.
 public func <-- <T>(left: inout [T], right: JSON?) {
-    setLeftIfIsResultNonNil(left:&left, right:right, function: <--)
+    setLeftIfIsResultNonNil(left: &left, right: right, function: <--)
 }
 
 /// Parses optional arrays of plain swift types.
 public func <-- <T>(left: inout [T]?, right: JSON?) {
     if let a = right?.data as? [Any] {
-        let tmp: [T] = a.flatMap { var t: T?; parseType(&t, right: JSON($0)); return t }
+        let tmp: [T] = a.compactMap { var t: T?; parseType(&t, right: JSON($0)); return t }
         if tmp.count == a.count {
             left = tmp
         }
@@ -269,7 +269,13 @@ func parseType<T>(_ left: inout T?, right: JSON?) {
     if let v: T = right?.data as? T {
         left = v
     } else if let s = right?.data as? String {
-        parseString(&left, string:s)
+        parseString(&left, string: s)
+    } else if T.self == Float.self {
+        // Sepcial case for Float that
+        // no longer works out of the box in Swift 4.1
+        if let v = right?.data as? Double, let l = Float(v) as? T {
+            left = l
+        }
     }
 }
 

@@ -21,7 +21,7 @@ struct ArrayContainer {
     var optionalWeekdays: [WeekDay]?
 }
 
-extension ArrayContainer:ArrowParsable {
+extension ArrayContainer: ArrowParsable {
     
     mutating func deserialize(_ json: JSON) {
         phoneNumbers <-- json["phoneNumbers"]
@@ -58,7 +58,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.phoneNumbers[1].number, "0908070656")
             XCTAssertEqual(arrayContainer.phoneNumbers[2].number, "0916570656")
         } else {
-            XCTFail()
+            XCTFail("Parsing ArrayOf Custom Models Fails")
         }
     }
     
@@ -81,7 +81,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.strings[1], "two")
             XCTAssertEqual(arrayContainer.strings[2], "three")
         } else {
-            XCTFail()
+            XCTFail("Parsing an array of strings fails")
         }
     }
     
@@ -92,7 +92,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.ints[1], 2)
             XCTAssertEqual(arrayContainer.ints[2], 3)
         } else {
-            XCTFail()
+            XCTFail("Parsing an array of ints fails")
         }
     }
     
@@ -103,7 +103,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.bools[1], false)
             XCTAssertEqual(arrayContainer.bools[2], true)
         } else {
-            XCTFail()
+            XCTFail("Parsing an array of bools fails")
         }
     }
     
@@ -122,7 +122,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.weekdays[1], WeekDay.wednesday)
             XCTAssertEqual(arrayContainer.weekdays[2], WeekDay.friday)
         } else {
-            XCTFail()
+            XCTFail("Parsing an array of enums fails")
         }
     }
     
@@ -133,7 +133,7 @@ class ArrayTests: XCTestCase {
             XCTAssertEqual(arrayContainer.optionalWeekdays?[1], WeekDay.wednesday)
             XCTAssertEqual(arrayContainer.optionalWeekdays?[2], WeekDay.friday)
         } else {
-            XCTFail()
+            XCTFail("Parsing an array of optional enums fails")
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import Arrow
 
-extension StringContainer:ArrowParsable {
+extension StringContainer: ArrowParsable {
     mutating func deserialize(_ json: JSON) {
         name <-- json["name"]
         optionalName = nil

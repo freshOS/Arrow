@@ -8,7 +8,7 @@
 
 import Arrow
 
-extension URLContainer:ArrowParsable {
+extension URLContainer: ArrowParsable {
     
     mutating func deserialize(_ json: JSON) {
         link <-- json["link"]

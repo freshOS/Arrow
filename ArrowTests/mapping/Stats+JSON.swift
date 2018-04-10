@@ -8,7 +8,7 @@
 
 import Arrow
 
-extension Stats:ArrowParsable {
+extension Stats: ArrowParsable {
     
     mutating func deserialize(_ json: JSON) {
         numberOfFriends <-- json["numberOfFriends"]

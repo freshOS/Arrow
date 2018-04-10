@@ -40,7 +40,7 @@ open class JSON {
         guard let a = data as? [Any] else {
             return nil
         }
-        return a.map { JSON($0) }.flatMap {$0}
+        return a.map { JSON($0) }.compactMap {$0}
     }
     
     /**
@@ -61,7 +61,7 @@ open class JSON {
     }
     
     func isKeyPath(_ key: String) -> Bool {
-        return key.characters.split {$0 == "."}.count > 1
+        return key.split {$0 == "."}.count > 1
     }
     
     func parseKeyPath(_ keyPath: String) -> JSON? {
@@ -77,7 +77,7 @@ open class JSON {
     }
     
     func keysForKeyPath(_ keyPath: String) -> [String] {
-        return keyPath.characters.split {$0 == "."}.map(String.init)
+        return keyPath.split {$0 == "."}.map(String.init)
     }
     
     func tryParseJSONKeyPathKey(_ key: String, intermediateValue: inout JSON) -> Bool {
@@ -101,7 +101,7 @@ open class JSON {
     open subscript(key: String) -> JSON? {
         get { return isKeyPath(key) ? parseKeyPath(key) : regularParsing(key) }
         set(obj) {
-            if var d = data as? [String:Any] {
+            if var d = data as? [String: Any] {
                 d[key] = obj
             }
         }

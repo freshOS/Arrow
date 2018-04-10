@@ -8,7 +8,7 @@
 
 import Arrow
 
-extension Profile:ArrowParsable {
+extension Profile: ArrowParsable {
     
     mutating func deserialize(_ json: JSON) {
         identifier <-- json["id"]
