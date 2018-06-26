@@ -29,5 +29,37 @@ class CustomModelTests: XCTestCase {
         XCTAssertEqual(customModelContainer.optionalStats?.numberOfFriends, 163)
         XCTAssertEqual(customModelContainer.optionalStats?.numberOfFans, 10987)
     }
+    
+    func testParsingIssue() {
+        let myJson = "{ \"homer\": \"simpson\"}"
+        guard let jsonData = myJson.data(using: .utf8),
+            let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers),
+            let json = JSON(jsonObject) else {
+            return
+        }
+        var aSimpson = Doh()
+        aSimpson.deserialize(json)
+        XCTAssertEqual(aSimpson.homer, "simpson")
+    }
+    
+    func testParsingIssueWorksWithString() {
+        let myJson = "{ \"homer\": \"simpson\"}"
+        guard let json = JSON(myJson) else {
+            return
+        }
+        var aSimpson = Doh()
+        aSimpson.deserialize(json)
+        XCTAssertEqual(aSimpson.homer, "simpson")
+    }
 
+}
+
+struct Doh: Codable {
+    var homer = ""
+}
+
+extension Doh: ArrowParsable {
+    public mutating func deserialize(_ json: JSON) {
+        homer <-- json["homer"]
+    }
 }

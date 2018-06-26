@@ -29,7 +29,14 @@ open class JSON {
         guard let data = data else {
             return nil
         }
-        self.data = data
+        
+        if let jsonString = data as? String,
+            let jsonData = jsonString.data(using: .utf8),
+            let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) {
+            self.data = jsonObject
+        } else {
+            self.data = data
+        }
     }
     
     /**
