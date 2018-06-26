@@ -52,16 +52,24 @@ extension Foo {
     }
 }
 
-extension FooArrow: ArrowImmutableInitializable {
+//extension FooArrow: ArrowParsable {
+//
+//    init() {
+//    }
+//
+//    mutating func deserialize(_ json: JSON) {
+//        name <-- json["pseudo"]
+//    }
+//}
 
+extension FooArrow: ArrowInitializable {
     init(_ json: JSON) {
-        name = json["pseudo"] ?? "default"
+        name = json["pseudo"] ?? ""
     }
 }
-
-
 
 // Improvements
 // Bettter ArrowInitializable syntax.
 // Enables using let instead of var --> Immutibily FTW
-// removes the arrow intialisator, so less things to learn, pure swift syntax
+// Enables default fallback value when json parsing fails
+// removes the need to decrlare an empty init()
