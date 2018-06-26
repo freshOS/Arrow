@@ -26,17 +26,18 @@ public protocol ArrowInitializable {
 //    }
 //}
 //
-//extension Int: ArrowInitializable {
-//    /// Construct an `Int` from JSON
-//    public init?(_ json: JSON) {
-//        var x: Int?
-//        x <-- json
-//        guard let i = x else {
-//            return nil
-//        }
-//        self.init(i)
-//    }
-//}
+extension Int: ArrowInitializable {
+    /// Construct an `Int` from JSON
+    public init(_ json: JSON) {
+        var x: Int?
+        x <-- json
+        if let i = x {
+            self.init(i)
+        } else {
+            self.init()
+        }
+    }
+}
 //
 //extension UInt: ArrowInitializable {
 //    /// Construct a `UInt` from JSON
