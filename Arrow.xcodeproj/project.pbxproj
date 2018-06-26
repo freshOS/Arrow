@@ -18,6 +18,8 @@
 		994243AD1CAA4F3E00B5DB6C /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AC1CAA4F3E00B5DB6C /* Profile.swift */; };
 		994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994243AE1CAA4F4D00B5DB6C /* Stats.swift */; };
 		994243B11CAA502A00B5DB6C /* Profile.json in Resources */ = {isa = PBXBuildFile; fileRef = 994243B01CAA502A00B5DB6C /* Profile.json */; };
+		9965046220E2306600DC5241 /* Foo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965046120E2306600DC5241 /* Foo.swift */; };
+		9965046420E2309400DC5241 /* FooTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9965046320E2309400DC5241 /* FooTests.swift */; };
 		998FA6E31D32644C003C7047 /* EnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA6E21D32644C003C7047 /* EnumTests.swift */; };
 		998FA6E51D3264DE003C7047 /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA6E41D3264DE003C7047 /* DateTests.swift */; };
 		998FA6E71D3265A6003C7047 /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998FA6E61D3265A6003C7047 /* URLTests.swift */; };
@@ -68,6 +70,8 @@
 		994243AC1CAA4F3E00B5DB6C /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		994243AE1CAA4F4D00B5DB6C /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		994243B01CAA502A00B5DB6C /* Profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile.json; sourceTree = "<group>"; };
+		9965046120E2306600DC5241 /* Foo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foo.swift; sourceTree = "<group>"; };
+		9965046320E2309400DC5241 /* FooTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooTests.swift; sourceTree = "<group>"; };
 		998FA6E21D32644C003C7047 /* EnumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumTests.swift; sourceTree = "<group>"; };
 		998FA6E41D3264DE003C7047 /* DateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
 		998FA6E61D3265A6003C7047 /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				994243AC1CAA4F3E00B5DB6C /* Profile.swift */,
+				9965046120E2306600DC5241 /* Foo.swift */,
 				994243AE1CAA4F4D00B5DB6C /* Stats.swift */,
 				998FA6EA1D32681D003C7047 /* PhoneNumber.swift */,
 				998FA6EF1D326963003C7047 /* Difficulty.swift */,
@@ -177,6 +182,7 @@
 				998FA6F91D326A2D003C7047 /* CustomModelTests.swift */,
 				508489801DCB7B11004BED69 /* CustomRawRepresentableTests.swift */,
 				501B4F4D1DD0BA0800721F84 /* TypeConversionTests.swift */,
+				9965046320E2309400DC5241 /* FooTests.swift */,
 				998FA6EE1D326945003C7047 /* Models */,
 				99F4F0631CC3FC710018D4C1 /* mapping */,
 				994243B01CAA502A00B5DB6C /* Profile.json */,
@@ -351,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9965046420E2309400DC5241 /* FooTests.swift in Sources */,
 				99F4F0671CC3FC710018D4C1 /* PhoneNumber+JSON.swift in Sources */,
 				998FA6EB1D32681D003C7047 /* PhoneNumber.swift in Sources */,
 				5084897F1DCB7AD2004BED69 /* CustomRawRepresentableContainer+JSON.swift in Sources */,
@@ -365,6 +372,7 @@
 				998FA6E31D32644C003C7047 /* EnumTests.swift in Sources */,
 				998FA7061D326D4B003C7047 /* StringContainer.swift in Sources */,
 				994243AF1CAA4F4D00B5DB6C /* Stats.swift in Sources */,
+				9965046220E2306600DC5241 /* Foo.swift in Sources */,
 				998FA6F41D3269A1003C7047 /* EnumContainer.swift in Sources */,
 				99F4F0691CC3FC710018D4C1 /* Stats+JSON.swift in Sources */,
 				998FA70A1D32713F003C7047 /* StringCoercionTests.swift in Sources */,

@@ -8,6 +8,10 @@
 
 import Foundation
 
+public protocol ArrowImmutableInitializable {
+    init(_ json: JSON)
+}
+
 public protocol ArrowInitializable {
     init?(_ json: JSON?)
 }

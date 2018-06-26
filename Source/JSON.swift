@@ -90,7 +90,7 @@ open class JSON {
     func tryParseJSONKeyPathKey(_ key: String, intermediateValue: inout JSON) -> Bool {
         if let ik = Int(key), let value = intermediateValue[ik] { // Array index
             intermediateValue = value
-        } else if let value = intermediateValue[key] { //key
+        } else if let value: JSON = intermediateValue[key] { //key
             intermediateValue = value
         } else {
             return false
@@ -107,6 +107,23 @@ open class JSON {
     
     open subscript(key: String) -> JSON? {
         get { return isKeyPath(key) ? parseKeyPath(key) : regularParsing(key) }
+        set(obj) {
+            if var d = data as? [String: Any] {
+                d[key] = obj
+            }
+        }
+    }
+//
+    open subscript<T>(key: String) -> T? {
+        get {
+            guard let d = data as? [String: Any],
+                let x = d[key],
+                let subJSON = JSON(x),
+                let t = subJSON.data as? T else {
+                    return nil
+            }
+            return t
+        }
         set(obj) {
             if var d = data as? [String: Any] {
                 d[key] = obj
