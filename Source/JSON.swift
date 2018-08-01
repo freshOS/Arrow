@@ -113,21 +113,14 @@ open class JSON {
             }
         }
     }
-//
-    open subscript<T>(key: String) -> T? {
+
+    open subscript<T: ArrowInitializable>(key: String) -> T? {
         get {
-            guard let d = data as? [String: Any],
-                let x = d[key],
-                let subJSON = JSON(x),
-                let t = subJSON.data as? T else {
-                    return nil
+            if let subjson = self[key] {
+                let t = T(subjson)
+                return t
             }
-            return t
-        }
-        set(obj) {
-            if var d = data as? [String: Any] {
-                d[key] = obj
-            }
+            return nil
         }
     }
     

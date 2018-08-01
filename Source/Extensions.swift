@@ -110,7 +110,7 @@ extension URL: ArrowInitializable {
     public init(_ json: JSON) {
         var x: String?
         x <-- json
-        if let x = x, let _ = URL(string: x) {
+        if let x = x, URL(string: x) != nil {
             self.init(string: x)!
         } else {
             self.init(string: "https//")!
