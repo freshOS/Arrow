@@ -115,12 +115,10 @@ open class JSON {
     }
     
     open subscript(index: Int) -> JSON? {
-        get {
-            guard let array = data as? [Any], array.count > index else {
-                return nil
-            }
-            return JSON(array[index])
+        guard let array = data as? [Any], array.count > index else {
+            return nil
         }
+        return JSON(array[index])
     }
 }
 

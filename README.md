@@ -240,6 +240,7 @@ if let collection = json.collection {
 - Swift 3 -> version [**3.0.5**](https://github.com/freshOS/Arrow/releases/tag/3.0.5)
 - Swift 4 -> version [**4.0.0**](https://github.com/freshOS/Arrow/releases/tag/4.0.0)
 - Swift 4.1 -> version [**4.1.0**](https://github.com/freshOS/Arrow/releases/tag/4.1.0)
+- Swift 4.2 -> version [**4.2.0**](https://github.com/freshOS/Arrow/releases/tag/4.2.0)
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
