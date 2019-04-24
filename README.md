@@ -2,7 +2,7 @@
 
 # Arrow
 
-[![Language: Swift 2, 3 and 4 3](https://img.shields.io/badge/language-swift2|swift3|swift4-f48041.svg?style=flat)](https://developer.apple.com/swift)
+[![Language: Swift 5](https://img.shields.io/badge/language-swift5-f48041.svg?style=flat)](https://developer.apple.com/swift)
 ![Platform: iOS 8+](https://img.shields.io/badge/platform-iOS%208%2B-blue.svg?style=flat)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
@@ -241,6 +241,7 @@ if let collection = json.collection {
 - Swift 4 -> version [**4.0.0**](https://github.com/freshOS/Arrow/releases/tag/4.0.0)
 - Swift 4.1 -> version [**4.1.0**](https://github.com/freshOS/Arrow/releases/tag/4.1.0)
 - Swift 4.2 -> version [**4.2.0**](https://github.com/freshOS/Arrow/releases/tag/4.2.0)
+- Swift 5.0 -> version [**5.0.0**](https://github.com/freshOS/Arrow/releases/tag/5.0.0)
 
 ## Acknoledgments
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
