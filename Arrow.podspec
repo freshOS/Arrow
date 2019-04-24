@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.ios.deployment_target = "8.0"
   s.description  = "Elegant Swift JSON Parsing - Stop writing boilerplate JSON parsing code and focus on your awesome App instead"
+  s.swift_versions = ['2', '3', '4', '4.1', '4.2', '5.0']
 end
