@@ -45,9 +45,9 @@ func jsonForName(_ name: String) -> JSON? {
     let bundle = Bundle(for: NativeTypesTests.self)
     if let path: String = bundle.path(forResource: name, ofType: "json"),
         let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)),
-        let json = try? JSONSerialization
+        let json = ((try? JSONSerialization
             .jsonObject(with: jsonData,
-                                options: .mutableContainers) as? NSDictionary,
+                                options: .mutableContainers) as? NSDictionary) as NSDictionary??),
         let dic = json as? [String: Any] {
             return JSON(dic)
     }

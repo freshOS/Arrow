@@ -36,7 +36,7 @@ public protocol ArrowParsable {
 
 public extension ArrowParsable {
     /// A shortcut to init custom models with JSON.
-    public init?(_ json: JSON?) {
+    init?(_ json: JSON?) {
         guard let json = json else {
             return nil
         }
