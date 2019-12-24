@@ -10,7 +10,7 @@
 [![Build Status](https://app.bitrise.io/app/ffd8fe5df34624ff/status.svg?token=IahWn-RB5hTWzvBbcIktsQ&branch=master)](https://app.bitrise.io/app/ffd8fe5df34624ff)
 [![codebeat badge](https://codebeat.co/badges/f037ac0c-b3d9-4132-9fca-64150a908113)](https://codebeat.co/projects/github-com-freshos-arrow)
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
-![Release version](https://img.shields.io/github/release/freshos/then.svg)
+![Release version](https://img.shields.io/github/release/freshos/Arrow.svg)
 
 [Reason](#reason) - [Example](#example) - [Installation](#installation)
 
