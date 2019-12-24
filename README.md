@@ -7,7 +7,7 @@
 [![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://swift.org/package-manager)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-4BC51D.svg?style=flat)](https://cocoapods.org)
-[![Build Status](https://app.bitrise.io/app/ffd8fe5df34624ff/status.svg?token=IahWn-RB5hTWzvBbcIktsQ&branch=master)](https://app.bitrise.io/app/ffd8fe5df34624ff)
+[![Build Status](https://app.bitrise.io/app/57b6b1b8959ef398/status.svg?token=WBTcuBRgfLeDB6-A3j7gFA)](https://app.bitrise.io/app/57b6b1b8959ef398)
 [![codebeat badge](https://codebeat.co/badges/f037ac0c-b3d9-4132-9fca-64150a908113)](https://codebeat.co/projects/github-com-freshos-arrow)
 [![License: MIT](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/freshOS/Arrow/blob/master/LICENSE)
 ![Release version](https://img.shields.io/github/release/freshos/Arrow.svg)
