@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import UIKit
 import XCTest
 import Arrow
 
@@ -17,7 +16,7 @@ class NativeTypesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
-        if let json: JSON = jsonForName("Profile") {
+        if let json: JSON = mockJSON() {
             profile <-- json
         }
     }
@@ -37,19 +36,5 @@ class NativeTypesTests: XCTestCase {
     func testParsingDouble() {
         XCTAssertEqual(profile.double, 0.123456789)
     }
-}
+} 
 
-// Helper
-
-func jsonForName(_ name: String) -> JSON? {
-    let bundle = Bundle(for: NativeTypesTests.self)
-    if let path: String = bundle.path(forResource: name, ofType: "json"),
-        let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)),
-        let json = ((try? JSONSerialization
-            .jsonObject(with: jsonData,
-                                options: .mutableContainers) as? NSDictionary) as NSDictionary??),
-        let dic = json as? [String: Any] {
-            return JSON(dic)
-    }
-    return nil
-}

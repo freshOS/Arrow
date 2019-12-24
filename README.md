@@ -134,23 +134,36 @@ profile.deserialize(json)
 ```
 
 ## Installation
-#### Carthage
+The Swift Package Manager (SPM) is now the official way to install `Arrow`. The other package managers are now deprecated as of `5.1.2` and won't be supported in future versions.
+
+#### Swift Package Manager
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "YourPackage",
+    ...
+    dependencies: [
+        .package(url: "https://github.com/freshOS/Arrow", .exact("5.1.3")) // <-  1. Declare dependency
+        //...
+    ],
+    targets: [
+        .target(name: "YourPackage", dependencies:["Arrow"]), // <-  2. Link it to your target
+    ]
+)
+```
+
+#### Carthage - Deprecated
 ```
 github "freshOS/Arrow"
 ```
-#### CocoaPods
+#### CocoaPods - Deprecated
 ```
 target 'MyApp'
 pod 'Arrow'
 use_frameworks!
 ```
-
-#### Manually
-Simply Copy and Paste `.swift` files in your Xcode Project :)
-
-#### As A Framework
-Grab this repository and build the Framework target on the example project. Then Link against this framework.
-
 
 ## How Does That Work
 

@@ -42,7 +42,7 @@ class ArrayTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        if let json: JSON = jsonForName("Profile") {
+        if let json: JSON = mockJSON() {
             arrayContainer <-- json
         }
     }

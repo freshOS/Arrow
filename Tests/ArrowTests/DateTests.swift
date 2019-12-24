@@ -16,7 +16,7 @@ class DateTests: XCTestCase {
     override func setUp() {
         super.setUp()
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
-        if let json: JSON = jsonForName("Profile") {
+        if let json: JSON = mockJSON() {
             dateContainer <-- json
         }
     }
@@ -42,7 +42,7 @@ class DateTests: XCTestCase {
     }
     
     func testCustomDateFormatterDate() {
-        if let json: JSON = jsonForName("Profile") {
+        if let json: JSON = mockJSON() {
             var aDate = Date()
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
@@ -58,7 +58,7 @@ class DateTests: XCTestCase {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         Arrow.setDateFormatter(df)
-        if let json: JSON = jsonForName("Profile") {
+        if let json: JSON = mockJSON() {
             var aDate = Date()
             aDate <-- json["created_at"]
             XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))

@@ -11,7 +11,7 @@ import Arrow
 
 class TypeConversionTests: XCTestCase {
     
-    let json: JSON? = jsonForName("Profile")
+    let json: JSON? = mockJSON()
     
     func testStringConversion() {
         XCTAssertEqual(String(json?["name"]), "Francky")
