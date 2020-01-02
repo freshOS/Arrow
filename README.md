@@ -139,21 +139,7 @@ The Swift Package Manager (SPM) is now the official way to install `Arrow`. The 
 
 #### Swift Package Manager
 
-```swift
-import PackageDescription
-
-let package = Package(
-    name: "YourPackage",
-    ...
-    dependencies: [
-        .package(url: "https://github.com/freshOS/Arrow", .exact("5.1.3")) // <-  1. Declare dependency
-        //...
-    ],
-    targets: [
-        .target(name: "YourPackage", dependencies:["Arrow"]), // <-  2. Link it to your target
-    ]
-)
-```
+`Xcode` > `File` > `Swift Packages` > `Add Package Dependency...` > `Paste` `https://github.com/freshOS/Arrow`
 
 #### Carthage - Deprecated
 ```
