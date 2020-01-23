@@ -117,7 +117,7 @@ if let pns = json["phoneNumbers"] as? [AnyObject] {
 ### After  🎉🎉🎉
 ```swift
 extension Profile:ArrowParsable {
-    mutating func deserialize(json: JSON) {
+    mutating func deserialize(_ json: JSON) {
         identifier <-- json["id"]
         link <-- json["link"]
         name <-- json["name"]
@@ -245,7 +245,7 @@ if let collection = json.collection {
 - Swift 5.1 -> version [**5.1.0**](https://github.com/freshOS/Arrow/releases/tag/5.1.0)
 - Swift 5.1.3 -> version [**5.1.1**](https://github.com/freshOS/Arrow/releases/tag/5.1.1)
 
-## Acknoledgments
+## Acknowledgements
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
 
 <!-- Place this tag in your head or just before your close body tag. -->
