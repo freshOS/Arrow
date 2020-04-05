@@ -26,7 +26,7 @@ Because parsing JSON in Swift is full of **unecessary if lets, obvious casts and
 
 ## Try it
 
-Arrow is part of [freshOS](http://freshos.org) iOS toolset. Try it in an example App ! <a class="github-button" href="https://github.com/freshOS/StarterProject/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download freshOS/StarterProject on GitHub">Download Starter Project</a>
+Arrow is part of [freshOS](https://freshos.github.io/) iOS toolset. Try it in an example App! <a class="github-button" href="https://github.com/freshOS/StarterProject/archive/master.zip" data-icon="octicon-cloud-download" data-style="mega" aria-label="Download freshOS/StarterProject on GitHub">Download Starter Project</a>
 
 ## How
 By using a simple arrow operator that takes care of the boilerplate code for us.  
@@ -247,11 +247,6 @@ if let collection = json.collection {
 
 ## Acknowledgements
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
-
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
 
 ### Backers
 Like the project? Offer coffee or support us with a monthly donation and help us continue our activities :)
