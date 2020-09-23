@@ -244,6 +244,7 @@ if let collection = json.collection {
 - Swift 5.0 -> version [**5.0.0**](https://github.com/freshOS/Arrow/releases/tag/5.0.0)
 - Swift 5.1 -> version [**5.1.0**](https://github.com/freshOS/Arrow/releases/tag/5.1.0)
 - Swift 5.1.3 -> version [**5.1.1**](https://github.com/freshOS/Arrow/releases/tag/5.1.1)
+- Swift 5.3 -> version [**6.0.0**](https://github.com/freshOS/Arrow/releases/tag/6.0.0)
 
 ## Acknowledgements
 This wouldn't exist without [YannickDot](https://github.com/YannickDot), [Damien-nd](https://github.com/damien-nd) and [maxkonovalov](https://github.com/maxkonovalov)
