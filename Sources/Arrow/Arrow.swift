@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 /**
  This is the protocol that makes your swift Models JSON parsable.

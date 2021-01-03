@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 public protocol ArrowInitializable {
     init?(_ json: JSON?)
