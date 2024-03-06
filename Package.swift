@@ -10,7 +10,7 @@ let package = Package(
         .watchOS(.v2)],
     products: [.library(name: "Arrow", targets: ["Arrow"])],
     targets: [
-        .target(name: "Arrow"),
+        .target(name: "Arrow", path: "Sources", resources: [.copy("PrivacyInfo.xcprivacy")]),
         .testTarget(name: "ArrowTests", dependencies: ["Arrow"])
     ]
 )
