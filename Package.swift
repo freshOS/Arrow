@@ -1,13 +1,13 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 import PackageDescription
 
 let package = Package(
     name: "Arrow",
     platforms: [
-        .iOS(.v9),
-        .macOS(.v10_10),
-        .tvOS(.v9),
-        .watchOS(.v2)],
+        .iOS(.v12),
+        .macOS(.v10_13),
+        .tvOS(.v12),
+        .watchOS(.v4)],
     products: [.library(name: "Arrow", targets: ["Arrow"])],
     targets: [
         .target(name: "Arrow", path: "Sources", resources: [.copy("PrivacyInfo.xcprivacy")]),
