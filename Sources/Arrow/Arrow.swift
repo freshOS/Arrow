@@ -45,8 +45,6 @@ public extension ArrowParsable {
     }
 }
 
-private var dateFormatter: DateFormatter? = DateFormatter()
-private var useReferenceDate = false
 
 /**
  This is used to configure NSDate parsing on a global scale.
@@ -61,14 +59,23 @@ For more fine grained control, use `dateFormat` on a per field basis :
         createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
  */
 public class Arrow {
+    
+    internal static let arrowSerialQueue = DispatchQueue(label: "com.arrow.arrow")
+    nonisolated(unsafe) internal static var dateFormatter: DateFormatter? = DateFormatter()
+    nonisolated(unsafe) internal static var useReferenceDate = false
+    
     /// Sets the defaut dateFormat for parsing NSDates.
     public class func setDateFormat(_ format: String) {
-        dateFormatter?.dateFormat = format
+        arrowSerialQueue.sync {
+            dateFormatter?.dateFormat = format
+        }
     }
     
     /// Sets the defaut dateFormatter for parsing NSDates.
     public class func setDateFormatter(_ formatter: DateFormatter?) {
-        dateFormatter = formatter
+        arrowSerialQueue.sync {
+            dateFormatter = formatter
+        }
     }
     
     /**
@@ -80,7 +87,9 @@ public class Arrow {
      documentation
      */
     public class func setUseTimeIntervalSinceReferenceDate(_ ref: Bool) {
-        useReferenceDate = ref
+        arrowSerialQueue.sync {
+            useReferenceDate = ref
+        }
     }
 }
 
@@ -202,7 +211,7 @@ public func <-- (left: inout Date?, right: JSON?) {
         df.dateFormat = customFormat
         left = df.date(from: s)
     } else if let s = right?.data as? String {
-        if let date = dateFormatter?.date(from: s) {
+        if let date = Arrow.arrowSerialQueue.sync(execute: { Arrow.dateFormatter?.date(from: s) }) {
             left = date
         } else if let t = TimeInterval(s) {
             left = timeIntervalToDate(t)
@@ -292,7 +301,7 @@ func parseString<T>(_ left: inout T?, string: String) {
 }
 
 func timeIntervalToDate(_ timeInterval: TimeInterval) -> Date {
-    return useReferenceDate
+    return Arrow.arrowSerialQueue.sync(execute: { Arrow.useReferenceDate })
     ? Date(timeIntervalSinceReferenceDate: timeInterval)
     : Date(timeIntervalSince1970: timeInterval)
 }

@@ -125,8 +125,7 @@ open class JSON {
 extension JSON: CustomDebugStringConvertible {
     
     /// This is just for supporting default console logs.
-    open var debugDescription: String {
+    public var debugDescription: String {
         return data.debugDescription
     }
-    
 }
