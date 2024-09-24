@@ -6,23 +6,23 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
-class CustomRawRepresentableTests: XCTestCase {
+@Suite
+struct CustomRawRepresentableTests {
     
     var customRawRepresentableContainer = CustomRawRepresentableContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             customRawRepresentableContainer <-- json
         }
     }
     
+    @Test
     func testParsingCustomModel() {
-        XCTAssertEqual(customRawRepresentableContainer.identifier, 15678)
-        XCTAssertEqual(customRawRepresentableContainer.rawValue, "15678")
+        #expect(customRawRepresentableContainer.identifier == 15678)
+        #expect(customRawRepresentableContainer.rawValue == "15678")
     }
-    
 }

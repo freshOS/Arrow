@@ -6,41 +6,44 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Arrow
 
-class DateTests: XCTestCase {
+@Suite
+struct DateTests {
     
     var dateContainer = DateContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         if let json: JSON = mockJSON() {
             dateContainer <-- json
         }
     }
     
+    @Test
     func testParsingDate() {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         if let date = df.date(from: "2013-06-07T16:38:40+02:00") {
-            XCTAssertEqual(date.timeIntervalSinceReferenceDate, dateContainer.createdAt
-                .timeIntervalSinceReferenceDate, accuracy: 0.1)
+            #expect(date.timeIntervalSinceReferenceDate == dateContainer.createdAt.timeIntervalSinceReferenceDate)
         } else {
-            XCTFail("Parsing a date fails")
+            Issue.record("Parsing a date fails")
         }
     }
     
+    @Test
     func testParsingOptionalDate() {
         let timestamp: TimeInterval = 392308720
         if let d = dateContainer.optionalDate?.timeIntervalSinceReferenceDate {
-            XCTAssertEqual(timestamp, d, accuracy: 0.1)
+            #expect(timestamp == d)
         } else {
-            XCTFail("Parsing an Optional Date fails")
+            Issue.record("Parsing an Optional Date fails")
         }
     }
     
+    @Test
     func testCustomDateFormatterDate() {
         if let json: JSON = mockJSON() {
             var aDate = Date()
@@ -48,12 +51,13 @@ class DateTests: XCTestCase {
             df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
             df.timeZone = TimeZone(secondsFromGMT: 60*60*5)
             aDate <-- json["created_at"]?.dateFormatter(df)
-            XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
+            #expect(aDate == df.date(from: "2013-06-07T16:38:40+02:00"))
         } else {
-            XCTFail("Using a custom date Parser fails")
+            Issue.record("Using a custom date Parser fails")
         }
     }
     
+    @Test
     func testGlobalDateFormatterDate() {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
@@ -61,9 +65,9 @@ class DateTests: XCTestCase {
         if let json: JSON = mockJSON() {
             var aDate = Date()
             aDate <-- json["created_at"]
-            XCTAssertEqual(aDate, df.date(from: "2013-06-07T16:38:40+02:00"))
+            #expect(aDate == df.date(from: "2013-06-07T16:38:40+02:00"))
         } else {
-            XCTFail("Using a global date parser fails")
+            Issue.record("Using a global date parser fails")
         }
         
         Arrow.setDateFormatter(nil)

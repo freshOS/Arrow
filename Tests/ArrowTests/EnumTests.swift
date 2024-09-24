@@ -6,33 +6,37 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
-class EnumTests: XCTestCase {
+@Suite
+struct EnumTests {
 
     var enumContainer = EnumContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             enumContainer <-- json
         }
     }
 
-    func testParsingEnumInt() {
-        XCTAssertEqual(enumContainer.weekday, WeekDay.wednesday)
+    @Test
+    func parsingEnumInt() {
+        #expect(enumContainer.weekday == WeekDay.wednesday)
     }
     
-    func testParsingEnumString() {
-        XCTAssertEqual(enumContainer.difficulty, Difficulty.high)
+    @Test
+    func parsingEnumString() {
+        #expect(enumContainer.difficulty == Difficulty.high)
     }
     
-    func testParsingOptionalEnumInt() {
-        XCTAssertEqual(enumContainer.optionalWeekday, WeekDay.wednesday)
+    @Test
+    func parsingOptionalEnumInt() {
+        #expect(enumContainer.optionalWeekday == WeekDay.wednesday)
     }
     
-    func testParsingOptionalEnumString() {
-        XCTAssertEqual(enumContainer.optionalDifficulty, Difficulty.high)
+    @Test
+    func parsingOptionalEnumString() {
+        #expect(enumContainer.optionalDifficulty == Difficulty.high)
     }
 }

@@ -6,37 +6,37 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
-class URLTests: XCTestCase {
+@Suite
+struct URLTests {
     
     var urlContainer = URLContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             urlContainer <-- json
         }
     }
     
-    func testParsingURL() {
-        XCTAssertEqual(urlContainer.link.absoluteString.removingPercentEncoding,
-                       "https://apple.com/steve")
+    @Test
+    func parsingURL() {
+        #expect(urlContainer.link.absoluteString.removingPercentEncoding == "https://apple.com/steve")
     }
     
-    func testParsingEmojiURL() {
-        XCTAssertEqual(urlContainer.emojiLink.absoluteString.removingPercentEncoding,
-                       "http://🆒🔗.ws")
+    @Test
+    func parsingEmojiURL() {
+        #expect(urlContainer.emojiLink.absoluteString.removingPercentEncoding == "http://🆒🔗.ws")
     }
     
-    func testParsingAccentURL() {
-        XCTAssertEqual(urlContainer.accentLink.absoluteString.removingPercentEncoding,
-                       "http://gégé.com")
+    @Test
+    func parsingAccentURL() {
+        #expect(urlContainer.accentLink.absoluteString.removingPercentEncoding == "http://gégé.com")
     }
     
-    func testParsingOptionalURL() {
-        XCTAssertEqual(urlContainer.optionalLink?.absoluteString.removingPercentEncoding,
-                       "https://apple.com/steve")
+    @Test
+    func parsingOptionalURL() {
+        #expect(urlContainer.optionalLink?.absoluteString.removingPercentEncoding == "https://apple.com/steve")
     }
 }

@@ -6,55 +6,67 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Arrow
 
-class TypeConversionTests: XCTestCase {
+@Suite
+struct TypeConversionTests {
     
     let json: JSON? = mockJSON()
     
+    @Test
     func testStringConversion() {
-        XCTAssertEqual(String(json?["name"]), "Francky")
+        #expect(String(json?["name"]) == "Francky")
     }
     
+    @Test
     func testIntConversion() {
-        XCTAssertEqual(Int(json?["id"]), 15678)
+        #expect(Int(json?["id"]) == 15678)
     }
     
+    @Test
     func testUIntConversion() {
-        XCTAssertEqual(UInt(json?["id"]), 15678)
+        #expect(UInt(json?["id"]) == 15678)
     }
     
+    @Test
     func testDoubleConversion() {
-        XCTAssertEqual(Double(json?["double"]), 0.123456789)
+        #expect(Double(json?["double"]) == 0.123456789)
     }
     
+    @Test
     func testFloatConversion() {
-        XCTAssertEqual(Float(json?["float"]), 0.12)
+        #expect(Float(json?["float"]) == 0.12)
     }
     
+    @Test
     func testCGFloatConversion() {
-        XCTAssertEqual(CGFloat(json?["float"]), 0.12)
+        #expect(CGFloat(json?["float"]) == 0.12)
     }
     
+    @Test
     func testBoolConversion() {
-        XCTAssertEqual(Bool(json?["bool"]), true)
+        #expect(Bool(json?["bool"]) == true)
     }
     
+    @Test
     func testEnumConversion() {
-        XCTAssertEqual(WeekDay(json?["weekdayInt"]), WeekDay.wednesday)
+        #expect(WeekDay(json?["weekdayInt"]) ==  WeekDay.wednesday)
     }
     
+    @Test
     func testArrayConversions() {
-        XCTAssertEqual([String](json?["strings"]) ?? [], ["one", "two", "three"])
+        #expect([String](json?["strings"]) ?? [] == ["one", "two", "three"])
     }
     
+    @Test
     func testArrayEnumConversions() {
-        XCTAssertEqual([WeekDay](json?["weekdays"]) ?? [], [.monday, .wednesday, .friday])
+        #expect([WeekDay](json?["weekdays"]) ?? [] == [.monday, .wednesday, .friday])
     }
     
+    @Test
     func testDictionaryConversions() {
-        XCTAssertEqual([String: String](json?["dict"]) ?? [:], ["one": "1", "two": "2"])
+        #expect([String: String](json?["dict"]) ?? [:] == ["one": "1", "two": "2"])
     }
-    
 }

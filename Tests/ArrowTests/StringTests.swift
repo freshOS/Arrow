@@ -6,25 +6,27 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
-class StringTests: XCTestCase {
+@Suite
+struct StringTests {
     
     var stringContainer = StringContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             stringContainer <-- json
         }
     }
     
-    func testParsingString() {
-        XCTAssertEqual(stringContainer.name, "Francky")
+    @Test
+    func parsingString() {
+        #expect(stringContainer.name == "Francky")
     }
     
-    func testParsingOptionalString() {
-        XCTAssertEqual(stringContainer.optionalName, "Francky")
+    @Test
+    func parsingOptionalString() {
+        #expect(stringContainer.optionalName == "Francky")
     }
 }
