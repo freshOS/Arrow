@@ -6,30 +6,34 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Arrow
 
-class CustomModelTests: XCTestCase {
+@Suite
+struct CustomModelTests {
     
     var customModelContainer = CustomModelContainer()
 
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             customModelContainer <-- json
         }
     }
     
+    @Test
     func testParsingCustomModel() {
-        XCTAssertEqual(customModelContainer.stats.numberOfFriends, 163)
-        XCTAssertEqual(customModelContainer.stats.numberOfFans, 10987)
+        #expect(customModelContainer.stats.numberOfFriends == 163)
+        #expect(customModelContainer.stats.numberOfFans == 10987)
     }
     
+    @Test
     func testParsingOptionalCustomModel() {
-        XCTAssertEqual(customModelContainer.optionalStats?.numberOfFriends, 163)
-        XCTAssertEqual(customModelContainer.optionalStats?.numberOfFans, 10987)
+        #expect(customModelContainer.optionalStats?.numberOfFriends == 163)
+        #expect(customModelContainer.optionalStats?.numberOfFans == 10987)
     }
     
+    @Test
     func testParsingIssue() {
         let myJson = "{ \"homer\": \"simpson\"}"
         guard let jsonData = myJson.data(using: .utf8),
@@ -39,9 +43,10 @@ class CustomModelTests: XCTestCase {
         }
         var aSimpson = Doh()
         aSimpson.deserialize(json)
-        XCTAssertEqual(aSimpson.homer, "simpson")
+        #expect(aSimpson.homer == "simpson")
     }
     
+    @Test
     func testParsingIssueWorksWithString() {
         let myJson = "{ \"homer\": \"simpson\"}"
         guard let json = JSON(myJson) else {
@@ -49,7 +54,7 @@ class CustomModelTests: XCTestCase {
         }
         var aSimpson = Doh()
         aSimpson.deserialize(json)
-        XCTAssertEqual(aSimpson.homer, "simpson")
+        #expect(aSimpson.homer == "simpson")
     }
 
 }

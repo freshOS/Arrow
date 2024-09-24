@@ -6,35 +6,38 @@
 //  Copyright (c) 2015 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
-class NativeTypesTests: XCTestCase {
+struct NativeTypesTests {
     
     var profile = Profile()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         Arrow.setUseTimeIntervalSinceReferenceDate(true)
         if let json: JSON = mockJSON() {
             profile <-- json
         }
     }
     
-    func testParsingInt() {
-        XCTAssertEqual(profile.identifier, 15678)
+    @Test
+    func pParsingInt() {
+        #expect(profile.identifier == 15678)
     }
 
-    func testParsingFloat() {
-        XCTAssertEqual(profile.float, 0.12)
+    @Test
+    func parsingFloat() {
+        #expect(profile.float == 0.12)
     }
     
-    func testParsingCGFloat() {
-        XCTAssertEqual(profile.cgfloat, 0.12)
+    @Test
+    func parsingCGFloat() {
+        #expect(profile.cgfloat == 0.12)
     }
     
-    func testParsingDouble() {
-        XCTAssertEqual(profile.double, 0.123456789)
+    @Test
+    func parsingDouble() {
+        #expect(profile.double == 0.123456789)
     }
 } 
 

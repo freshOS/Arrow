@@ -6,7 +6,8 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
+import Foundation
 import Arrow
 
 struct CoercionContainer {
@@ -24,26 +25,29 @@ extension CoercionContainer: ArrowParsable {
     }
 }
 
-class StringCoercionTests: XCTestCase {
+@Suite
+struct StringCoercionTests {
     
     var coercionContainer = CoercionContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             coercionContainer <-- json
         }
     }
     
+    @Test
     func testParsingFloatString() {
-        XCTAssertEqual(coercionContainer.floatString, 0.12)
+        #expect(coercionContainer.floatString == 0.12)
     }
     
+    @Test
     func testParsingCGFloatString() {
-        XCTAssertEqual(coercionContainer.cgfloatString, 0.12)
+        #expect(coercionContainer.cgfloatString == 0.12)
     }
     
+    @Test
     func testParsingDoubleString() {
-        XCTAssertEqual(coercionContainer.doubleString, 0.123456789)
+        #expect(coercionContainer.doubleString == 0.123456789)
     }
 }

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreGraphics
 
 struct Profile {
     var identifier = 0

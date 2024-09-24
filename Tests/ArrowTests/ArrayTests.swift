@@ -6,7 +6,7 @@
 //  Copyright © 2016 Sacha Durand Saint Omer. All rights reserved.
 //
 
-import XCTest
+import Testing
 import Arrow
 
 struct ArrayContainer {
@@ -36,104 +36,113 @@ extension ArrayContainer: ArrowParsable {
     }
 }
 
-class ArrayTests: XCTestCase {
+@Suite
+struct ArrayTests {
     
     var arrayContainer = ArrayContainer()
     
-    override func setUp() {
-        super.setUp()
+    init() {
         if let json: JSON = mockJSON() {
             arrayContainer <-- json
         }
     }
     
-    func testParsingArrayOfCustomModels() {
-        XCTAssertEqual(arrayContainer.phoneNumbers.count, 3)
+    @Test
+    func parsingArrayOfCustomModels() {
+        #expect(arrayContainer.phoneNumbers.count == 3)
         if arrayContainer.phoneNumbers.count >= 3 {
-            XCTAssertEqual(arrayContainer.phoneNumbers[0].label, "house")
-            XCTAssertEqual(arrayContainer.phoneNumbers[1].label, "cell")
-            XCTAssertEqual(arrayContainer.phoneNumbers[2].label, "work")
+            #expect(arrayContainer.phoneNumbers[0].label == "house")
+            #expect(arrayContainer.phoneNumbers[1].label == "cell")
+            #expect(arrayContainer.phoneNumbers[2].label == "work")
             
-            XCTAssertEqual(arrayContainer.phoneNumbers[0].number, "9809876545")
-            XCTAssertEqual(arrayContainer.phoneNumbers[1].number, "0908070656")
-            XCTAssertEqual(arrayContainer.phoneNumbers[2].number, "0916570656")
+            #expect(arrayContainer.phoneNumbers[0].number == "9809876545")
+            #expect(arrayContainer.phoneNumbers[1].number == "0908070656")
+            #expect(arrayContainer.phoneNumbers[2].number == "0916570656")
         } else {
-            XCTFail("Parsing ArrayOf Custom Models Fails")
+            Issue.record("Parsing ArrayOf Custom Models Fails")
         }
     }
     
-    func testParsingOptionalArrayOfCustomModels() {
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?.count, 3)
+    @Test
+    func parsingOptionalArrayOfCustomModels() {
+        #expect(arrayContainer.optionalPhoneNumbers?.count == 3)
         
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[0].label, "house")
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[1].label, "cell")
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[2].label, "work")
+        #expect(arrayContainer.optionalPhoneNumbers?[0].label == "house")
+        #expect(arrayContainer.optionalPhoneNumbers?[1].label == "cell")
+        #expect(arrayContainer.optionalPhoneNumbers?[2].label == "work")
         
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[0].number, "9809876545")
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[1].number, "0908070656")
-        XCTAssertEqual(arrayContainer.optionalPhoneNumbers?[2].number, "0916570656")
+        #expect(arrayContainer.optionalPhoneNumbers?[0].number == "9809876545")
+        #expect(arrayContainer.optionalPhoneNumbers?[1].number == "0908070656")
+        #expect(arrayContainer.optionalPhoneNumbers?[2].number == "0916570656")
     }
     
-    func testParsingArrayOfStrings() {
-        XCTAssertEqual(arrayContainer.strings.count, 3)
+    @Test
+    func parsingArrayOfStrings() {
+        #expect(arrayContainer.strings.count ==  3)
         if arrayContainer.strings.count >= 3 {
-            XCTAssertEqual(arrayContainer.strings[0], "one")
-            XCTAssertEqual(arrayContainer.strings[1], "two")
-            XCTAssertEqual(arrayContainer.strings[2], "three")
+            #expect(arrayContainer.strings[0] ==  "one")
+            #expect(arrayContainer.strings[1] ==  "two")
+            #expect(arrayContainer.strings[2] ==  "three")
         } else {
-            XCTFail("Parsing an array of strings fails")
+            Issue.record("Parsing an array of strings fails")
         }
     }
     
-    func testParsingArrayOfInts() {
-        XCTAssertEqual(arrayContainer.ints.count, 3)
+    @Test
+    func parsingArrayOfInts() {
+        #expect(arrayContainer.ints.count ==  3)
         if arrayContainer.ints.count >= 3 {
-            XCTAssertEqual(arrayContainer.ints[0], 1)
-            XCTAssertEqual(arrayContainer.ints[1], 2)
-            XCTAssertEqual(arrayContainer.ints[2], 3)
+            #expect(arrayContainer.ints[0] ==  1)
+            #expect(arrayContainer.ints[1] ==  2)
+            #expect(arrayContainer.ints[2] ==  3)
         } else {
-            XCTFail("Parsing an array of ints fails")
+            Issue.record("Parsing an array of ints fails")
         }
     }
     
-    func testParsingArrayOfBools() {
-        XCTAssertEqual(arrayContainer.bools.count, 3)
+    @Test
+    func parsingArrayOfBools() {
+        #expect(arrayContainer.bools.count == 3)
         if arrayContainer.bools.count >= 3 {
-            XCTAssertEqual(arrayContainer.bools[0], true)
-            XCTAssertEqual(arrayContainer.bools[1], false)
-            XCTAssertEqual(arrayContainer.bools[2], true)
+            #expect(arrayContainer.bools[0] ==  true)
+            #expect(arrayContainer.bools[1] ==  false)
+            #expect(arrayContainer.bools[2] ==  true)
         } else {
-            XCTFail("Parsing an array of bools fails")
+            Issue.record("Parsing an array of bools fails")
         }
     }
     
-    func testNestedParsing() {
-        XCTAssertEqual(arrayContainer.meaningOfLife, 42)
+    @Test
+    func nestedParsing() {
+        #expect(arrayContainer.meaningOfLife ==  42)
     }
     
-    func testNestedArrayParsing() {
-        XCTAssertEqual(arrayContainer.nestedArrayParsing, "Cool")
+    @Test
+    func nestedArrayParsing() {
+        #expect(arrayContainer.nestedArrayParsing ==  "Cool")
     }
     
-    func testParsingArrayOfEnums() {
-        XCTAssertEqual(arrayContainer.weekdays.count, 3)
+    @Test
+    func parsingArrayOfEnums() {
+        #expect(arrayContainer.weekdays.count ==  3)
         if arrayContainer.weekdays.count >= 3 {
-            XCTAssertEqual(arrayContainer.weekdays[0], WeekDay.monday)
-            XCTAssertEqual(arrayContainer.weekdays[1], WeekDay.wednesday)
-            XCTAssertEqual(arrayContainer.weekdays[2], WeekDay.friday)
+            #expect(arrayContainer.weekdays[0] ==  WeekDay.monday)
+            #expect(arrayContainer.weekdays[1] ==  WeekDay.wednesday)
+            #expect(arrayContainer.weekdays[2] ==  WeekDay.friday)
         } else {
-            XCTFail("Parsing an array of enums fails")
+            Issue.record("Parsing an array of enums fails")
         }
     }
     
-    func testParsingOptionalArrayOfEnums() {
-        XCTAssertEqual(arrayContainer.optionalWeekdays?.count, 3)
+    @Test
+    func parsingOptionalArrayOfEnums() {
+        #expect(arrayContainer.optionalWeekdays?.count ==  3)
         if let w = arrayContainer.optionalWeekdays, w.count >= 3 {
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[0], WeekDay.monday)
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[1], WeekDay.wednesday)
-            XCTAssertEqual(arrayContainer.optionalWeekdays?[2], WeekDay.friday)
+            #expect(arrayContainer.optionalWeekdays?[0] ==  WeekDay.monday)
+            #expect(arrayContainer.optionalWeekdays?[1] ==  WeekDay.wednesday)
+            #expect(arrayContainer.optionalWeekdays?[2] ==  WeekDay.friday)
         } else {
-            XCTFail("Parsing an array of optional enums fails")
+            Issue.record("Parsing an array of optional enums fails")
         }
     }
 }

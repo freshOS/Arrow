@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import CoreGraphics
+
 
 /**
  This is the protocol that makes your swift Models JSON parsable.
@@ -45,8 +45,6 @@ public extension ArrowParsable {
     }
 }
 
-private var dateFormatter: DateFormatter? = DateFormatter()
-private var useReferenceDate = false
 
 /**
  This is used to configure NSDate parsing on a global scale.
@@ -60,14 +58,18 @@ For more fine grained control, use `dateFormat` on a per field basis :
  
         createdAt <-- json["created_at"]?.dateFormat("yyyy-MM-dd'T'HH:mm:ssZZZZZ")
  */
-public class Arrow {
+public actor Arrow {
+    
+    internal static var dateFormatter: DateFormatter? = DateFormatter()
+    internal static var useReferenceDate = false
+    
     /// Sets the defaut dateFormat for parsing NSDates.
-    public class func setDateFormat(_ format: String) {
+    public static func setDateFormat(_ format: String) {
         dateFormatter?.dateFormat = format
     }
     
     /// Sets the defaut dateFormatter for parsing NSDates.
-    public class func setDateFormatter(_ formatter: DateFormatter?) {
+    public static func setDateFormatter(_ formatter: DateFormatter?) {
         dateFormatter = formatter
     }
     
@@ -79,7 +81,7 @@ public class Arrow {
      For more information see `NSDate(timeIntervalSinceReferenceDate`
      documentation
      */
-    public class func setUseTimeIntervalSinceReferenceDate(_ ref: Bool) {
+    public static func setUseTimeIntervalSinceReferenceDate(_ ref: Bool) {
         useReferenceDate = ref
     }
 }
@@ -202,7 +204,7 @@ public func <-- (left: inout Date?, right: JSON?) {
         df.dateFormat = customFormat
         left = df.date(from: s)
     } else if let s = right?.data as? String {
-        if let date = dateFormatter?.date(from: s) {
+        if let date = Arrow.dateFormatter?.date(from: s) {
             left = date
         } else if let t = TimeInterval(s) {
             left = timeIntervalToDate(t)
@@ -292,7 +294,7 @@ func parseString<T>(_ left: inout T?, string: String) {
 }
 
 func timeIntervalToDate(_ timeInterval: TimeInterval) -> Date {
-    return useReferenceDate
+    return Arrow.useReferenceDate
     ? Date(timeIntervalSinceReferenceDate: timeInterval)
     : Date(timeIntervalSince1970: timeInterval)
 }
